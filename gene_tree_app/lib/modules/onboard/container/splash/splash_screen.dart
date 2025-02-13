@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/core/utils/helpers/helpers.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
-import 'package:gene_tree_app/modules/common/components/cm_text_field/cp_cm_text_field.dart';
 import 'package:gene_tree_app/modules/main/main_module.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
@@ -34,6 +33,28 @@ class _SplashScreenState extends State<SplashScreen> {
     splashBloc.add(const SplashEvent.started());
   }
 
+  void _handleUnAuthenticated(bool firstLogin) {
+    if (firstLogin) {
+      Modular.to.navigate(
+        OnboardModule.getRoutePath(OnboardModuleEnum.intro),
+      );
+    } else {
+      Modular.to.navigate(
+        OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
+      );
+    }
+  }
+
+  void _handleAuthenticated(bool completedUser) {
+    if (completedUser) {
+      Modular.to.navigate(MainModule.path);
+    } else {
+      Modular.to.navigate(OnboardModule.getRoutePath(
+        OnboardModuleEnum.createClan,
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
@@ -42,37 +63,21 @@ class _SplashScreenState extends State<SplashScreen> {
         scaffoldBuilder: () {
           return BaseScaffold(
             configs: BaseScaffoldConfigs(
-              nameScreen: "Splash",
+              nameScreen: "Splash screen",
               body: (themeState) => BlocListener<SplashBloc, SplashState>(
                 listener: (context, state) {
                   state.map(
                     initial: (value) {},
-                    unAuthenticated: (value) {
-                      if (value.firstLogin == true) {
-                        Modular.to.navigate(
-                          OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
-                        );
-                      } else {
-                        Modular.to.navigate(
-                          OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
-                        );
-                      }
-                    },
-                    authenticated: (value) {
-                      if (value.completedUser == true) {
-                        Modular.to.navigate(MainModule.path);
-                      } else {
-                        Modular.to.navigate(OnboardModule.getRoutePath(
-                          OnboardModuleEnum.createClan,
-                        ));
-                      }
-                    },
+                    unAuthenticated: (value) =>
+                        _handleUnAuthenticated(value.firstLogin == true),
+                    authenticated: (value) =>
+                        _handleAuthenticated(value.completedUser == true),
                   );
                 },
                 listenWhen: (previous, current) => previous != current,
                 child: Center(
-                      child: ImageHelpers(themeEnum: themeState.appThemeEnum)
-                          .getLogo(),
+                  child: ImageHelpers(themeEnum: themeState.appThemeEnum)
+                      .getLogo(),
                 ),
               ),
             ),
