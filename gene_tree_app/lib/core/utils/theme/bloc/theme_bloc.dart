@@ -11,9 +11,8 @@ part 'theme_event.dart';
 part 'theme_state.dart';
 part 'theme_bloc.freezed.dart';
 
-AppThemeModel get themeData =>
-    Modular.tryGet<ThemeBloc>()?.state.appThemeEnum.themeData() ??
-    AppThemeEnum.lightTheme.themeData();
+ValueNotifier<AppThemeModel> themeData =
+    ValueNotifier(AppThemeEnum.lightTheme.themeData());
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   final LocalStorage localStorage;
@@ -38,13 +37,14 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
             configLoading(state.appThemeEnum);
           },
           toogleTheme: (value) async {
-            emit(
-              state.copyWith(
-                appThemeEnum: state.appThemeEnum == AppThemeEnum.lightTheme
-                    ? AppThemeEnum.darkTheme
-                    : AppThemeEnum.lightTheme,
-              ),
+            final newTheme = state.appThemeEnum == AppThemeEnum.lightTheme
+                ? AppThemeEnum.darkTheme
+                : AppThemeEnum.lightTheme;
+            localStorage.save<String>(
+              SharePreferenceKeys.currentTheme.name,
+              newTheme.name,
             );
+            emit(state.copyWith(appThemeEnum: newTheme));
 
             localStorage.save<String>(
               SharePreferenceKeys.currentTheme.name,

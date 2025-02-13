@@ -34,8 +34,8 @@ class _HomeClanEventState extends State<HomeClanEvent> {
           children: [
             Text(
               "Event",
-              style: themeData.typo.t14Bold.copyWith(
-                color: themeData.color.btnColor2,
+              style: themeData.value.typo.t14Bold.copyWith(
+                color: themeData.value.color.btnColor2,
               ),
             ),
             const Spacer(),
@@ -50,14 +50,14 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                 children: [
                   Text(
                     "See all",
-                    style: themeData.typo.t12Semibold.copyWith(
-                      color: themeData.color.btnColor2,
+                    style: themeData.value.typo.t12Semibold.copyWith(
+                      color: themeData.value.color.btnColor2,
                     ),
                   ),
                   SizedBox(width: 4.w),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
-                    color: themeData.color.btnColor2,
+                    color: themeData.value.color.btnColor2,
                     size: 10.h,
                   )
                 ],
@@ -80,7 +80,7 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 20.w, vertical: 14.h),
                         decoration: BoxDecoration(
-                          gradient: themeData.color.linegradientColor2,
+                          gradient: themeData.value.color.linegradientColor2,
                           borderRadius: BorderRadius.circular(10.r),
                         ),
                         child: Column(
@@ -94,7 +94,7 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                                 width: 150.w,
                                 height: 14.h,
                                 decoration: BoxDecoration(
-                                  gradient: themeData.color.linegradientColor2,
+                                  gradient: themeData.value.color.linegradientColor2,
                                   borderRadius: BorderRadius.circular(10.r),
                                 ),
                               ),
@@ -108,7 +108,7 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                                 width: double.infinity,
                                 height: 12.h,
                                 decoration: BoxDecoration(
-                                  gradient: themeData.color.linegradientColor2,
+                                  gradient: themeData.value.color.linegradientColor2,
                                   borderRadius: BorderRadius.circular(10.r),
                                 ),
                               ),
@@ -127,7 +127,7 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                                       height: 10.h,
                                       decoration: BoxDecoration(
                                         gradient:
-                                            themeData.color.linegradientColor2,
+                                            themeData.value.color.linegradientColor2,
                                         borderRadius:
                                             BorderRadius.circular(10.r),
                                       ),
@@ -157,7 +157,7 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                     Text(
                       "You don't have any clan events",
                       textAlign: TextAlign.center,
-                      style: themeData.typo.t12Semibold.copyWith(),
+                      style: themeData.value.typo.t12Semibold.copyWith(),
                     ),
                     SizedBox(height: 20.h),
                     SizedBox(height: 20.h),
@@ -175,7 +175,7 @@ class _HomeClanEventState extends State<HomeClanEvent> {
       margin: EdgeInsets.only(bottom: 10.h),
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
       decoration: BoxDecoration(
-        gradient: themeData.color.linegradientColor2,
+        gradient: themeData.value.color.linegradientColor2,
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: Column(
@@ -184,14 +184,14 @@ class _HomeClanEventState extends State<HomeClanEvent> {
           Text(
             data.title ?? "",
             // textAlign: TextAlign.center,
-            style: themeData.typo.t14Bold.copyWith(
-              color: themeData.color.btnColor2,
+            style: themeData.value.typo.t14Bold.copyWith(
+              color: themeData.value.color.btnColor2,
             ),
           ),
           SizedBox(height: 6.h),
           Text(
             data.description ?? "",
-            style: themeData.typo.t12Regular.copyWith(),
+            style: themeData.value.typo.t12Regular.copyWith(),
           ),
           SizedBox(height: 6.h),
           SizedBox(height: 6.h),
@@ -201,12 +201,12 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                 child: Text(
                   "Author: ${data.author?.fullName}",
                   textAlign: TextAlign.start,
-                  style: themeData.typo.t10Regular.copyWith(),
+                  style: themeData.value.typo.t10Regular.copyWith(),
                 ),
               ),
               RichText(
                 text: TextSpan(
-                  style: themeData.typo.t10Regular.copyWith(),
+                  style: themeData.value.typo.t10Regular.copyWith(),
                   children: [
                     TextSpan(
                       text: DateTimeHelper.formatDateTime(

@@ -64,8 +64,8 @@ class CmDialogScreen {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: themeData.color.bgColor1.withOpacity(.9),
-          shadowColor: themeData.color.mainPrimaryColor,
+          backgroundColor: themeData.value.color.bgColor1.withOpacity(.9),
+          shadowColor: themeData.value.color.mainPrimaryColor,
           contentPadding: EdgeInsets.zero,
           elevation: 2,
           content: Container(
@@ -96,16 +96,16 @@ class CmDialogScreen {
                       Text(
                         argument.title ?? 'Successs',
                         textAlign: TextAlign.center,
-                        style: themeData.typo.t14Semibold.copyWith(
-                          color: themeData.color.btnColor2,
+                        style: themeData.value.typo.t14Semibold.copyWith(
+                          color: themeData.value.color.btnColor2,
                         ),
                       ),
                       SizedBox(height: 6.h),
                       Text(
                         argument.content ?? "",
                         textAlign: TextAlign.center,
-                        style: themeData.typo.t12Regular.copyWith(
-                          color: themeData.color.mainPrimaryColor,
+                        style: themeData.value.typo.t12Regular.copyWith(
+                          color: themeData.value.color.mainPrimaryColor,
                         ),
                       ),
                     ],
@@ -122,7 +122,7 @@ class CmDialogScreen {
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: themeData.color.btnColor2,
+                      color: themeData.value.color.btnColor2,
                       borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
@@ -131,8 +131,8 @@ class CmDialogScreen {
                     child: Center(
                       child: Text(
                         "OK",
-                        style: themeData.typo.t12Bold.copyWith(
-                          color: themeData.color.bgColor1,
+                        style: themeData.value.typo.t12Bold.copyWith(
+                          color: themeData.value.color.bgColor1,
                         ),
                       ),
                     ),
@@ -156,8 +156,8 @@ class CmDialogScreen {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: themeData.color.bgColor1.withOpacity(.9),
-          shadowColor: themeData.color.mainPrimaryColor,
+          backgroundColor: themeData.value.color.bgColor1.withOpacity(.9),
+          shadowColor: themeData.value.color.mainPrimaryColor,
           contentPadding: EdgeInsets.zero,
           elevation: 2,
           content: Container(
@@ -188,16 +188,16 @@ class CmDialogScreen {
                       Text(
                         argument.title ?? 'Alert',
                         textAlign: TextAlign.center,
-                        style: themeData.typo.t14Semibold.copyWith(
-                          color: themeData.color.btnColor2,
+                        style: themeData.value.typo.t14Semibold.copyWith(
+                          color: themeData.value.color.btnColor2,
                         ),
                       ),
                       SizedBox(height: 6.h),
                       Text(
                         argument.content ?? "",
                         textAlign: TextAlign.center,
-                        style: themeData.typo.t12Regular.copyWith(
-                          color: themeData.color.mainPrimaryColor,
+                        style: themeData.value.typo.t12Regular.copyWith(
+                          color: themeData.value.color.mainPrimaryColor,
                         ),
                       ),
                     ],
@@ -212,7 +212,7 @@ class CmDialogScreen {
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: themeData.color.btnColor2,
+                      color: themeData.value.color.btnColor2,
                       borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
@@ -221,8 +221,8 @@ class CmDialogScreen {
                     child: Center(
                       child: Text(
                         "Cancel",
-                        style: themeData.typo.t12Bold.copyWith(
-                          color: themeData.color.bgColor1,
+                        style: themeData.value.typo.t12Bold.copyWith(
+                          color: themeData.value.color.bgColor1,
                         ),
                       ),
                     ),
@@ -248,7 +248,7 @@ class CmDialogScreen {
         return AlertDialog(
           title: Text(
             argument.title ?? 'Confirmation',
-            style: themeData.typo.t14Bold.copyWith(),
+            style: themeData.value.typo.t14Bold.copyWith(),
           ),
           content: Text(argument.content ?? 'Are you sure?'),
           actions: [
@@ -260,7 +260,7 @@ class CmDialogScreen {
               child: Text(
                 'Cancel',
                 style: TextStyle(
-                  color: themeData.color.btnColor2,
+                  color: themeData.value.color.btnColor2,
                 ),
               ),
             ),
@@ -348,11 +348,11 @@ class CmDialogScreen {
                     Container(
                       padding: EdgeInsets.all(20.h),
                       decoration: BoxDecoration(
-                        color: themeData.color.bgColor1.withOpacity(.9),
+                        color: themeData.value.color.bgColor1.withOpacity(.9),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: CircularProgressIndicator(
-                        color: themeData.color.mainSecondaryColor1,
+                        color: themeData.value.color.mainSecondaryColor1,
                       ),
                     ),
                   ],

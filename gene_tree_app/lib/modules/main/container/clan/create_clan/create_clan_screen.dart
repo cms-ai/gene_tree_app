@@ -25,7 +25,6 @@ class CreateClanScreen extends StatefulWidget {
 class _CreateClanScreenState extends State<CreateClanScreen> {
   final CreateClanBloc createClanBloc = Modular.get();
   final nameController = TextEditingController();
-
   final desController = TextEditingController();
   // final nameInput =
   @override
@@ -39,8 +38,8 @@ class _CreateClanScreenState extends State<CreateClanScreen> {
   Widget build(BuildContext context) {
     return BaseScreen(
       scaffoldBuilder: () {
-        return BlocProvider(
-          create: (context) => createClanBloc,
+        return BlocProvider.value(
+          value: createClanBloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "CreateClan",
@@ -57,7 +56,7 @@ class _CreateClanScreenState extends State<CreateClanScreen> {
                     SizedBox(height: 60.h),
                     Text(
                       "Tên gia tộc",
-                      style: themeData.typo.t14Bold,
+                      style: themeData.value.typo.t14Bold,
                     ),
                     SizedBox(height: 10.h),
                     CPCmTextField(
@@ -71,7 +70,7 @@ class _CreateClanScreenState extends State<CreateClanScreen> {
                     SizedBox(height: 30.h),
                     Text(
                       "Desciption",
-                      style: themeData.typo.t14Bold,
+                      style: themeData.value.typo.t14Bold,
                     ),
                     SizedBox(height: 10.h),
                     CPCmTextField(

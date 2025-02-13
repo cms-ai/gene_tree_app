@@ -39,7 +39,7 @@ class CPCmAppBar extends StatelessWidget implements PreferredSizeWidget {
           centerTitle: true,
           title: Text(
             configs.title,
-            style: themeData.typo.t16Bold,
+            style: themeData.value.typo.t16Bold,
           ),
           actions: [
             Padding(

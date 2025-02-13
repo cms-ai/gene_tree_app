@@ -24,28 +24,33 @@ class CreateClanBloc extends Bloc<CreateClanEvent, CreateClanState> {
       (event, emit) async {
         await event.map(
           started: (value) async {},
-          createClanEvent: (value) async {
-            try {
-              EasyLoading.show(status: "Creating...");
-              final userId = await localStorage
-                  .get<String>(SharePreferenceKeys.userId.name);
-              final reqBody = CreateClanRequest(
-                clanName: value.name,
-                description: value.description,
-                authorId: userId ?? "",
-              );
-              await clanRepository.createClan(reqBody);
-              EasyLoading.showSuccess("Succesfully");
-
-              navigateScreen();
-            } catch (e) {
-              LoggerUtil.debugLog(e.toString());
-              EasyLoading.showError(e.toString());
-            }
-          },
+          createClanEvent: (value) => _handleCreateClan(value, emit),
         );
       },
     );
+  }
+
+  Future<void> _handleCreateClan(
+    _CreateClanEvent value,
+    Emitter<CreateClanState> emit,
+  ) async {
+    try {
+      EasyLoading.show(status: "Creating...");
+      final userId =
+          await localStorage.get<String>(SharePreferenceKeys.userId.name);
+      final reqBody = CreateClanRequest(
+        clanName: value.name,
+        description: value.description,
+        authorId: userId ?? "",
+      );
+      await clanRepository.createClan(reqBody);
+      EasyLoading.showSuccess("Succesfully");
+
+      navigateScreen();
+    } catch (e) {
+      LoggerUtil.debugLog(e.toString());
+      EasyLoading.showError(e.toString());
+    }
   }
 
   void navigateScreen() {

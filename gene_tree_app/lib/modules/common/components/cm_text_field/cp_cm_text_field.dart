@@ -20,7 +20,7 @@ class CPCmTextField extends StatefulWidget {
 }
 
 class _CPCmTextFieldState extends State<CPCmTextField> {
-  final ThemeState themeState = Modular.get<ThemeBloc>().state;
+  // final ThemeState themeState = Modular.get<ThemeBloc>().state;
   @override
   void dispose() {
     super.dispose();
@@ -50,22 +50,24 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
       decoration: InputDecoration(
         hintText: hintTextConfigs?.hintText,
         hintStyle: hintTextConfigs?.hintStyle ??
-            themeData.typo.t14Semibold.copyWith(
-              color: themeData.color.mainPrimaryColor.withOpacity(.4),
+            themeData.value.typo.t14Semibold.copyWith(
+              color: themeData.value.color.mainPrimaryColor.withOpacity(.4),
             ),
         contentPadding: widget.configs.contentPadding ?? EdgeInsets.all(12.h),
         isDense: true,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: themeData.value.color.mainPrimaryColor,
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: themeState.appThemeEnum.themeData().color.mainPrimaryColor,
+            color: themeData.value.color.mainPrimaryColor,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: themeState.appThemeEnum.themeData().color.mainPrimaryColor,
+            color: themeData.value.color.mainPrimaryColor,
           ),
         ),
       ),
@@ -83,7 +85,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
         isDense: true,
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: themeState.mainColor,
+            color: themeData.value.color.mainPrimaryColor,
           ),
         ),
       ),
@@ -101,7 +103,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
         isDense: true,
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: themeState.mainColor,
+            color: themeData.value.color.mainPrimaryColor,
           ),
         ),
       ),

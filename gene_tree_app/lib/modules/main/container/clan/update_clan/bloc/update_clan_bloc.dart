@@ -28,8 +28,6 @@ class UpdateClanBloc extends Bloc<UpdateClanEvent, UpdateClanState> {
     this.getAllClanUsecase,
     this.localStorage,
   ) : super(const UpdateClanState.initial()) {
-    final _eventStreamController = StreamController<bool>();
-
     on<UpdateClanEvent>((event, emit) async {
       await event.map(
         started: (value) async {},
@@ -70,7 +68,6 @@ class UpdateClanBloc extends Bloc<UpdateClanEvent, UpdateClanState> {
                 content: error ?? "",
               ),
             );
-            e.getMessageErr();
           }
         },
       );

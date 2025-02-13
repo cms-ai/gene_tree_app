@@ -37,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BaseScreen(
       scaffoldBuilder: () {
-        return BlocProvider(
-          create: (context) => homeBloc,
+        return BlocProvider.value(
+          value: homeBloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "Home",

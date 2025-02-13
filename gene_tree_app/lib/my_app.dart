@@ -50,35 +50,42 @@ class _MyAppState extends State<MyApp> {
               value: Modular.get<AppBloc>(),
             ),
           ],
-          child: BlocConsumer<ThemeBloc, ThemeState>(
-            listener: (context, state) async {
-              LoggerUtil.debugLog("Change theme: ${state.appThemeEnum}");
-              final SharedPreferencesStorage?localStorage = Modular.tryGet();
-          
-              localStorage?.save<String>(SharePreferenceKeys.currentTheme.name,
-                  state.appThemeEnum.name);
-            },
-            builder: (context, state) {
-              return MaterialApp.router(
-                // key: GlobalKeys().navigatorKey,
-                localizationsDelegates: AppLocalizations.appLocalizations,
-                routerConfig: Modular.routerConfig,
-                title: 'Gene tree app',
-                theme: state.appThemeEnum.themeData().theme,
-                builder: EasyLoading.init(
-                  builder: (context, child) {
-                    return Stack(
-                      children: [
-                        child ?? const SizedBox(),
-                        if (kDebugMode) _buildDebugWidget(screenSize, state),
-                      ],
+          child: ValueListenableBuilder<AppThemeModel>(
+              valueListenable: themeData,
+              builder: (context, theme, child) {
+                return BlocConsumer<ThemeBloc, ThemeState>(
+                  listener: (context, state) async {
+                    LoggerUtil.debugLog("Change theme: ${state.appThemeEnum}");
+                    // final SharedPreferencesStorage? localStorage = Modular.tryGet();
+                    // themeData = state.appThemeEnum.themeData();
+                    themeData.value = state.appThemeEnum.themeData();
+
+                    // localStorage?.save<String>(SharePreferenceKeys.currentTheme.name,
+                    //     state.appThemeEnum.name);
+                  },
+                  builder: (context, state) {
+                    return MaterialApp.router(
+                      // key: GlobalKeys().navigatorKey,
+                      localizationsDelegates: AppLocalizations.appLocalizations,
+                      routerConfig: Modular.routerConfig,
+                      title: 'Gene tree app',
+                      theme: themeData.value.theme,
+                      builder: EasyLoading.init(
+                        builder: (context, child) {
+                          return Stack(
+                            children: [
+                              child ?? const SizedBox(),
+                              if (kDebugMode)
+                                _buildDebugWidget(screenSize, state),
+                            ],
+                          );
+                        },
+                      ),
+                      // home: const MyApp(),
                     );
                   },
-                ),
-                // home: const MyApp(),
-              );
-            },
-          ),
+                );
+              }),
         );
       },
     );

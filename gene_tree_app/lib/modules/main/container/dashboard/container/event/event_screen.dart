@@ -37,8 +37,8 @@ class _EventScreenState extends State<EventScreen> {
   Widget build(BuildContext context) {
     return BaseScreen(
       scaffoldBuilder: () {
-        return BlocProvider(
-          create: (context) => eventBloc,
+        return BlocProvider.value(
+          value: eventBloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "Event",
@@ -62,7 +62,7 @@ class _EventScreenState extends State<EventScreen> {
                         //     configs: CPCmTextFieldConfigs(
                         //       hintTextConfigs: HintTextConfigs(
                         //         hintText: "Tìm sự kiện",
-                        //         hintStyle: themeData.typo.t12Regular.copyWith(
+                        //         hintStyle: themeData.value.typo.t12Regular.copyWith(
                         //           color: Colors.grey,
                         //         ),
                         //       ),
@@ -72,7 +72,7 @@ class _EventScreenState extends State<EventScreen> {
                         // SizedBox(height: 14.h),
                         Text(
                           "Total results (${dataList.length})",
-                          style: themeData.typo.t14Semibold.copyWith(),
+                          style: themeData.value.typo.t14Semibold.copyWith(),
                         ),
                         SizedBox(height: 10.h),
                         Expanded(
@@ -106,7 +106,7 @@ class _EventScreenState extends State<EventScreen> {
       margin: EdgeInsets.only(bottom: 10.h),
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
       decoration: BoxDecoration(
-        gradient: themeData.color.linegradientColor2,
+        gradient: themeData.value.color.linegradientColor2,
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: Column(
@@ -115,8 +115,8 @@ class _EventScreenState extends State<EventScreen> {
           Text(
             data.title ?? "",
             // textAlign: TextAlign.center,
-            style: themeData.typo.t14Bold.copyWith(
-              color: themeData.color.btnColor2,
+            style: themeData.value.typo.t14Bold.copyWith(
+              color: themeData.value.color.btnColor2,
             ),
           ),
           SizedBox(height: 6.h),
@@ -124,7 +124,7 @@ class _EventScreenState extends State<EventScreen> {
             data.description ?? "",
 
             // textAlign: TextAlign.center,
-            style: themeData.typo.t12Regular.copyWith(),
+            style: themeData.value.typo.t12Regular.copyWith(),
           ),
           SizedBox(height: 6.h),
           SizedBox(height: 6.h),
@@ -134,12 +134,12 @@ class _EventScreenState extends State<EventScreen> {
                 child: Text(
                   "Author: ${data.author?.fullName}",
                   textAlign: TextAlign.start,
-                  style: themeData.typo.t10Regular.copyWith(),
+                  style: themeData.value.typo.t10Regular.copyWith(),
                 ),
               ),
               RichText(
                 text: TextSpan(
-                  style: themeData.typo.t10Regular.copyWith(),
+                  style: themeData.value.typo.t10Regular.copyWith(),
                   children: [
                     TextSpan(
                       text: DateTimeHelper.formatDateTime(
@@ -181,14 +181,14 @@ extension _EventScreenStateExt on _EventScreenState {
             "Event",
             style: themeState.appThemeEnum.themeData().typo.tHeader.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: themeData.color.btnColor2,
+                  color: themeData.value.color.btnColor2,
                 ),
           ),
           const Spacer(),
           CPButton(
             configs: CPButtonConfigs(
               padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
-              textStyle: themeData.typo.t12Semibold,
+              textStyle: themeData.value.typo.t12Semibold,
               content: "Add",
               onTap: () {
                 // TODO: See details clan

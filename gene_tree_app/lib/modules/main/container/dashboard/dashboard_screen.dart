@@ -34,8 +34,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return BaseScreen(
       scaffoldBuilder: () {
-        return BlocProvider(
-          create: (context) => _bloc,
+        return BlocProvider.value(
+          value: _bloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "Dashboard",

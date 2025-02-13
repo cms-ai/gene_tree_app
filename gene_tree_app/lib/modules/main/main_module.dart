@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/modules/common/common_module.dart';
 import 'package:gene_tree_app/modules/main/container/clan/clan_detail/bloc/clan_detail_bloc.dart';
@@ -45,12 +46,6 @@ class MainModule extends Module {
       MainModuleEnum.clanMemberList.path,
       child: (context) => ClanMemberListScreen(argument: r.args.data),
     );
-
-    r.child(
-      MainModuleEnum.clanMemberList.path,
-      child: (context) => ClanMemberListScreen(argument: r.args.data),
-    );
-
     r.child(
       MainModuleEnum.createClanMember.path,
       child: (context) => CreateClanMemberScreen(argument: r.args.data),

@@ -37,7 +37,7 @@ class SignInScreen extends StatelessWidget {
               child: Container(
                 height: double.infinity,
                 padding: EdgeInsets.symmetric(
-                  horizontal: themeData.spacing.screenHorizontal,
+                  horizontal: themeData.value.spacing.screenHorizontal,
                 ),
                 child: BlocListener<SignInBloc, SignInState>(
                   listener: (context, state) {
@@ -106,9 +106,9 @@ class SignInScreen extends StatelessWidget {
             content: OnboardLocalizations.current.signInWithGoogle,
             type: ButtonType.outline,
             decoration: BoxDecoration(
-              color: themeData.color.btnColor2.withOpacity(.1),
+              color: themeData.value.color.btnColor2.withOpacity(.1),
               border: Border.all(
-                  color: themeData.color.btnColor2 // Màu viền của button
+                  color: themeData.value.color.btnColor2 // Màu viền của button
                   ),
               borderRadius: BorderRadius.circular(8.0), // Bo góc
             ),
@@ -124,15 +124,15 @@ class SignInScreen extends StatelessWidget {
                 child: Assets.icons.icApple.svg(
                   height: 20.h,
                   colorFilter: ColorFilter.mode(
-                    themeData.color.mainPrimaryColor,
+                    themeData.value.color.mainPrimaryColor,
                     BlendMode.srcIn,
                   ),
                 ),
               ),
               decoration: BoxDecoration(
-                color: themeData.color.btnColor2.withOpacity(.1),
+                color: themeData.value.color.btnColor2.withOpacity(.1),
                 border: Border.all(
-                    color: themeData.color.btnColor2 // Màu viền của button
+                    color: themeData.value.color.btnColor2 // Màu viền của button
                     ),
                 borderRadius: BorderRadius.circular(8.0), // Bo góc
               ),

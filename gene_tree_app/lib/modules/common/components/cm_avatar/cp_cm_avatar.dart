@@ -22,7 +22,7 @@ class CPCmAvatar extends StatelessWidget {
         // shape: BoxShape.circle,
         borderRadius: BorderRadius.circular(50.r),
         border: Border.all(
-          color: themeData.color.btnColor2,
+          color: themeData.value.color.btnColor2,
           width: 2,
         ),
       ),

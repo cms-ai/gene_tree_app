@@ -17,7 +17,7 @@ class CPClanMemberCard extends StatelessWidget {
       elevation: 4,
       shape: RoundedRectangleBorder(
         side: BorderSide(
-          color: themeData.color.btnColor2,
+          color: themeData.value.color.btnColor2,
         ),
         borderRadius: BorderRadius.circular(12),
       ),
@@ -42,12 +42,12 @@ class CPClanMemberCard extends StatelessWidget {
                     children: [
                       Text(
                         "Nguyễn Văn A",
-                        style: themeData.typo.t12Semibold,
+                        style: themeData.value.typo.t12Semibold,
                       ),
                       SizedBox(height: 6.h),
                       Text(
                         "Chức vụ; Tộc trưởng",
-                        style: themeData.typo.t10Semibold,
+                        style: themeData.value.typo.t10Semibold,
                       ),
                     ],
                   ),
@@ -61,7 +61,7 @@ class CPClanMemberCard extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: themeData.color.btnColor2,
+                color: themeData.value.color.btnColor2,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Text(

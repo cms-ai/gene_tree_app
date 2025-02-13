@@ -108,7 +108,7 @@ class _IntroScreenState extends State<IntroScreen> {
                                 child: Text(
                                   "Skip",
                                   textAlign: TextAlign.center,
-                                  style: themeData.typo.t16Bold.copyWith(
+                                  style: themeData.value.typo.t16Bold.copyWith(
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -166,18 +166,18 @@ class _IntroScreenState extends State<IntroScreen> {
                     Text(
                       data.title,
                       textAlign: TextAlign.center,
-                      style: themeData.typo.t16Semibold.copyWith(
+                      style: themeData.value.typo.t16Semibold.copyWith(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(
-                      height: themeData.spacing.s18,
+                      height: themeData.value.spacing.s18,
                     ),
                     Text(
                       data.sub,
                       textAlign: TextAlign.center,
-                      style: themeData.typo.t12Regular.copyWith(
+                      style: themeData.value.typo.t12Regular.copyWith(
                         fontSize: 14.sp,
                       ),
                     ),

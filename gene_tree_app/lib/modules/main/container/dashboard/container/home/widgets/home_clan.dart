@@ -71,7 +71,7 @@ class _HomeClanState extends State<HomeClan> {
                     padding:
                         EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
                     decoration: BoxDecoration(
-                      gradient: themeData.color.linegradientColor,
+                      gradient: themeData.value.color.linegradientColor,
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                     child: Column(
@@ -103,7 +103,7 @@ class _HomeClanState extends State<HomeClan> {
                         CPButton(
                           configs: CPButtonConfigs(
                             padding: EdgeInsets.symmetric(vertical: 8.h),
-                            textStyle: themeData.typo.t12Semibold,
+                            textStyle: themeData.value.typo.t12Semibold,
                             content: "See details",
                             onTap: () {
                               // TODO: See details clan
@@ -125,13 +125,13 @@ class _HomeClanState extends State<HomeClan> {
                         Text(
                           "You don't have any clan",
                           textAlign: TextAlign.center,
-                          style: themeData.typo.t12Bold.copyWith(),
+                          style: themeData.value.typo.t12Bold.copyWith(),
                         ),
                         SizedBox(height: 10.h),
                         CPButton(
                           configs: CPButtonConfigs(
                             padding: EdgeInsets.symmetric(vertical: 8.h),
-                            textStyle: themeData.typo.t12Semibold,
+                            textStyle: themeData.value.typo.t12Semibold,
                             content: "Create now",
                             onTap: () {
                               Modular.to.pushNamed(
@@ -151,14 +151,14 @@ class _HomeClanState extends State<HomeClan> {
                 Text(
                   "You don't have any clan",
                   textAlign: TextAlign.center,
-                  style: themeData.typo.t12Semibold.copyWith(),
+                  style: themeData.value.typo.t12Semibold.copyWith(),
                 ),
                 SizedBox(height: 20.h),
                 CPButton(
                   configs: CPButtonConfigs(
                     padding: EdgeInsets.symmetric(vertical: 8.h),
                     width: 200.w,
-                    textStyle: themeData.typo.t12Semibold,
+                    textStyle: themeData.value.typo.t12Semibold,
                     content: "Create now",
                     onTap: () {
                       Modular.to.pushNamed(
@@ -201,13 +201,13 @@ class _HomeClanState extends State<HomeClan> {
         Text(
           title ?? "",
           textAlign: TextAlign.center,
-          style: themeData.typo.t12Bold.copyWith(),
+          style: themeData.value.typo.t12Bold.copyWith(),
         ),
         SizedBox(width: 10.w),
         Text(
           content ?? "",
           textAlign: TextAlign.center,
-          style: themeData.typo.t12Semibold.copyWith(),
+          style: themeData.value.typo.t12Semibold.copyWith(),
         ),
       ],
     );

@@ -45,8 +45,8 @@ class _ClanMemberListScreenState extends State<ClanMemberListScreen> {
   Widget build(BuildContext context) {
     return BaseScreen(
       scaffoldBuilder: () {
-        return BlocProvider(
-          create: (context) => bloc,
+        return BlocProvider.value(
+          value: bloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "ClanMemberList",
@@ -56,25 +56,25 @@ class _ClanMemberListScreenState extends State<ClanMemberListScreen> {
                 ),
               ),
               body: (themeState) =>
+                  //  Container()
                   BlocBuilder<ClanMemberListBloc, ClanMemberListState>(
                 buildWhen: (previous, current) =>
                     previous.members != current.members,
                 builder: (context, state) {
                   final status = state.members.status;
-
                   switch (status) {
                     case AsyncStatus.loading:
                       return Center(
                         child: CircularProgressIndicator(
-                          color: themeData.color.mainSecondaryColor1,
+                          color: themeData.value.color.mainSecondaryColor1,
                         ),
                       );
 
                     case AsyncStatus.success:
                       return Container(
                         padding: EdgeInsets.symmetric(
-                          horizontal: themeData.spacing.screenHorizontal,
-                          vertical: themeData.spacing.screenVertical,
+                          horizontal: themeData.value.spacing.screenHorizontal,
+                          vertical: themeData.value.spacing.screenVertical,
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -82,8 +82,8 @@ class _ClanMemberListScreenState extends State<ClanMemberListScreen> {
                           children: [
                             Text(
                               "Members (${state.members.data?.length})",
-                              style: themeData.typo.t14Semibold.copyWith(
-                                color: themeData.color.btnColor2,
+                              style: themeData.value.typo.t14Semibold.copyWith(
+                                color: themeData.value.color.btnColor2,
                               ),
                             ),
                             SizedBox(height: 14.h),
@@ -94,8 +94,8 @@ class _ClanMemberListScreenState extends State<ClanMemberListScreen> {
                                     vertical: 10.h, horizontal: 10.w),
                                 hintTextConfigs: HintTextConfigs(
                                   hintText: "Tìm kiếm thành viên",
-                                  hintStyle: themeData.typo.t12Regular.copyWith(
-                                    color: themeData.color.mainPrimaryColor
+                                  hintStyle: themeData.value.typo.t12Regular.copyWith(
+                                    color: themeData.value.color.mainPrimaryColor
                                         .withOpacity(.4),
                                   ),
                                 ),
@@ -130,7 +130,7 @@ class _ClanMemberListScreenState extends State<ClanMemberListScreen> {
                                         children: [
                                           Text(
                                             "You don't have any members",
-                                            style: themeData.typo.t14Semibold,
+                                            style: themeData.value.typo.t14Semibold,
                                           ),
                                           SizedBox(height: 20.h),
                                           CPButton(
@@ -141,7 +141,7 @@ class _ClanMemberListScreenState extends State<ClanMemberListScreen> {
                                                 horizontal: 10.w,
                                               ),
                                               textStyle:
-                                                  themeData.typo.t12Regular,
+                                                  themeData.value.typo.t12Regular,
                                               content: "Create member",
                                               onTap: () {
                                                 // TODO: Create now

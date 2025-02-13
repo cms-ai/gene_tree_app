@@ -83,8 +83,8 @@ class _UpdateClanScreenState extends State<UpdateClanScreen> {
   Widget build(BuildContext context) {
     return BaseScreen(
       scaffoldBuilder: () {
-        return BlocProvider(
-          create: (context) => bloc,
+        return BlocProvider.value(
+          value: bloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "UpdateClan",
@@ -115,7 +115,7 @@ class _UpdateClanScreenState extends State<UpdateClanScreen> {
               ),
               body: (themeState) => Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: themeData.spacing.screenHorizontal,
+                  horizontal: themeData.value.spacing.screenHorizontal,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,7 +123,7 @@ class _UpdateClanScreenState extends State<UpdateClanScreen> {
                     SizedBox(height: 60.h),
                     Text(
                       "Tên gia tộc",
-                      style: themeData.typo.t14Bold,
+                      style: themeData.value.typo.t14Bold,
                     ),
                     SizedBox(height: 10.h),
                     CPCmTextField(
@@ -137,7 +137,7 @@ class _UpdateClanScreenState extends State<UpdateClanScreen> {
                     SizedBox(height: 30.h),
                     Text(
                       "Desciption",
-                      style: themeData.typo.t14Bold,
+                      style: themeData.value.typo.t14Bold,
                     ),
                     SizedBox(height: 10.h),
                     CPCmTextField(

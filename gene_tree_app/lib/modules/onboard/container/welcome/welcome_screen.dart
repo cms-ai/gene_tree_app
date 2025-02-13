@@ -65,7 +65,7 @@ class WelcomeScreen extends StatelessWidget {
                           .typo
                           .t14Bold
                           .copyWith(
-                            color: themeData.color.mainSecondaryColor1,
+                            color: themeData.value.color.mainSecondaryColor1,
                           ),
                     ),
                     const Spacer(),

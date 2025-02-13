@@ -56,6 +56,9 @@ dependencies:
   jwt_decoder: 2.0.1
   cached_network_image: 3.4.0
   shimmer: 3.0.0
+  rxdart: 0.28.0
+  dropdown_button2: 2.3.9
+  board_datetime_picker: ^2.3.0
 
 dev_dependencies:
   flutter_test:

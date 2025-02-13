@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/core/utils/helpers/helpers.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
+import 'package:gene_tree_app/modules/common/components/cm_text_field/cp_cm_text_field.dart';
 import 'package:gene_tree_app/modules/main/main_module.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
@@ -35,8 +36,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => splashBloc,
+    return BlocProvider.value(
+      value: splashBloc,
       child: BaseScreen(
         scaffoldBuilder: () {
           return BaseScaffold(
@@ -70,8 +71,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 },
                 listenWhen: (previous, current) => previous != current,
                 child: Center(
-                  child: ImageHelpers(themeEnum: themeState.appThemeEnum)
-                      .getLogo(),
+                      child: ImageHelpers(themeEnum: themeState.appThemeEnum)
+                          .getLogo(),
                 ),
               ),
             ),

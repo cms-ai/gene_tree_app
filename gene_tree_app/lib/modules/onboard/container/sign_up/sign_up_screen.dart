@@ -34,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
               child: Container(
                 height: double.infinity,
                 padding: EdgeInsets.symmetric(
-                    horizontal: themeData.spacing.screenHorizontal),
+                    horizontal: themeData.value.spacing.screenHorizontal),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -79,7 +79,7 @@ class SignUpScreen extends StatelessWidget {
                       child: Center(
                         child: Text(
                           OnboardLocalizations.current.signUp,
-                          style: themeData.typo.t14Semibold.copyWith(
+                          style: themeData.value.typo.t14Semibold.copyWith(
                             color: Colors.white,
                           ),
                         ),
@@ -92,11 +92,11 @@ class SignUpScreen extends StatelessWidget {
                         children: [
                           TextSpan(
                             text: OnboardLocalizations.current.haveAcountBefore,
-                            style: themeData.typo.t12Regular.copyWith(),
+                            style: themeData.value.typo.t12Regular.copyWith(),
                           ),
                           TextSpan(
                               text: " ${OnboardLocalizations.current.signIn}",
-                              style: themeData.typo.t12Bold.copyWith(
+                              style: themeData.value.typo.t12Bold.copyWith(
                                 color: themeState.mainColor,
                               ),
                               recognizer: TapGestureRecognizer()

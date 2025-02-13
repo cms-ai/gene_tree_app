@@ -130,12 +130,12 @@ class _HomeAppBarState extends State<HomeAppBar> {
                           Text(
                             state.userData.data?.fullName ?? "",
                             textAlign: TextAlign.center,
-                            style: themeData.typo.t14Semibold.copyWith(),
+                            style: themeData.value.typo.t14Semibold.copyWith(),
                           ),
                           Text(
                             "Da nang, Viet Nam",
                             textAlign: TextAlign.center,
-                            style: themeData.typo.t12Regular.copyWith(
+                            style: themeData.value.typo.t12Regular.copyWith(
                               color: Colors.transparent,
                             ),
                           ),
@@ -144,7 +144,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                     ),
                     ColorFiltered(
                       colorFilter: ColorFilter.mode(
-                        themeData.color.btnColor2,
+                        themeData.value.color.btnColor2,
                         BlendMode.srcATop,
                       ),
                       child: CPLottie(

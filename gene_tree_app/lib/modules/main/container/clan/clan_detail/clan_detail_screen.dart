@@ -16,12 +16,19 @@ import 'package:gene_tree_app/modules/main/main_module.dart';
 import './bloc/clan_detail_bloc.dart';
 part './models/clan_detail_argument.dart';
 
-class ClanDetailScreen extends StatelessWidget {
+class ClanDetailScreen extends StatefulWidget {
   const ClanDetailScreen({
     super.key,
     this.argument,
   });
   final ClanDetailArgument? argument;
+
+  @override
+  State<ClanDetailScreen> createState() => _ClanDetailScreenState();
+}
+
+class _ClanDetailScreenState extends State<ClanDetailScreen> {
+  final ClanDetailBloc clanDetailBloc = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +40,7 @@ class ClanDetailScreen extends StatelessWidget {
             Modular.to.pushNamed(
               MainModule.getRoutePath(MainModuleEnum.clanMemberList),
               arguments: ClanMemberListArgument(
-                clanId: argument?.clanEntity?.id ?? "",
+                clanId: widget.argument?.clanEntity?.id ?? "",
               ),
             );
           }),
@@ -45,22 +52,22 @@ class ClanDetailScreen extends StatelessWidget {
 
     return BaseScreen(
       scaffoldBuilder: () {
-        return BlocProvider(
-          create: (context) => ClanDetailBloc(),
+        return BlocProvider.value(
+          value: clanDetailBloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "ClanDetail",
               appBar: CPCmAppBar(
                 configs: CPCmAppBarConfigs(
                   title: "Clan detail",
-                  suffixWidget: argument?.clanEntity != null
+                  suffixWidget: widget.argument?.clanEntity != null
                       ? GestureDetector(
                           onTap: () {
                             Modular.to.pushNamed(
                               MainModule.getRoutePath(
                                   MainModuleEnum.updateClan),
                               arguments: UpdateClanArgument(
-                                clanEntity: argument!.clanEntity!,
+                                clanEntity: widget.argument!.clanEntity!,
                               ),
                             );
                           },
@@ -71,7 +78,7 @@ class ClanDetailScreen extends StatelessWidget {
               body: (themeState) => Container(
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(
-                  horizontal: themeData.spacing.screenHorizontal,
+                  horizontal: themeData.value.spacing.screenHorizontal,
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -82,9 +89,9 @@ class ClanDetailScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     Text(
-                      "Gia tộc ${argument?.clanEntity?.clanName}",
+                      "Gia tộc ${widget.argument?.clanEntity?.clanName}",
                       textAlign: TextAlign.center,
-                      style: themeData.typo.t12Bold.copyWith(),
+                      style: themeData.value.typo.t12Bold.copyWith(),
                     ),
                     SizedBox(height: 10.h),
                     Row(
@@ -94,7 +101,7 @@ class ClanDetailScreen extends StatelessWidget {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 20.w, vertical: 8.h),
                             decoration: BoxDecoration(
-                              gradient: themeData.color.linegradientColor,
+                              gradient: themeData.value.color.linegradientColor,
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Column(
@@ -102,19 +109,19 @@ class ClanDetailScreen extends StatelessWidget {
                                 Text(
                                   "Ngày tạo",
                                   textAlign: TextAlign.center,
-                                  style: themeData.typo.t12Bold.copyWith(
-                                    color: themeData.color.btnColor2,
+                                  style: themeData.value.typo.t12Bold.copyWith(
+                                    color: themeData.value.color.btnColor2,
                                   ),
                                 ),
                                 SizedBox(height: 6.h),
                                 Text(
                                   DateTimeHelper.formatDateTime(
-                                    argument?.clanEntity?.createdAt ??
+                                    widget.argument?.clanEntity?.createdAt ??
                                         DateTime.now(),
                                     format: "dd/MM/yyyy",
                                   ),
                                   textAlign: TextAlign.center,
-                                  style: themeData.typo.t12Regular.copyWith(),
+                                  style: themeData.value.typo.t12Regular.copyWith(),
                                 ),
                               ],
                             ),
@@ -126,7 +133,7 @@ class ClanDetailScreen extends StatelessWidget {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 20.w, vertical: 8.h),
                             decoration: BoxDecoration(
-                              gradient: themeData.color.linegradientColor,
+                              gradient: themeData.value.color.linegradientColor,
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Column(
@@ -134,15 +141,17 @@ class ClanDetailScreen extends StatelessWidget {
                                 Text(
                                   "Author",
                                   textAlign: TextAlign.center,
-                                  style: themeData.typo.t12Bold.copyWith(
-                                    color: themeData.color.btnColor2,
+                                  style: themeData.value.typo.t12Bold.copyWith(
+                                    color: themeData.value.color.btnColor2,
                                   ),
                                 ),
                                 SizedBox(height: 6.h),
                                 Text(
-                                  argument?.clanEntity?.author?.fullName ?? "",
+                                  widget.argument?.clanEntity?.author
+                                          ?.fullName ??
+                                      "",
                                   textAlign: TextAlign.center,
-                                  style: themeData.typo.t12Regular.copyWith(),
+                                  style: themeData.value.typo.t12Regular.copyWith(),
                                 ),
                               ],
                             ),
@@ -186,13 +195,13 @@ class ClanDetailScreen extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          // color: themeData.color.btnColor2.withOpacity(.7),
-          gradient: themeData.color.linegradientColor2,
+          // color: themeData.value.color.btnColor2.withOpacity(.7),
+          gradient: themeData.value.color.linegradientColor2,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(
           title,
-          style: themeData.typo.t10Semibold,
+          style: themeData.value.typo.t10Semibold,
         ),
       ),
     );

@@ -19,8 +19,8 @@ class $ClassName$Screen extends StatelessWidget {
 
     return BaseScreen(
       scaffoldBuilder: () {
-        return BlocProvider(
-          create: (context) => bloc,
+        return BlocProvider.value(
+          value: bloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "$ClassName$",
