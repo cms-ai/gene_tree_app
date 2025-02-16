@@ -72,8 +72,8 @@ class _CPButtonState extends State<CPButton> {
             decoration: widget.configs.decoration ??
                 BoxDecoration(
                   border: Border.all(
-                      color:
-                          themeData.value.color.btnColor2 // Màu viền của button
+                      color: themeData
+                          .value.color.mainPrimaryColor // Màu viền của button
                       ),
                   borderRadius: BorderRadius.circular(8.0), // Bo góc
                 ),

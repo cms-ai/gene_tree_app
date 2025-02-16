@@ -88,13 +88,25 @@ class SignInScreen extends StatelessWidget {
     BuildContext context,
   ) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Spacer(),
-        themeState.appThemeEnum == AppThemeEnum.darkTheme
-            ? Assets.images.darkLogo.svg(height: 50.h)
-            : Assets.images.lightLogo.svg(height: 50.h),
+        SizedBox(height: 60.h),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Welcome to",
+              style: themeData.value.typo.t16Bold.copyWith(
+                fontSize: 32.sp,
+                color: Color(0xFFFE904B),
+              ),
+            ),
+            themeState.appThemeEnum == AppThemeEnum.darkTheme
+                ? Assets.images.darkLogo.svg(width: 150.w)
+                : Assets.images.lightLogo.svg(width: 150.w)
+          ],
+        ),
         SizedBox(height: 30.h),
         const Spacer(),
         CPButton(
@@ -106,46 +118,68 @@ class SignInScreen extends StatelessWidget {
             content: OnboardLocalizations.current.signInWithGoogle,
             type: ButtonType.outline,
             decoration: BoxDecoration(
-              color: themeData.value.color.btnColor2.withOpacity(.1),
               border: Border.all(
-                  color: themeData.value.color.btnColor2 // Màu viền của button
+                  color: themeData
+                      .value.color.mainPrimaryColor // Màu viền của button
                   ),
-              borderRadius: BorderRadius.circular(8.0), // Bo góc
+              borderRadius: BorderRadius.circular(20.r), // Bo góc
             ),
             onTap: () => signInBloc.add(const SignInEvent.signInWithGoogle()),
           ),
         ),
         SizedBox(height: 20.h),
         if (Platform.isIOS)
-          CPButton(
-            configs: CPButtonConfigs(
-              prefixIcon: Container(
-                margin: EdgeInsets.only(right: 10.w),
-                child: Assets.icons.icApple.svg(
-                  height: 20.h,
-                  colorFilter: ColorFilter.mode(
-                    themeData.value.color.mainPrimaryColor,
-                    BlendMode.srcIn,
-                  ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 20.h),
+            child: CPButton(
+              configs: CPButtonConfigs(
+                prefixIcon: Container(
+                  margin: EdgeInsets.only(right: 10.w),
+                  child: Assets.icons.icApple.svg(height: 20.h),
                 ),
+                content: OnboardLocalizations.current.signInWithGoogle,
+                type: ButtonType.outline,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: themeData
+                          .value.color.mainPrimaryColor // Màu viền của button
+                      ),
+                  borderRadius: BorderRadius.circular(20.r), // Bo góc
+                ),
+                onTap: () =>
+                    signInBloc.add(const SignInEvent.signInWithApple()),
               ),
-              decoration: BoxDecoration(
-                color: themeData.value.color.btnColor2.withOpacity(.1),
-                border: Border.all(
-                    color: themeData.value.color.btnColor2 // Màu viền của button
-                    ),
-                borderRadius: BorderRadius.circular(8.0), // Bo góc
-              ),
-              content: "Sign in with Apple",
-              type: ButtonType.outline,
-              onTap: () {
-                Modular.to.navigate(
-                  OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
-                );
-              },
             ),
           ),
-        const Spacer(),
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            style: themeData.value.typo.t12Regular.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
+            children: [
+              TextSpan(
+                text: "By signing in, I agree with ",
+              ),
+              TextSpan(
+                text: "Terms of Use",
+                style: TextStyle(
+                  color: Color(0xFFFE904B),
+                ),
+              ),
+              TextSpan(
+                text: " and ",
+              ),
+              TextSpan(
+                text: "Privacy Policy",
+                style: TextStyle(
+                  color: Color(0xFFFE904B),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 40.h),
       ],
     );
   }
