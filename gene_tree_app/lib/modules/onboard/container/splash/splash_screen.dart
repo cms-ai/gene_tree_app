@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
       );
     } else {
       Modular.to.navigate(
-        OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
+        OnboardModule.getRoutePath(OnboardModuleEnum.intro),
       );
     }
   }

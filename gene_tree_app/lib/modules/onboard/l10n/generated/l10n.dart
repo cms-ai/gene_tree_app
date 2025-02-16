@@ -18,17 +18,20 @@ class OnboardLocalizations {
   static OnboardLocalizations? _current;
 
   static OnboardLocalizations get current {
-    assert(_current != null,
-        'No instance of OnboardLocalizations was loaded. Try to initialize the OnboardLocalizations delegate before accessing OnboardLocalizations.current.');
+    assert(
+      _current != null,
+      'No instance of OnboardLocalizations was loaded. Try to initialize the OnboardLocalizations delegate before accessing OnboardLocalizations.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<OnboardLocalizations> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,14 +44,18 @@ class OnboardLocalizations {
 
   static OnboardLocalizations of(BuildContext context) {
     final instance = OnboardLocalizations.maybeOf(context);
-    assert(instance != null,
-        'No instance of OnboardLocalizations present in the widget tree. Did you add OnboardLocalizations.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of OnboardLocalizations present in the widget tree. Did you add OnboardLocalizations.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
   static OnboardLocalizations? maybeOf(BuildContext context) {
     return Localizations.of<OnboardLocalizations>(
-        context, OnboardLocalizations);
+      context,
+      OnboardLocalizations,
+    );
   }
 
   /// `Màn hình onboard`
@@ -113,22 +120,12 @@ class OnboardLocalizations {
 
   /// `Sign in`
   String get signIn {
-    return Intl.message(
-      'Sign in',
-      name: 'signIn',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sign in', name: 'signIn', desc: '', args: []);
   }
 
   /// `Sign up`
   String get signUp {
-    return Intl.message(
-      'Sign up',
-      name: 'signUp',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sign up', name: 'signUp', desc: '', args: []);
   }
 
   /// `Sign in with Google`
@@ -209,6 +206,16 @@ class OnboardLocalizations {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message('Next', name: 'next', desc: '', args: []);
+  }
+
+  /// `Let's start`
+  String get letStart {
+    return Intl.message('Let\'s start', name: 'letStart', desc: '', args: []);
   }
 }
 

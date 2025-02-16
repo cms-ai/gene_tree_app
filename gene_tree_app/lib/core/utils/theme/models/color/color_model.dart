@@ -86,6 +86,17 @@ class LightColorModel implements ColorModelImpl {
 
   @override
   Color get textTitleColor => const Color(0xFF240E0A);
+
+  //New
+  @override
+  Gradient get linearBtnColor1 => const LinearGradient(
+        colors: [
+          Color(0xFFFE904B),
+          Color(0xFFFB724C),
+        ],
+        begin: Alignment.bottomRight,
+        end: Alignment.topLeft,
+      );
 }
 
 class DarkColorModel implements ColorModelImpl {
@@ -175,4 +186,14 @@ class DarkColorModel implements ColorModelImpl {
 
   @override
   Color get textTitleColor => const Color(0xFF240E0A);
+
+  @override
+  Gradient get linearBtnColor1 => const LinearGradient(
+        colors: [
+          Color(0xFFFE904B),
+          Color(0xFFFB724C),
+        ],
+        begin: Alignment.bottomRight,
+        end: Alignment.topLeft,
+      );
 }

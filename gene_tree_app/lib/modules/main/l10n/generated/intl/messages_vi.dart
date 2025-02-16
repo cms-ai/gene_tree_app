@@ -22,16 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "enterEmailHint": MessageLookupByLibrary.simpleMessage("Nhập email"),
-        "enterPassHint": MessageLookupByLibrary.simpleMessage("Nhập password"),
-        "forgotPass": MessageLookupByLibrary.simpleMessage("Quên mật khẩu"),
-        "haveAcountBefore":
-            MessageLookupByLibrary.simpleMessage("Bạn đã có tài khoản"),
-        "noAccountBefore":
-            MessageLookupByLibrary.simpleMessage("Bạn chưa có tài khoản"),
-        "signIn": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
-        "signInWithGoogle":
-            MessageLookupByLibrary.simpleMessage("Đăng nhặp với google"),
-        "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký")
-      };
+    "enterEmailHint": MessageLookupByLibrary.simpleMessage("Nhập email"),
+    "enterPassHint": MessageLookupByLibrary.simpleMessage("Nhập password"),
+    "forgotPass": MessageLookupByLibrary.simpleMessage("Quên mật khẩu"),
+    "haveAcountBefore": MessageLookupByLibrary.simpleMessage(
+      "Bạn đã có tài khoản",
+    ),
+    "noAccountBefore": MessageLookupByLibrary.simpleMessage(
+      "Bạn chưa có tài khoản",
+    ),
+    "signIn": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+    "signInWithGoogle": MessageLookupByLibrary.simpleMessage(
+      "Đăng nhặp với google",
+    ),
+    "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+  };
 }

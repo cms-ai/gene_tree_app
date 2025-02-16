@@ -22,16 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "enterEmailHint": MessageLookupByLibrary.simpleMessage("Enter email"),
-        "enterPassHint": MessageLookupByLibrary.simpleMessage("Enter password"),
-        "forgotPass": MessageLookupByLibrary.simpleMessage("Forgot password"),
-        "haveAcountBefore":
-            MessageLookupByLibrary.simpleMessage("You already have an account"),
-        "noAccountBefore":
-            MessageLookupByLibrary.simpleMessage("You don’t have an account"),
-        "signIn": MessageLookupByLibrary.simpleMessage("Sign in"),
-        "signInWithGoogle":
-            MessageLookupByLibrary.simpleMessage("Sign in with Google"),
-        "signUp": MessageLookupByLibrary.simpleMessage("Sign up")
-      };
+    "enterEmailHint": MessageLookupByLibrary.simpleMessage("Enter email"),
+    "enterPassHint": MessageLookupByLibrary.simpleMessage("Enter password"),
+    "forgotPass": MessageLookupByLibrary.simpleMessage("Forgot password"),
+    "haveAcountBefore": MessageLookupByLibrary.simpleMessage(
+      "You already have an account",
+    ),
+    "noAccountBefore": MessageLookupByLibrary.simpleMessage(
+      "You don’t have an account",
+    ),
+    "signIn": MessageLookupByLibrary.simpleMessage("Sign in"),
+    "signInWithGoogle": MessageLookupByLibrary.simpleMessage(
+      "Sign in with Google",
+    ),
+    "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+  };
 }

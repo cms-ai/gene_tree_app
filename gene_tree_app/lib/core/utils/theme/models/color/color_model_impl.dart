@@ -11,6 +11,7 @@ abstract class ColorModelImpl {
   //
   Color get btnColor1;
   Color get btnColor2;
+  Gradient get linearBtnColor1;
 
   //
   // Main color

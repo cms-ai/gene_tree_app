@@ -42,7 +42,8 @@ class _CPButtonState extends State<CPButton> {
             decoration: widget.configs.decoration ??
                 BoxDecoration(
                   color: themeData.value.color.btnColor2, // Màu nền của button
-                  borderRadius: BorderRadius.circular(8.0), // Bo góc
+                  gradient: themeData.value.color.linearBtnColor1,
+                  borderRadius: BorderRadius.circular(8.r), // Bo góc
                 ),
             child: Center(
               child: Text(
@@ -71,7 +72,8 @@ class _CPButtonState extends State<CPButton> {
             decoration: widget.configs.decoration ??
                 BoxDecoration(
                   border: Border.all(
-                      color: themeData.value.color.btnColor2 // Màu viền của button
+                      color:
+                          themeData.value.color.btnColor2 // Màu viền của button
                       ),
                   borderRadius: BorderRadius.circular(8.0), // Bo góc
                 ),
@@ -81,10 +83,11 @@ class _CPButtonState extends State<CPButton> {
                 widget.configs.prefixIcon ?? Container(),
                 Text(
                   widget.configs.content,
-                  style: themeData.value.typo.t14Semibold.copyWith(
-                    color:
-                        themeData.value.color.mainPrimaryColor, // Màu chữ của button
-                  ),
+                  style: widget.configs.textStyle ??
+                      themeData.value.typo.t14Semibold.copyWith(
+                        color: themeData
+                            .value.color.mainPrimaryColor, // Màu chữ của button
+                      ),
                 ),
               ],
             ),

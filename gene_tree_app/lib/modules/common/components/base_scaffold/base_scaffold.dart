@@ -40,6 +40,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
             children: [
               SafeArea(
                 bottom: Platform.isIOS,
+                top: widget.configs.topSafeArea,
                 child: widget.configs.body(state),
               ),
             ],

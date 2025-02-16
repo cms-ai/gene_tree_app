@@ -22,31 +22,41 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "enterEmailHint": MessageLookupByLibrary.simpleMessage("Nhập email"),
-        "enterPassHint": MessageLookupByLibrary.simpleMessage("Nhập password"),
-        "familyFutureContent": MessageLookupByLibrary.simpleMessage(
-            "Gia tộc là nền tảng cho sự phát triển của từng cá nhân, là nơi mỗi thế hệ tiếp nối, xây dựng và vun đắp. Hãy để những giá trị tốt đẹp của gia đình tiếp tục lan tỏa đến tương lai, gắn kết thêm nhiều thế hệ nữa."),
-        "familyFutureTitle": MessageLookupByLibrary.simpleMessage(
-            "Tương lai - Nơi gắn kết các thế hệ"),
-        "familyOriginContent": MessageLookupByLibrary.simpleMessage(
-            "Gia tộc không chỉ là sự gắn bó của những người có cùng dòng máu, mà còn là nền tảng của sự yêu thương và bảo vệ. Đó là cội nguồn, nơi khởi đầu và sự nối tiếp qua bao thế hệ."),
-        "familyOriginTitle": MessageLookupByLibrary.simpleMessage(
-            "Gia tộc - Cội nguồn của mọi gia đình"),
-        "familyTraditionContent": MessageLookupByLibrary.simpleMessage(
-            "Truyền thống không chỉ là những giá trị văn hóa, mà còn là bài học quý báu được truyền từ đời này sang đời khác. Đó là bản sắc, là niềm tự hào và trách nhiệm của từng thành viên trong gia đình."),
-        "familyTraditionTitle": MessageLookupByLibrary.simpleMessage(
-            "Truyền thống - Giá trị gia tộc trường tồn"),
-        "forgotPass": MessageLookupByLibrary.simpleMessage("Quên mật khẩu"),
-        "haveAcountBefore":
-            MessageLookupByLibrary.simpleMessage("Bạn đã có tài khoản"),
-        "noAccountBefore1":
-            MessageLookupByLibrary.simpleMessage("Bạn chưa có tài khoản"),
-        "onboard": MessageLookupByLibrary.simpleMessage("Màn hình onboard"),
-        "reEnterPassHint":
-            MessageLookupByLibrary.simpleMessage("Nhập password"),
-        "signIn": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
-        "signInWithGoogle":
-            MessageLookupByLibrary.simpleMessage("Đăng nhặp với google"),
-        "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký")
-      };
+    "enterEmailHint": MessageLookupByLibrary.simpleMessage("Nhập email"),
+    "enterPassHint": MessageLookupByLibrary.simpleMessage("Nhập password"),
+    "familyFutureContent": MessageLookupByLibrary.simpleMessage(
+      "Gia tộc là nền tảng cho sự phát triển của từng cá nhân, là nơi mỗi thế hệ tiếp nối, xây dựng và vun đắp. Hãy để những giá trị tốt đẹp của gia đình tiếp tục lan tỏa đến tương lai, gắn kết thêm nhiều thế hệ nữa.",
+    ),
+    "familyFutureTitle": MessageLookupByLibrary.simpleMessage(
+      "Tương lai - Nơi gắn kết các thế hệ",
+    ),
+    "familyOriginContent": MessageLookupByLibrary.simpleMessage(
+      "Gia tộc không chỉ là sự gắn bó của những người có cùng dòng máu, mà còn là nền tảng của sự yêu thương và bảo vệ. Đó là cội nguồn, nơi khởi đầu và sự nối tiếp qua bao thế hệ.",
+    ),
+    "familyOriginTitle": MessageLookupByLibrary.simpleMessage(
+      "Gia tộc - Cội nguồn của mọi gia đình",
+    ),
+    "familyTraditionContent": MessageLookupByLibrary.simpleMessage(
+      "Truyền thống không chỉ là những giá trị văn hóa, mà còn là bài học quý báu được truyền từ đời này sang đời khác. Đó là bản sắc, là niềm tự hào và trách nhiệm của từng thành viên trong gia đình.",
+    ),
+    "familyTraditionTitle": MessageLookupByLibrary.simpleMessage(
+      "Truyền thống - Giá trị gia tộc trường tồn",
+    ),
+    "forgotPass": MessageLookupByLibrary.simpleMessage("Quên mật khẩu"),
+    "haveAcountBefore": MessageLookupByLibrary.simpleMessage(
+      "Bạn đã có tài khoản",
+    ),
+    "letStart": MessageLookupByLibrary.simpleMessage("Bắt đầu"),
+    "next": MessageLookupByLibrary.simpleMessage("Tiếp theo"),
+    "noAccountBefore1": MessageLookupByLibrary.simpleMessage(
+      "Bạn chưa có tài khoản",
+    ),
+    "onboard": MessageLookupByLibrary.simpleMessage("Màn hình onboard"),
+    "reEnterPassHint": MessageLookupByLibrary.simpleMessage("Nhập password"),
+    "signIn": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+    "signInWithGoogle": MessageLookupByLibrary.simpleMessage(
+      "Đăng nhặp với google",
+    ),
+    "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+  };
 }

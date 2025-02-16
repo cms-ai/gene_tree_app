@@ -18,17 +18,20 @@ class CommonLocalizations {
   static CommonLocalizations? _current;
 
   static CommonLocalizations get current {
-    assert(_current != null,
-        'No instance of CommonLocalizations was loaded. Try to initialize the CommonLocalizations delegate before accessing CommonLocalizations.current.');
+    assert(
+      _current != null,
+      'No instance of CommonLocalizations was loaded. Try to initialize the CommonLocalizations delegate before accessing CommonLocalizations.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<CommonLocalizations> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +44,10 @@ class CommonLocalizations {
 
   static CommonLocalizations of(BuildContext context) {
     final instance = CommonLocalizations.maybeOf(context);
-    assert(instance != null,
-        'No instance of CommonLocalizations present in the widget tree. Did you add CommonLocalizations.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of CommonLocalizations present in the widget tree. Did you add CommonLocalizations.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -92,22 +97,12 @@ class CommonLocalizations {
 
   /// `Sign in`
   String get signIn {
-    return Intl.message(
-      'Sign in',
-      name: 'signIn',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sign in', name: 'signIn', desc: '', args: []);
   }
 
   /// `Sign up`
   String get signUp {
-    return Intl.message(
-      'Sign up',
-      name: 'signUp',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sign up', name: 'signUp', desc: '', args: []);
   }
 
   /// `Sign in with Google`
