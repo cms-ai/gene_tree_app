@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
-import 'package:gene_tree_app/core/utils/helpers/helpers.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 import 'package:gene_tree_app/domain/entities/clan_event_entity.dart';
+import 'package:gene_tree_app/modules/common/components/event_item/cp_event_item.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/bloc/dashboard_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/models/enums/dashboard_enum.dart';
+import 'package:gene_tree_app/modules/main/l10n/generated/l10n.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeClanEvent extends StatefulWidget {
@@ -33,39 +33,47 @@ class _HomeClanEventState extends State<HomeClanEvent> {
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "Event",
-              style: themeData.value.typo.t14Bold.copyWith(
-                color: themeData.value.color.btnColor2,
+              MainLocalizations.current.event,
+              style: themeData.value.typo.t16Bold.copyWith(
+                color: themeData.value.color.mainPrimaryColor,
               ),
             ),
             const Spacer(),
-            GestureDetector(
-              onTap: () {
-                // TODO: See all event
-                dashboardBloc.add(
-                  const DashboardEvent.changeTab(DashboardTabEnum.event),
-                );
+            BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                final status = state.clanEvents.status;
+                return status == AsyncStatus.success
+                    ? GestureDetector(
+                        onTap: () {
+                          dashboardBloc.add(
+                            const DashboardEvent.changeTab(
+                                DashboardTabEnum.event),
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              MainLocalizations.current.viewAll,
+                              style: themeData.value.typo.t10Bold.copyWith(
+                                color:
+                                    themeData.value.color.mainSecondaryColor1,
+                              ),
+                            ),
+                            SizedBox(width: 4.w),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: themeData.value.color.mainSecondaryColor1,
+                              size: 10.h,
+                            )
+                          ],
+                        ),
+                      )
+                    : Container();
               },
-              child: Row(
-                children: [
-                  Text(
-                    "See all",
-                    style: themeData.value.typo.t12Semibold.copyWith(
-                      color: themeData.value.color.btnColor2,
-                    ),
-                  ),
-                  SizedBox(width: 4.w),
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: themeData.value.color.btnColor2,
-                    size: 10.h,
-                  )
-                ],
-              ),
             ),
           ],
         ),
-        SizedBox(height: 20.h),
+        SizedBox(height: 10.h),
         BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             final status = state.clanEvents.status;
@@ -78,7 +86,7 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                       return Container(
                         margin: EdgeInsets.only(bottom: 10.h),
                         padding: EdgeInsets.symmetric(
-                            horizontal: 20.w, vertical: 14.h),
+                            horizontal: 12.w, vertical: 8.h),
                         decoration: BoxDecoration(
                           gradient: themeData.value.color.linegradientColor2,
                           borderRadius: BorderRadius.circular(10.r),
@@ -92,9 +100,10 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                               highlightColor: Colors.grey.shade100,
                               child: Container(
                                 width: 150.w,
-                                height: 14.h,
+                                height: 10.h,
                                 decoration: BoxDecoration(
-                                  gradient: themeData.value.color.linegradientColor2,
+                                  gradient:
+                                      themeData.value.color.linegradientColor2,
                                   borderRadius: BorderRadius.circular(10.r),
                                 ),
                               ),
@@ -106,9 +115,10 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                               highlightColor: Colors.grey.shade100,
                               child: Container(
                                 width: double.infinity,
-                                height: 12.h,
+                                height: 8.h,
                                 decoration: BoxDecoration(
-                                  gradient: themeData.value.color.linegradientColor2,
+                                  gradient:
+                                      themeData.value.color.linegradientColor2,
                                   borderRadius: BorderRadius.circular(10.r),
                                 ),
                               ),
@@ -126,8 +136,8 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                                       width: 100.w,
                                       height: 10.h,
                                       decoration: BoxDecoration(
-                                        gradient:
-                                            themeData.value.color.linegradientColor2,
+                                        gradient: themeData
+                                            .value.color.linegradientColor2,
                                         borderRadius:
                                             BorderRadius.circular(10.r),
                                       ),
@@ -143,19 +153,25 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                   ],
                 );
               case AsyncStatus.success:
-                return Column(
-                  children: [
-                    ...(state.clanEvents.data ?? []).map(
-                      (data) => _buildEventItem(data),
-                    ),
-                  ],
+                return ListView.separated(
+                  itemBuilder: (context, index) => CPEventItem(
+                    configs: CPEventItemConfigs(data: ClanEventEntity()),
+                  ),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  separatorBuilder: (context, index) => SizedBox(
+                    height: 10.h,
+                  ),
+                  itemCount: state.clanEvents.data?.length ?? 0,
                 );
+
               default:
                 return Column(
                   children: [
                     SizedBox(height: 60.h),
                     Text(
-                      "You don't have any clan events",
+                      // "You don't have any clan events",
+                      MainLocalizations.current.noClanDes,
                       textAlign: TextAlign.center,
                       style: themeData.value.typo.t12Semibold.copyWith(),
                     ),
@@ -167,67 +183,6 @@ class _HomeClanEventState extends State<HomeClanEvent> {
           },
         )
       ],
-    );
-  }
-
-  Widget _buildEventItem(ClanEventEntity data) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 10.h),
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
-      decoration: BoxDecoration(
-        gradient: themeData.value.color.linegradientColor2,
-        borderRadius: BorderRadius.circular(10.r),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            data.title ?? "",
-            // textAlign: TextAlign.center,
-            style: themeData.value.typo.t14Bold.copyWith(
-              color: themeData.value.color.btnColor2,
-            ),
-          ),
-          SizedBox(height: 6.h),
-          Text(
-            data.description ?? "",
-            style: themeData.value.typo.t12Regular.copyWith(),
-          ),
-          SizedBox(height: 6.h),
-          SizedBox(height: 6.h),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  "Author: ${data.author?.fullName}",
-                  textAlign: TextAlign.start,
-                  style: themeData.value.typo.t10Regular.copyWith(),
-                ),
-              ),
-              RichText(
-                text: TextSpan(
-                  style: themeData.value.typo.t10Regular.copyWith(),
-                  children: [
-                    TextSpan(
-                      text: DateTimeHelper.formatDateTime(
-                        data.startDate ?? DateTime.now(),
-                        format: "dd/MM/yyyy",
-                      ),
-                    ),
-                    const TextSpan(text: " - "),
-                    TextSpan(
-                      text: DateTimeHelper.formatDateTime(
-                        data.endDate ?? DateTime.now(),
-                        format: "dd/MM/yyyy",
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
     );
   }
 }

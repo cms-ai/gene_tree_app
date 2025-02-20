@@ -7,5 +7,12 @@
   "signIn": "Sign in",
   "signUp": "Sign up",
   "signInWithGoogle": "Sign in with Google",
-  "haveAcountBefore": "You already have an account"
+  "haveAcountBefore": "You already have an account",
+  "clanName": "Clan: {name}",
+  "detail": "Detail",
+  "hello": "Hello!",
+  "event": "Event",
+  "member": "Members",
+  "viewAll": "View all",
+  "noClanDes": "You don't have any clan events"
 }

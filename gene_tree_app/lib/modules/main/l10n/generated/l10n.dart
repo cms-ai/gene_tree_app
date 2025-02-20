@@ -124,6 +124,51 @@ class MainLocalizations {
       args: [],
     );
   }
+
+  /// `Clan: {name}`
+  String clanName(Object name) {
+    return Intl.message(
+      'Clan: $name',
+      name: 'clanName',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Detail`
+  String get detail {
+    return Intl.message('Detail', name: 'detail', desc: '', args: []);
+  }
+
+  /// `Hello!`
+  String get hello {
+    return Intl.message('Hello!', name: 'hello', desc: '', args: []);
+  }
+
+  /// `Event`
+  String get event {
+    return Intl.message('Event', name: 'event', desc: '', args: []);
+  }
+
+  /// `Members`
+  String get member {
+    return Intl.message('Members', name: 'member', desc: '', args: []);
+  }
+
+  /// `View all`
+  String get viewAll {
+    return Intl.message('View all', name: 'viewAll', desc: '', args: []);
+  }
+
+  /// `You don't have any clan events`
+  String get noClanDes {
+    return Intl.message(
+      'You don\'t have any clan events',
+      name: 'noClanDes',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<MainLocalizations> {

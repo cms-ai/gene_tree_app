@@ -6,9 +6,11 @@ import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/domain/entities/clan_entity.dart';
 import 'package:gene_tree_app/domain/entities/clan_event_entity.dart';
+import 'package:gene_tree_app/domain/entities/clan_member_entity.dart';
 import 'package:gene_tree_app/domain/entities/user_entity.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_clan_events_usecase.dart';
+import 'package:gene_tree_app/domain/usecase/clan/get_clan_members_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/user/get_user.usecase.dart';
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/bloc/update_clan_bloc.dart';
 
@@ -19,6 +21,7 @@ part 'home_bloc.freezed.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetAllClanUsecase getAllClanUsecase;
   final GetClanEventsUsecase getClanEventsUsecase;
+  final GetClanMembersUsecase getClanMembersUsecase;
   final LocalStorage localStorage;
   final GetUserUsecase getUserUsecase;
   final UpdateClanBloc updateClanBloc;
@@ -27,6 +30,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(
     this.getAllClanUsecase,
     this.getClanEventsUsecase,
+    this.getClanMembersUsecase,
     this.localStorage,
     this.getUserUsecase,
     this.updateClanBloc,
@@ -35,6 +39,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             userData: AsyncValue.loading(),
             clanData: AsyncValue.loading(),
             clanEvents: AsyncValue.loading(),
+            clanMembers: AsyncValue.loading(),
           ),
         ) {
     updateClanSubscription = updateClanBloc.stream.listen((state) {
@@ -83,17 +88,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
             emit(state.copyWith(clanData: AsyncValue.success(clanData)));
             final clanEvents = await getClanEventsUsecase.call(clanData.id);
+            final clanMembers = await getClanMembersUsecase.call(clanData.id);
             emit(
               state.copyWith(
                 clanEvents: AsyncValue.success(clanEvents),
+                clanMembers: AsyncValue.success(clanMembers),
               ),
             );
           } else {
             localStorage.remove(SharePreferenceKeys.clanId.name);
             emit(
               state.copyWith(
-                clanData: AsyncValue.error("No data"),
-                clanEvents: AsyncValue.error("No data"),
+                clanData: const AsyncValue.error("No data"),
+                clanEvents: const AsyncValue.error("No data"),
+                clanMembers: const AsyncValue.error("No data"),
               ),
             );
             return;

@@ -111,17 +111,17 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                         ),
                       ),
                       BlocBuilder<ProfileSetupBloc, ProfileSetupState>(
-                        // buildWhen: (previous, current) =>
-                        //     previous.isDisabledSubmit !=
-                        //         current.isDisabledSubmit ||
-                        //     current.currentGender == GenderEnum.values.last,
+                        buildWhen: (previous, current) =>
+                            previous.currentStep != current.currentStep ||
+                            previous.isDisabledSubmit !=
+                                current.isDisabledSubmit,
                         builder: (context, state) {
                           return CPButton(
                             configs: CPButtonConfigs(
-                              content:
-                                  state.currentGender == GenderEnum.values.last
-                                      ? CommonLocalizations.current.submit
-                                      : CommonLocalizations.current.next,
+                              content: state.currentStep ==
+                                      ProfileSetupStep.values.last
+                                  ? CommonLocalizations.current.submit
+                                  : CommonLocalizations.current.next,
                               isDiabled: state.isDisabledSubmit,
                               onTap: () {
                                 if (state.currentStep !=

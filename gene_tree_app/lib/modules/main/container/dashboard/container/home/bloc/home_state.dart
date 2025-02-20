@@ -6,5 +6,6 @@ class HomeState with _$HomeState {
     required AsyncValue<UserEntity?> userData,
     required AsyncValue<ClanEntity?> clanData,
     required AsyncValue<List<ClanEventEntity>> clanEvents,
+    required AsyncValue<List<ClanMemberEntity>> clanMembers,
   }) = _Initial;
 }

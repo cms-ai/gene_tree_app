@@ -7,6 +7,7 @@ import 'package:gene_tree_app/gen/assets.gen.dart';
 import 'package:gene_tree_app/modules/common/components/cm_avatar/cp_cm_avatar.dart';
 import 'package:gene_tree_app/modules/common/components/lottie/cp_lottie.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
+import 'package:gene_tree_app/modules/main/l10n/generated/l10n.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeAppBar extends StatefulWidget {
@@ -120,7 +121,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                         imageUrl: state.userData.data?.avatarUrl,
                       ),
                     ),
-                    SizedBox(width: 10.w),
+                    SizedBox(width: 4.w),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,15 +129,15 @@ class _HomeAppBarState extends State<HomeAppBar> {
                         // mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            state.userData.data?.fullName ?? "",
+                            MainLocalizations.current.hello,
                             textAlign: TextAlign.center,
-                            style: themeData.value.typo.t14Semibold.copyWith(),
+                            style: themeData.value.typo.t14Bold,
                           ),
                           Text(
-                            "Da nang, Viet Nam",
+                            state.userData.data?.fullName ?? "",
                             textAlign: TextAlign.center,
-                            style: themeData.value.typo.t12Regular.copyWith(
-                              color: Colors.transparent,
+                            style: themeData.value.typo.t16Bold.copyWith(
+                              color: themeData.value.color.mainSecondaryColor1,
                             ),
                           ),
                         ],

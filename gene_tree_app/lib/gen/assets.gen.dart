@@ -146,6 +146,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/dark_logo.svg
   SvgGenImage get darkLogo => const SvgGenImage('assets/images/dark_logo.svg');
 
+  /// File path: assets/images/image_bg.png
+  AssetGenImage get imageBg =>
+      const AssetGenImage('assets/images/image_bg.png');
+
   /// File path: assets/images/light_logo.svg
   SvgGenImage get lightLogo =>
       const SvgGenImage('assets/images/light_logo.svg');
@@ -176,6 +180,7 @@ class $AssetsImagesGen {
         clan,
         clanImage1,
         darkLogo,
+        imageBg,
         lightLogo,
         onboarding1,
         onboarding2,

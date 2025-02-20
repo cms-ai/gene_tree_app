@@ -34,15 +34,16 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _handleUnAuthenticated(bool firstLogin) {
-    if (firstLogin) {
-      Modular.to.navigate(
-        OnboardModule.getRoutePath(OnboardModuleEnum.profileSetup),
-      );
-    } else {
-      Modular.to.navigate(
-        OnboardModule.getRoutePath(OnboardModuleEnum.profileSetup),
-      );
-    }
+    // if (firstLogin) {
+    //   Modular.to.navigate(
+    //     OnboardModule.getRoutePath(OnboardModuleEnum.profileSetup),
+    //   );
+    // } else {
+    //   Modular.to.navigate(
+    //     OnboardModule.getRoutePath(OnboardModuleEnum.profileSetup),
+    //   );
+    // }
+    Modular.to.navigate(MainModule.path);
   }
 
   void _handleAuthenticated(bool completedUser) {

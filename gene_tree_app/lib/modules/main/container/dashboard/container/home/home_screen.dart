@@ -3,12 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/gen/assets.gen.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
-import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
-import 'package:gene_tree_app/modules/common/components/cm_avatar/cp_cm_avatar.dart';
-import 'package:gene_tree_app/modules/common/components/lottie/cp_lottie.dart';
 import './bloc/home_bloc.dart';
 import 'widgets/widgets.dart';
 part './models/home_argument.dart';
@@ -59,7 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             HomeAppBar(themeState: themeState),
             HomeClan(themeState: themeState),
-            SizedBox(height: 20.h),
+            SizedBox(height: 10.h),
+            const HomeMember(),
+            // SizedBox(height: 20.h),
             HomeClanEvent(themeState: themeState),
           ],
         ),

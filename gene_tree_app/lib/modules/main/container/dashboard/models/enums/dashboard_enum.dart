@@ -6,7 +6,7 @@ import 'package:gene_tree_app/modules/main/container/dashboard/container/home/ho
 enum DashboardTabEnum {
   home,
   event,
-  geneTree,
+  // geneTree,
   member,
   profile,
 }
@@ -18,8 +18,8 @@ extension DashboardEnumExt on DashboardTabEnum {
         return Assets.gif.icHomeDark.path;
       case DashboardTabEnum.event:
         return Assets.gif.icCalendar.path;
-      case DashboardTabEnum.geneTree:
-        return Assets.gif.icGeneDark.path;
+      // case DashboardTabEnum.geneTree:
+      //   return Assets.gif.icGeneDark.path;
       case DashboardTabEnum.member:
         return Assets.gif.icMember.path;
       case DashboardTabEnum.profile:

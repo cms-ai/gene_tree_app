@@ -20,21 +20,32 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(name) => "Clan: ${name}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "clanName": m0,
+    "detail": MessageLookupByLibrary.simpleMessage("Detail"),
     "enterEmailHint": MessageLookupByLibrary.simpleMessage("Enter email"),
     "enterPassHint": MessageLookupByLibrary.simpleMessage("Enter password"),
+    "event": MessageLookupByLibrary.simpleMessage("Event"),
     "forgotPass": MessageLookupByLibrary.simpleMessage("Forgot password"),
     "haveAcountBefore": MessageLookupByLibrary.simpleMessage(
       "You already have an account",
     ),
+    "hello": MessageLookupByLibrary.simpleMessage("Hello!"),
+    "member": MessageLookupByLibrary.simpleMessage("Members"),
     "noAccountBefore": MessageLookupByLibrary.simpleMessage(
       "You don’t have an account",
+    ),
+    "noClanDes": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have any clan events",
     ),
     "signIn": MessageLookupByLibrary.simpleMessage("Sign in"),
     "signInWithGoogle": MessageLookupByLibrary.simpleMessage(
       "Sign in with Google",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+    "viewAll": MessageLookupByLibrary.simpleMessage("View all"),
   };
 }
