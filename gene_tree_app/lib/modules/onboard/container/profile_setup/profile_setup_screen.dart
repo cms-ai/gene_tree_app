@@ -9,6 +9,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
 import 'package:gene_tree_app/modules/common/components/cm_app_bar/cp_cm_app_bar.dart';
 import 'package:gene_tree_app/modules/common/components/cm_text_field/cp_cm_text_field.dart';
+import 'package:gene_tree_app/modules/common/l10n/generated/l10n.dart';
+import 'package:gene_tree_app/modules/onboard/l10n/generated/l10n.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 import './bloc/profile_setup_bloc.dart';
 part './models/profile_setup_argument.dart';
@@ -86,16 +88,18 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Profile setup",
+                                OnboardLocalizations.current.profileSetup,
                                 style: themeData.value.typo.t16Bold.copyWith(
                                   fontSize: 32.sp,
-                                  color: Color(0xFFFE904B),
+                                  color:
+                                      themeData.value.color.mainSecondaryColor1,
                                 ),
                               ),
                               Text(
-                                "Tell us something about you",
+                                OnboardLocalizations.current.profileSetupDes,
                                 style: themeData.value.typo.t14Regular.copyWith(
-                                  color: Color(0xFFA1A1A1),
+                                  color:
+                                      themeData.value.color.mainSecondaryColor3,
                                 ),
                               ),
                               SizedBox(height: 22.h),
@@ -116,11 +120,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                             configs: CPButtonConfigs(
                               content:
                                   state.currentGender == GenderEnum.values.last
-                                      ? 'Submit'
-                                      : "Next",
+                                      ? CommonLocalizations.current.submit
+                                      : CommonLocalizations.current.next,
                               isDiabled: state.isDisabledSubmit,
                               onTap: () {
-                                print("====== ${state.currentStep}");
                                 if (state.currentStep !=
                                     ProfileSetupStep.values.last) {
                                   bloc.add(const ProfileSetupEvent.nextStep());
@@ -176,10 +179,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Gender",
+          CommonLocalizations.current.gender,
           style: themeData.value.typo.t16Bold.copyWith(
             fontSize: 22.sp,
-            color: Color(0xFFFE904B),
+            color: themeData.value.color.mainSecondaryColor1,
           ),
         ),
         SizedBox(height: 22.h),
@@ -228,22 +231,22 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Name & Age *",
+          OnboardLocalizations.current.nameAndAge,
           style: themeData.value.typo.t16Bold.copyWith(
             fontSize: 22.sp,
-            color: Color(0xFFFE904B),
+            color: themeData.value.color.mainSecondaryColor1,
           ),
         ),
         SizedBox(height: 22.h),
         CPCmTextField(
           configs: CPCmTextFieldConfigs(
-            labelText: "Full name",
+            labelText: OnboardLocalizations.current.fullName,
             controller: nameController,
             onChanged: (value) {
               bloc.add(ProfileSetupEvent.onFullName(value.trim()));
             },
-            hintTextConfigs: const HintTextConfigs(
-              hintText: "Enter your full name",
+            hintTextConfigs: HintTextConfigs(
+              hintText: OnboardLocalizations.current.nameHint,
             ),
           ),
         ),
@@ -251,7 +254,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
         CPCmTextField(
           configs: CPCmTextFieldConfigs(
             type: CMTexFieldTypeEnum.datetime,
-            labelText: "Date of birth",
+            labelText: OnboardLocalizations.current.dob,
             onChanged: (value) {
               bloc.add(ProfileSetupEvent.onDOB(value.trim()));
             },
@@ -271,30 +274,30 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Clan",
+          OnboardLocalizations.current.clan,
           style: themeData.value.typo.t16Bold.copyWith(
             fontSize: 22.sp,
-            color: Color(0xFFFE904B),
+            color: themeData.value.color.mainSecondaryColor1,
           ),
         ),
         SizedBox(height: 22.h),
         CPCmTextField(
           configs: CPCmTextFieldConfigs(
-            labelText: "Clan name",
+            labelText: OnboardLocalizations.current.clanName,
             controller: TextEditingController(),
-            hintTextConfigs: const HintTextConfigs(
-              hintText: "Enter your clan name...",
+            hintTextConfigs: HintTextConfigs(
+              hintText: OnboardLocalizations.current.clanNameHint,
             ),
           ),
         ),
         SizedBox(height: 14.h),
         CPCmTextField(
           configs: CPCmTextFieldConfigs(
-            labelText: "Description",
+            labelText: OnboardLocalizations.current.description,
             maxLines: 3,
             controller: TextEditingController(),
-            hintTextConfigs: const HintTextConfigs(
-              hintText: "Enter description...",
+            hintTextConfigs: HintTextConfigs(
+              hintText: OnboardLocalizations.current.descriptionHint,
             ),
           ),
         ),
@@ -318,7 +321,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
               Text(
                 "$currentIndex/${ProfileSetupStep.values.length}",
                 style: themeData.value.typo.t12Regular.copyWith(
-                  color: const Color(0xFFA1A1A1),
+                  color: themeData.value.color.mainSecondaryColor3,
                 ),
               ),
               SizedBox(height: 10.h),
@@ -328,7 +331,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                     width: double.infinity,
                     height: 6.h,
                     decoration: BoxDecoration(
-                      color: Color(0xFFF6F6F9),
+                      color: const Color(0xFFF6F6F9),
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                   ),
@@ -336,7 +339,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                     // right: constraints.maxWidth - mediumWidth * currentIndex,
                     alignment: Alignment.centerLeft,
                     child: AnimatedContainer(
-                      duration: Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 500),
                       height: 6.h,
                       width: mediumWidth * currentIndex,
                       decoration: BoxDecoration(

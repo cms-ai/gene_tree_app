@@ -52,13 +52,13 @@ class LightColorModel implements ColorModelImpl {
   Color get mainPrimaryColor => const Color(0xFF000000);
 
   @override
-  Color get mainSecondaryColor1 => const Color(0xFFCDA66F);
+  Color get mainSecondaryColor1 => const Color(0xFFFE904B);
 
   @override
   Color get mainSecondaryColor2 => const Color(0xFF3F4EAB);
 
   @override
-  Color get mainSecondaryColor3 => const Color(0xFFA0A884);
+  Color get mainSecondaryColor3 => const Color(0xFFA1A1A1);
 
   @override
   Color get stCollectColor => throw UnimplementedError();
@@ -152,13 +152,13 @@ class DarkColorModel implements ColorModelImpl {
   Color get mainPrimaryColor => const Color(0xFFFFFFFF);
 
   @override
-  Color get mainSecondaryColor1 => const Color(0xFFCDA66F);
+  Color get mainSecondaryColor1 => const Color(0xFFFE904B);
 
   @override
   Color get mainSecondaryColor2 => const Color(0xFF3F4EAB);
 
   @override
-  Color get mainSecondaryColor3 => const Color(0xFFA0A884);
+  Color get mainSecondaryColor3 => const Color(0xFFA1A1A1);
 
   @override
   Color get stCollectColor => throw UnimplementedError();

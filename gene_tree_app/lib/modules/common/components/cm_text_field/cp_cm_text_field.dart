@@ -1,13 +1,8 @@
-import 'package:bottom_picker/bottom_picker.dart';
-import 'package:bottom_picker/resources/arrays.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/utils/helpers/date_time_helpers.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 part './models/cp_cm_text_field_configs.dart';
 
 class CPCmTextField extends StatefulWidget {
@@ -79,7 +74,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
                       child: Text(
                         widget.configs.labelText ?? "",
                         style: themeData.value.typo.t10Semibold.copyWith(
-                          color: const Color(0xFFFE904B),
+                          color: themeData.value.color.mainSecondaryColor1,
                         ),
                       ),
                     ),
@@ -136,7 +131,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
               child: Text(
                 widget.configs.labelText ?? "",
                 style: themeData.value.typo.t10Semibold.copyWith(
-                  color: const Color(0xFFFE904B),
+                  color: themeData.value.color.mainSecondaryColor1,
                 ),
               ),
             ),

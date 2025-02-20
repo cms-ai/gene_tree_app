@@ -25,9 +25,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterEmailHint": MessageLookupByLibrary.simpleMessage("Enter email"),
     "enterPassHint": MessageLookupByLibrary.simpleMessage("Enter password"),
     "forgotPass": MessageLookupByLibrary.simpleMessage("Forgot password"),
+    "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "haveAcountBefore": MessageLookupByLibrary.simpleMessage(
       "You already have an account",
     ),
+    "next": MessageLookupByLibrary.simpleMessage("Next"),
     "noAccountBefore": MessageLookupByLibrary.simpleMessage(
       "You don’t have an account",
     ),
@@ -36,5 +38,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Sign in with Google",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+    "submit": MessageLookupByLibrary.simpleMessage("Submit"),
   };
 }

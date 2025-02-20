@@ -25,9 +25,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterEmailHint": MessageLookupByLibrary.simpleMessage("Nhập email"),
     "enterPassHint": MessageLookupByLibrary.simpleMessage("Nhập password"),
     "forgotPass": MessageLookupByLibrary.simpleMessage("Quên mật khẩu"),
+    "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "haveAcountBefore": MessageLookupByLibrary.simpleMessage(
       "Bạn đã có tài khoản",
     ),
+    "next": MessageLookupByLibrary.simpleMessage("Next"),
     "noAccountBefore": MessageLookupByLibrary.simpleMessage(
       "Bạn chưa có tài khoản",
     ),
@@ -36,5 +38,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Đăng nhặp với google",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+    "submit": MessageLookupByLibrary.simpleMessage("Submit"),
   };
 }

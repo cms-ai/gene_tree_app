@@ -208,14 +208,129 @@ class OnboardLocalizations {
     );
   }
 
-  /// `Next`
-  String get next {
-    return Intl.message('Next', name: 'next', desc: '', args: []);
-  }
-
   /// `Let's start`
   String get letStart {
     return Intl.message('Let\'s start', name: 'letStart', desc: '', args: []);
+  }
+
+  /// `Welcome to`
+  String get welcomeTo {
+    return Intl.message('Welcome to', name: 'welcomeTo', desc: '', args: []);
+  }
+
+  /// `By signing in, I agree with `
+  String get policy1 {
+    return Intl.message(
+      'By signing in, I agree with ',
+      name: 'policy1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms of Use`
+  String get policy2 {
+    return Intl.message('Terms of Use', name: 'policy2', desc: '', args: []);
+  }
+
+  /// ` and `
+  String get policy3 {
+    return Intl.message(' and ', name: 'policy3', desc: '', args: []);
+  }
+
+  /// `Privacy Policy`
+  String get policy4 {
+    return Intl.message('Privacy Policy', name: 'policy4', desc: '', args: []);
+  }
+
+  /// `Profile setup`
+  String get profileSetup {
+    return Intl.message(
+      'Profile setup',
+      name: 'profileSetup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please fill in your information`
+  String get profileSetupDes {
+    return Intl.message(
+      'Please fill in your information',
+      name: 'profileSetupDes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full name`
+  String get fullName {
+    return Intl.message('Full name', name: 'fullName', desc: '', args: []);
+  }
+
+  /// `Date of birth`
+  String get dob {
+    return Intl.message('Date of birth', name: 'dob', desc: '', args: []);
+  }
+
+  /// `Enter your name`
+  String get nameHint {
+    return Intl.message(
+      'Enter your name',
+      name: 'nameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your date of birth`
+  String get dOBHint {
+    return Intl.message(
+      'Enter your date of birth',
+      name: 'dOBHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name & Age *`
+  String get nameAndAge {
+    return Intl.message('Name & Age *', name: 'nameAndAge', desc: '', args: []);
+  }
+
+  /// `Clan`
+  String get clan {
+    return Intl.message('Clan', name: 'clan', desc: '', args: []);
+  }
+
+  /// `Clan name`
+  String get clanName {
+    return Intl.message('Clan name', name: 'clanName', desc: '', args: []);
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message('Description', name: 'description', desc: '', args: []);
+  }
+
+  /// `Enter your clan name`
+  String get clanNameHint {
+    return Intl.message(
+      'Enter your clan name',
+      name: 'clanNameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your description`
+  String get descriptionHint {
+    return Intl.message(
+      'Enter your description',
+      name: 'descriptionHint',
+      desc: '',
+      args: [],
+    );
   }
 }
 

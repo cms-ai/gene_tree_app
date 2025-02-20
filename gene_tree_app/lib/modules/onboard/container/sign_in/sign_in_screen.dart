@@ -96,10 +96,10 @@ class SignInScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Welcome to",
+              OnboardLocalizations.current.welcomeTo,
               style: themeData.value.typo.t16Bold.copyWith(
                 fontSize: 32.sp,
-                color: Color(0xFFFE904B),
+                color: themeData.value.color.mainSecondaryColor1,
               ),
             ),
             themeState.appThemeEnum == AppThemeEnum.darkTheme
@@ -159,21 +159,21 @@ class SignInScreen extends StatelessWidget {
             ),
             children: [
               TextSpan(
-                text: "By signing in, I agree with ",
+                text: OnboardLocalizations.current.policy1,
               ),
               TextSpan(
-                text: "Terms of Use",
+                text: OnboardLocalizations.current.policy2,
                 style: TextStyle(
-                  color: Color(0xFFFE904B),
+                  color: themeData.value.color.mainSecondaryColor1,
                 ),
               ),
               TextSpan(
-                text: " and ",
+                text: OnboardLocalizations.current.policy3,
               ),
               TextSpan(
-                text: "Privacy Policy",
+                text: OnboardLocalizations.current.policy4,
                 style: TextStyle(
-                  color: Color(0xFFFE904B),
+                  color: themeData.value.color.mainSecondaryColor1,
                 ),
               ),
             ],

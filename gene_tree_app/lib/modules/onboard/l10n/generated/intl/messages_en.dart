@@ -22,6 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "clan": MessageLookupByLibrary.simpleMessage("Clan"),
+    "clanName": MessageLookupByLibrary.simpleMessage("Clan name"),
+    "clanNameHint": MessageLookupByLibrary.simpleMessage(
+      "Enter your clan name",
+    ),
+    "dOBHint": MessageLookupByLibrary.simpleMessage("Enter your date of birth"),
+    "description": MessageLookupByLibrary.simpleMessage("Description"),
+    "descriptionHint": MessageLookupByLibrary.simpleMessage(
+      "Enter your description",
+    ),
+    "dob": MessageLookupByLibrary.simpleMessage("Date of birth"),
     "enterEmailHint": MessageLookupByLibrary.simpleMessage("Enter email"),
     "enterPassHint": MessageLookupByLibrary.simpleMessage("Enter password"),
     "familyFutureContent": MessageLookupByLibrary.simpleMessage(
@@ -43,15 +54,27 @@ class MessageLookup extends MessageLookupByLibrary {
       "Truyền thống - Giá trị gia tộc trường tồn",
     ),
     "forgotPass": MessageLookupByLibrary.simpleMessage("Forgot password"),
+    "fullName": MessageLookupByLibrary.simpleMessage("Full name"),
     "haveAcountBefore": MessageLookupByLibrary.simpleMessage(
       "You already have an account",
     ),
     "letStart": MessageLookupByLibrary.simpleMessage("Let\'s start"),
-    "next": MessageLookupByLibrary.simpleMessage("Next"),
+    "nameAndAge": MessageLookupByLibrary.simpleMessage("Name & Age *"),
+    "nameHint": MessageLookupByLibrary.simpleMessage("Enter your name"),
     "noAccountBefore1": MessageLookupByLibrary.simpleMessage(
       "You don\'t have an account",
     ),
     "onboard": MessageLookupByLibrary.simpleMessage("Màn hình onboard"),
+    "policy1": MessageLookupByLibrary.simpleMessage(
+      "By signing in, I agree with ",
+    ),
+    "policy2": MessageLookupByLibrary.simpleMessage("Terms of Use"),
+    "policy3": MessageLookupByLibrary.simpleMessage(" and "),
+    "policy4": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "profileSetup": MessageLookupByLibrary.simpleMessage("Profile setup"),
+    "profileSetupDes": MessageLookupByLibrary.simpleMessage(
+      "Please fill in your information",
+    ),
     "reEnterPassHint": MessageLookupByLibrary.simpleMessage(
       "Re-enter password",
     ),
@@ -60,5 +83,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Sign in with Google",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+    "welcomeTo": MessageLookupByLibrary.simpleMessage("Welcome to"),
   };
 }

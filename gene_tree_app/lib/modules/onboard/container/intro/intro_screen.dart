@@ -6,6 +6,7 @@ import 'package:gene_tree_app/gen/assets.gen.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
+import 'package:gene_tree_app/modules/common/l10n/generated/l10n.dart';
 import 'package:gene_tree_app/modules/onboard/l10n/generated/l10n.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
@@ -89,7 +90,7 @@ class _IntroScreenState extends State<IntroScreen> {
                         configs: CPButtonConfigs(
                           content: indexPage >= itemList.length - 1
                               ? OnboardLocalizations.current.letStart
-                              : OnboardLocalizations.current.next,
+                              : CommonLocalizations.current.next,
                           textStyle: themeData.value.typo.t16Bold.copyWith(
                             color: Colors.white,
                           ),

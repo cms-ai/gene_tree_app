@@ -22,6 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "clan": MessageLookupByLibrary.simpleMessage("Clan"),
+    "clanName": MessageLookupByLibrary.simpleMessage("Clan name"),
+    "clanNameHint": MessageLookupByLibrary.simpleMessage(
+      "Enter your clan name",
+    ),
+    "dOBHint": MessageLookupByLibrary.simpleMessage("Enter your date of birth"),
+    "description": MessageLookupByLibrary.simpleMessage("Description"),
+    "descriptionHint": MessageLookupByLibrary.simpleMessage(
+      "Enter your description",
+    ),
+    "dob": MessageLookupByLibrary.simpleMessage("Date of birth"),
     "enterEmailHint": MessageLookupByLibrary.simpleMessage("Nhập email"),
     "enterPassHint": MessageLookupByLibrary.simpleMessage("Nhập password"),
     "familyFutureContent": MessageLookupByLibrary.simpleMessage(
@@ -43,20 +54,33 @@ class MessageLookup extends MessageLookupByLibrary {
       "Truyền thống - Giá trị gia tộc trường tồn",
     ),
     "forgotPass": MessageLookupByLibrary.simpleMessage("Quên mật khẩu"),
+    "fullName": MessageLookupByLibrary.simpleMessage("Full name"),
     "haveAcountBefore": MessageLookupByLibrary.simpleMessage(
       "Bạn đã có tài khoản",
     ),
-    "letStart": MessageLookupByLibrary.simpleMessage("Bắt đầu"),
-    "next": MessageLookupByLibrary.simpleMessage("Tiếp theo"),
+    "letStart": MessageLookupByLibrary.simpleMessage("Let\'s start"),
+    "nameAndAge": MessageLookupByLibrary.simpleMessage("Name & Age *"),
+    "nameHint": MessageLookupByLibrary.simpleMessage("Enter your name"),
     "noAccountBefore1": MessageLookupByLibrary.simpleMessage(
       "Bạn chưa có tài khoản",
     ),
     "onboard": MessageLookupByLibrary.simpleMessage("Màn hình onboard"),
+    "policy1": MessageLookupByLibrary.simpleMessage(
+      "By signing in, I agree with ",
+    ),
+    "policy2": MessageLookupByLibrary.simpleMessage("Terms of Use"),
+    "policy3": MessageLookupByLibrary.simpleMessage(" and "),
+    "policy4": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "profileSetup": MessageLookupByLibrary.simpleMessage("Profile setup"),
+    "profileSetupDes": MessageLookupByLibrary.simpleMessage(
+      "Please fill in your information",
+    ),
     "reEnterPassHint": MessageLookupByLibrary.simpleMessage("Nhập password"),
     "signIn": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
     "signInWithGoogle": MessageLookupByLibrary.simpleMessage(
       "Đăng nhặp với google",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+    "welcomeTo": MessageLookupByLibrary.simpleMessage("Welcome to"),
   };
 }

@@ -126,7 +126,7 @@ class DateTimeHelper {
       displayCloseIcon: false,
       bottomPickerTheme: BottomPickerTheme.plumPlate,
       buttonStyle: BoxDecoration(
-        color: const Color(0xFFFE904B),
+        color: themeData.value.color.mainSecondaryColor1,
         borderRadius: BorderRadius.circular(20),
       ),
       buttonWidth: 200,
