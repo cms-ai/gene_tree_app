@@ -20,6 +20,48 @@ class CPButton extends StatefulWidget {
 
 class _CPButtonState extends State<CPButton> {
   Timer? timer;
+  Decoration? get decoration {
+    switch (widget.configs.type) {
+      case ButtonType.primary:
+        if (widget.configs.isDiabled == true) {
+          return BoxDecoration(
+            color: Colors.grey.withOpacity(.5),
+            borderRadius: BorderRadius.circular(8.r),
+          );
+        }
+        return widget.configs.decoration ??
+            BoxDecoration(
+              gradient: themeData.value.color.linearBtnColor1,
+              borderRadius: BorderRadius.circular(8.r),
+            );
+
+      case ButtonType.outline:
+        return BoxDecoration(
+          border: Border.all(
+            color: themeData.value.color.mainPrimaryColor,
+          ),
+          borderRadius: BorderRadius.circular(8.r),
+        );
+      default:
+        return null;
+    }
+  }
+
+  TextStyle? get textStyle {
+    switch (widget.configs.type) {
+      case ButtonType.primary:
+        if (widget.configs.isDiabled == true) {
+          return themeData.value.typo.t14Semibold.copyWith(
+            color: themeData.value.color.textDisableColor,
+          );
+        }
+        return widget.configs.textStyle ?? themeData.value.typo.t14Semibold;
+      default:
+        return widget.configs.textStyle ??
+            themeData.value.typo.t14Semibold.copyWith();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final throttler = Throttler(milliseconds: 1000);
@@ -27,6 +69,7 @@ class _CPButtonState extends State<CPButton> {
       case ButtonType.primary:
         return GestureDetector(
           onTap: () {
+            if (widget.configs.isDiabled == true) return;
             throttler.run(() {
               if (widget.configs.onTap != null) {
                 LoggerUtil.infoLog("OnTap: $this");
@@ -39,18 +82,9 @@ class _CPButtonState extends State<CPButton> {
                 EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             width: widget.configs.width,
             height: widget.configs.height,
-            decoration: widget.configs.decoration ??
-                BoxDecoration(
-                  color: themeData.value.color.btnColor2, // Màu nền của button
-                  gradient: themeData.value.color.linearBtnColor1,
-                  borderRadius: BorderRadius.circular(8.r), // Bo góc
-                ),
+            decoration: decoration,
             child: Center(
-              child: Text(
-                widget.configs.content,
-                style: widget.configs.textStyle ??
-                    themeData.value.typo.t14Semibold.copyWith(),
-              ),
+              child: Text(widget.configs.content, style: textStyle),
             ),
           ),
         );

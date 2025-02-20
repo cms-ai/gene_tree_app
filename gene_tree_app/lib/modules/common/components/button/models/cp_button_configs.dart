@@ -17,6 +17,7 @@ class CPButtonConfigs {
   final void Function()? onTap;
   final TextStyle? textStyle;
   final Decoration? decoration;
+  final bool? isDiabled;
   const CPButtonConfigs({
     this.type = ButtonType.primary,
     this.content = '',
@@ -27,6 +28,7 @@ class CPButtonConfigs {
     this.prefixIcon,
     this.textStyle,
     this.decoration,
+    this.isDiabled,
   });
 
   CPButtonConfigs copyWith(ButtonType? type) {

@@ -1,3 +1,8 @@
+import 'package:bottom_picker/bottom_picker.dart';
+import 'package:bottom_picker/resources/arrays.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:intl/intl.dart';
 
 class DateTimeHelper {
@@ -95,5 +100,47 @@ class DateTimeHelper {
   /// Lấy ngày, tháng, năm dạng chuỗi (dd/MM/yyyy)
   static String getDate(DateTime dateTime) {
     return DateFormat('dd/MM/yyyy').format(dateTime);
+  }
+
+  static Future<DateTime?> pickDate(
+    BuildContext context, {
+    DatePickerDateOrder? dateOrder,
+    required Function(dynamic) onSubmit,
+  }) async {
+    BottomPicker.date(
+      pickerTitle: Container(),
+      dateOrder: dateOrder ?? DatePickerDateOrder.dmy,
+      initialDateTime: DateTime(1996, 10, 22),
+      dismissable: true,
+      maxDateTime: DateTime(DateTime.now().year),
+      minDateTime: DateTime(1954),
+      titleAlignment: Alignment.center,
+      pickerTextStyle: themeData.value.typo.t12Semibold,
+      onChange: (index) {},
+      onSubmit: (index) {
+        if (index.runtimeType == DateTime) {
+          final dateFormat = formatDateTime(index, format: 'dd/MM/yyyy');
+          onSubmit(dateFormat);
+        }
+      },
+      displayCloseIcon: false,
+      bottomPickerTheme: BottomPickerTheme.plumPlate,
+      buttonStyle: BoxDecoration(
+        color: const Color(0xFFFE904B),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      buttonWidth: 200,
+      buttonContent: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 10,
+        ),
+        child: Center(
+          child: Text(
+            'Confirm',
+            style: themeData.value.typo.t12Semibold,
+          ),
+        ),
+      ),
+    ).show(context);
   }
 }

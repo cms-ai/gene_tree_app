@@ -3,6 +3,8 @@ import 'package:gene_tree_app/modules/common/common_module.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/create_clan_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/intro/intro_screen.dart';
+import 'package:gene_tree_app/modules/onboard/container/profile_setup/bloc/profile_setup_bloc.dart';
+import 'package:gene_tree_app/modules/onboard/container/profile_setup/profile_setup_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/bloc/sign_in_bloc.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/sign_in_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_up/sign_up_screen.dart';
@@ -52,6 +54,10 @@ class OnboardModule extends Module {
       OnboardModuleEnum.createClan.path,
       child: (context) => CreateClanScreen(argument: r.args.data),
     );
+    r.child(
+      OnboardModuleEnum.profileSetup.path,
+      child: (context) => ProfileSetupScreen(argument: r.args.data),
+    );
 
     super.routes(r);
   }
@@ -84,6 +90,12 @@ class OnboardModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
+    i.addSingleton<ProfileSetupBloc>(
+      ProfileSetupBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
     super.binds(i);
   }
 }
@@ -99,7 +111,8 @@ enum OnboardModuleEnum {
   welcome("/welcome"),
   signIn("/signIn"),
   signUp("/signUp"),
-  createClan("/createClan");
+  createClan("/createClan"),
+  profileSetup("/profileSetup");
 
   final String path;
   const OnboardModuleEnum(this.path);

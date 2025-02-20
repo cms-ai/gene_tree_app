@@ -21,13 +21,12 @@ class CPCmAppBar extends StatelessWidget implements PreferredSizeWidget {
           previous.appThemeEnum != current.appThemeEnum,
       builder: (context, state) {
         return AppBar(
-          leading: canPop
+          leading: canPop || configs.prefixIcon != null
               ? configs.prefixIcon ??
                   IconButton(
                     icon: Icon(
                       Icons.arrow_back_ios,
-                      color:
-                          state.appThemeEnum.themeData().color.mainPrimaryColor,
+                      color: themeData.value.color.mainPrimaryColor,
                     ),
                     onPressed: () {
                       if (canPop) {

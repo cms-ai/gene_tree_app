@@ -1,7 +1,11 @@
+import 'package:bottom_picker/bottom_picker.dart';
+import 'package:bottom_picker/resources/arrays.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gene_tree_app/core/utils/helpers/date_time_helpers.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 part './models/cp_cm_text_field_configs.dart';
@@ -10,10 +14,8 @@ class CPCmTextField extends StatefulWidget {
   const CPCmTextField({
     super.key,
     required this.configs,
-    this.onChanged,
   });
   final CPCmTextFieldConfigs configs;
-  final void Function(String)? onChanged;
 
   @override
   State<CPCmTextField> createState() => _CPCmTextFieldState();
@@ -39,39 +41,132 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
             return _buildPasswordTextField();
           case CMTexFieldTypeEnum.search:
             return _buildSearchTextField();
+          case CMTexFieldTypeEnum.datetime:
+            return _buildDateTimeTextField();
         }
       },
     );
   }
 
-  Widget _buildNormalTextField() {
-    return TextField(
-      controller: widget.configs.controller,
-      decoration: InputDecoration(
-        hintText: hintTextConfigs?.hintText,
-        hintStyle: hintTextConfigs?.hintStyle ??
-            themeData.value.typo.t14Semibold.copyWith(
-              color: themeData.value.color.mainPrimaryColor.withOpacity(.4),
+  Widget _buildDateTimeTextField() {
+    return InkWell(
+      onTap: () {
+        DateTimeHelper.pickDate(context, onSubmit: (dateFormat) {
+          widget.configs.controller?.text = dateFormat;
+          if (widget.configs.onChanged != null) {
+            widget.configs.onChanged!(dateFormat);
+          }
+
+          setState(() {});
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: themeData.value.color.bgColor2,
+          borderRadius: BorderRadius.circular(14.r),
+        ),
+        padding: widget.configs.contentPadding ?? EdgeInsets.all(12.h),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (widget.configs.labelText != null)
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 2.h),
+                      child: Text(
+                        widget.configs.labelText ?? "",
+                        style: themeData.value.typo.t10Semibold.copyWith(
+                          color: const Color(0xFFFE904B),
+                        ),
+                      ),
+                    ),
+                  TextField(
+                    controller: widget.configs.controller,
+                    readOnly: true,
+                    enabled: false,
+                    style: themeData.value.typo.t12Regular.copyWith(
+                        color: themeData.value.color.mainPrimaryColor),
+                    decoration: InputDecoration(
+                      hintText: hintTextConfigs?.hintText,
+                      hintStyle: hintTextConfigs?.hintStyle ??
+                          themeData.value.typo.t12Regular.copyWith(
+                            color: themeData.value.color.mainPrimaryColor
+                                .withOpacity(.4),
+                          ),
+                      contentPadding:
+                          // widget.configs.contentPadding ?? EdgeInsets.all(12.h),
+                          EdgeInsets.zero,
+                      isDense: true,
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                    onChanged: widget.configs.onChanged,
+                  ),
+                ],
+              ),
             ),
-        contentPadding: widget.configs.contentPadding ?? EdgeInsets.all(12.h),
-        isDense: true,
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: themeData.value.color.mainPrimaryColor,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: themeData.value.color.mainPrimaryColor,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: themeData.value.color.mainPrimaryColor,
-          ),
+            Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: themeData.value.color.mainPrimaryColor,
+            )
+          ],
         ),
       ),
-      onChanged: widget.onChanged,
+    );
+  }
+
+  Widget _buildNormalTextField() {
+    return Container(
+      decoration: BoxDecoration(
+        color: themeData.value.color.bgColor2,
+        borderRadius: BorderRadius.circular(14.r),
+      ),
+      padding: widget.configs.contentPadding ?? EdgeInsets.all(12.h),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (widget.configs.labelText != null)
+            Padding(
+              padding: EdgeInsets.only(bottom: 2.h),
+              child: Text(
+                widget.configs.labelText ?? "",
+                style: themeData.value.typo.t10Semibold.copyWith(
+                  color: const Color(0xFFFE904B),
+                ),
+              ),
+            ),
+          TextField(
+            controller: widget.configs.controller,
+            maxLines: widget.configs.maxLines,
+            style: themeData.value.typo.t12Regular.copyWith(
+              color: themeData.value.color.mainPrimaryColor,
+            ),
+            decoration: InputDecoration(
+              hintText: hintTextConfigs?.hintText,
+              hintStyle: hintTextConfigs?.hintStyle ??
+                  themeData.value.typo.t12Regular.copyWith(
+                    color:
+                        themeData.value.color.mainPrimaryColor.withOpacity(.4),
+                  ),
+
+              contentPadding:
+                  // widget.configs.contentPadding ?? EdgeInsets.all(12.h),
+                  EdgeInsets.zero,
+              isDense: true,
+              border: InputBorder.none,
+              // filled: true,
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+            ),
+            onChanged: widget.configs.onChanged,
+          ),
+        ],
+      ),
     );
   }
 
@@ -89,7 +184,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
           ),
         ),
       ),
-      onChanged: widget.onChanged,
+      onChanged: widget.configs.onChanged,
     );
   }
 
@@ -107,7 +202,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
           ),
         ),
       ),
-      onChanged: widget.onChanged,
+      onChanged: widget.configs.onChanged,
     );
   }
 }

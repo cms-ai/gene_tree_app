@@ -33,7 +33,7 @@ class AppSpacingModel extends AppSpacingModelImpl {
   double get s8 => 8.h;
 
   @override
-  double get screenHorizontal => 20.h;
+  double get screenHorizontal => 20;
 
   @override
   double get screenVertical => 20.h;

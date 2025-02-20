@@ -6,13 +6,13 @@ class LightColorModel implements ColorModelImpl {
   Color get bgColor1 => const Color(0xFFFFFFFF);
 
   @override
-  Color get bgColor2 => const Color(0xFF000000);
+  Color get bgColor2 => Color(0xFF000000).withOpacity(.05);
 
   @override
-  Color get btnColor1 => const Color(0xFFF2D5A9);
+  Color get btnColor1 => const Color(0xFFFE904B);
 
   @override
-  Color get btnColor2 => const Color(0xFFD36C26);
+  Color get btnColor2 => const Color(0xFF000000).withOpacity(.05);
 
   @override
   LinearGradient get linegradientColor => const LinearGradient(
@@ -104,13 +104,13 @@ class DarkColorModel implements ColorModelImpl {
   Color get bgColor1 => const Color(0xFF000000);
 
   @override
-  Color get bgColor2 => const Color(0xFFFFFFFF);
+  Color get bgColor2 => const Color(0xFF414143);
 
   @override
-  Color get btnColor1 => const Color(0xFFF2D5A9);
+  Color get btnColor1 => const Color(0xFFFE904B);
 
   @override
-  Color get btnColor2 => const Color(0xFFD36C26);
+  Color get btnColor2 => const Color(0xFF414143);
 
   @override
   LinearGradient get linegradientColor => const LinearGradient(

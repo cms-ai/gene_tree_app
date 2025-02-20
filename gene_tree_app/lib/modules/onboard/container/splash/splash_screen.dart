@@ -36,11 +36,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void _handleUnAuthenticated(bool firstLogin) {
     if (firstLogin) {
       Modular.to.navigate(
-        OnboardModule.getRoutePath(OnboardModuleEnum.intro),
+        OnboardModule.getRoutePath(OnboardModuleEnum.profileSetup),
       );
     } else {
       Modular.to.navigate(
-        OnboardModule.getRoutePath(OnboardModuleEnum.intro),
+        OnboardModule.getRoutePath(OnboardModuleEnum.profileSetup),
       );
     }
   }
