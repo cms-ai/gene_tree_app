@@ -47,36 +47,26 @@ class WelcomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Spacer(),
-                    // themeState.appThemeEnum == AppThemeEnum.darkTheme
-                    //     ? Assets.images.darkLogo.svg(height: 50.h)
-                    //     : Assets.images.lightLogo.svg(height: 50.h),
-                    Assets.images.welcome.image(width: double.infinity),
-                    SizedBox(height: 45.h),
+                    themeState.appThemeEnum == AppThemeEnum.darkTheme
+                        ? Assets.images.darkLogo.svg(height: 54.h)
+                        : Assets.images.lightLogo.svg(height: 54.h),
+                    SizedBox(height: 37.h),
                     Text(
                       "Bạn đã sẵn sàng! Cảm ơn vì đã gia nhập ",
+                      textAlign: TextAlign.center,
                       style:
                           themeState.appThemeEnum.themeData().typo.t12Regular,
-                    ),
-                    SizedBox(height: 10.h),
-                    Text(
-                      "Gene tree App",
-                      style: themeState.appThemeEnum
-                          .themeData()
-                          .typo
-                          .t14Bold
-                          .copyWith(
-                            color: themeData.value.color.mainSecondaryColor1,
-                          ),
                     ),
                     const Spacer(),
                     CPButton(
                       configs: CPButtonConfigs(
-                        content: "Let's go",
+                        content: "Go to dashboard",
                         onTap: () {
                           Modular.to.navigate(MainModule.path);
                         },
                       ),
                     ),
+                    SizedBox(height: 16.h),
                   ],
                 ),
               ),
