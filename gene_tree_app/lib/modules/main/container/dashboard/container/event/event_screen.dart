@@ -84,7 +84,7 @@ class _EventScreenState extends State<EventScreen> {
                             itemCount: dataList.length,
                             itemBuilder: (context, index) => CPEventItem(
                               data: dataList[index],
-                              configs: CPEventItemConfigs(),
+                              configs: const CPEventItemConfigs(),
                             ),
                             separatorBuilder: (
                               BuildContext context,
