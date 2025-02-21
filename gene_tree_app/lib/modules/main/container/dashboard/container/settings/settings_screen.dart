@@ -100,7 +100,7 @@ class SettingsScreen extends StatelessWidget {
           Expanded(
             child: Text(
               title ?? "",
-              style: themeData.value.typo.t14Semibold,
+              style: themeData.value.typo.t12Semibold,
             ),
           ),
           suffixWidget ??
