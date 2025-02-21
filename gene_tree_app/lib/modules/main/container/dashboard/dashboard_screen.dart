@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/modules/common/components/lottie/cp_lottie.dart';
@@ -76,7 +77,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       children: [
                         ...DashboardTabEnum.values.map(
                           (data) => _buildNavBarItem(
-                            theme.appThemeEnum.themeData(),
                             url: data.getIconPath(),
                             isSelected: state.tab == data,
                             onTap: () {
@@ -98,8 +98,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget _buildNavBarItem(
-    AppThemeModel themeData, {
+  Widget _buildNavBarItem({
     required String url,
     required bool isSelected,
     required Function onTap,
@@ -108,8 +107,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: ColorFiltered(
         colorFilter: ColorFilter.mode(
           isSelected
-              ? themeData.color.btnColor2
-              : themeData.color.mainPrimaryColor,
+              ? themeData.value.color.btnColor1
+              : themeData.value.color.mainPrimaryColor,
           BlendMode.srcATop,
         ),
         child: Column(
@@ -139,8 +138,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 height: isSelected ? 5.h : 0,
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? themeData.color.mainSecondaryColor1
-                      : themeData.color.mainPrimaryColor,
+                      ? themeData.value.color.btnColor1
+                      : themeData.value.color.mainPrimaryColor,
                   shape: BoxShape.circle,
                 ),
               ),
