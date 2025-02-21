@@ -18,6 +18,7 @@ abstract class ColorModelImpl {
   //
   Color get mainBgColor1;
   Color get mainPrimaryColor;
+  Color get mainSecondaryColor;
   Color get mainSecondaryColor1;
   Color get mainSecondaryColor2;
   Color get mainSecondaryColor3;

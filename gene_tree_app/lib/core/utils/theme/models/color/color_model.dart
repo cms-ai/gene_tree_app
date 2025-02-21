@@ -97,6 +97,9 @@ class LightColorModel implements ColorModelImpl {
         begin: Alignment.bottomRight,
         end: Alignment.topLeft,
       );
+
+  @override
+  Color get mainSecondaryColor => const Color(0xFFFFFFFF);
 }
 
 class DarkColorModel implements ColorModelImpl {
@@ -196,4 +199,7 @@ class DarkColorModel implements ColorModelImpl {
         begin: Alignment.bottomRight,
         end: Alignment.topLeft,
       );
+
+  @override
+  Color get mainSecondaryColor => const Color(0xFF000000);
 }

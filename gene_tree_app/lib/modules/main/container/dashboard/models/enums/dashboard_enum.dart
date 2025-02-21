@@ -34,6 +34,8 @@ extension DashboardEnumExt on DashboardTabEnum {
         return const EventScreen();
       case DashboardTabEnum.member:
         return const MemberScreen();
+      case DashboardTabEnum.profile:
+        return const SettingsScreen();
       default:
         return Center(
           child: Text(
