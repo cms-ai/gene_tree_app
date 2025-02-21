@@ -254,7 +254,7 @@ class CmDialogScreen {
               color: themeData.value.color.mainSecondaryColor1,
             ),
           ),
-          backgroundColor: Color(0xFFF8F9FA),
+          backgroundColor: themeData.value.color.bgPopupColor,
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -324,12 +324,13 @@ class CmDialogScreen {
 
   Future<void> _showCustomContentDialog(BuildContext context) async {
     await showDialog(
-      barrierColor: Colors.transparent,
+      // barrierColor: Colors.transparent,
       barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return Dialog(
           child: Container(
+            color: themeData.value.color.bgPopupColor,
             padding: const EdgeInsets.all(20),
             child: Column(
               mainAxisSize: MainAxisSize.min,

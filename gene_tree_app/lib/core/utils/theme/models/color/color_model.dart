@@ -100,6 +100,9 @@ class LightColorModel implements ColorModelImpl {
 
   @override
   Color get mainSecondaryColor => const Color(0xFFFFFFFF);
+
+  @override
+  Color get bgPopupColor =>const Color(0xFFF8F9FA);
 }
 
 class DarkColorModel implements ColorModelImpl {
@@ -202,4 +205,8 @@ class DarkColorModel implements ColorModelImpl {
 
   @override
   Color get mainSecondaryColor => const Color(0xFF000000);
+
+  @override
+  // TODO: implement bgPopupColor
+  Color get bgPopupColor => const Color(0xFF121212);
 }

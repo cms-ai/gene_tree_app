@@ -6,6 +6,7 @@ abstract class ColorModelImpl {
   //
   Color get bgColor1;
   Color get bgColor2;
+  Color get bgPopupColor;
   //
   // Button color
   //
