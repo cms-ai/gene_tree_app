@@ -112,6 +112,7 @@ class DateTimeHelper {
       dateOrder: dateOrder ?? DatePickerDateOrder.dmy,
       initialDateTime: DateTime(1996, 10, 22),
       dismissable: true,
+      backgroundColor: themeData.value.color.bgPopupColor,
       maxDateTime: DateTime(DateTime.now().year),
       minDateTime: DateTime(1954),
       titleAlignment: Alignment.center,
@@ -142,5 +143,6 @@ class DateTimeHelper {
         ),
       ),
     ).show(context);
+    return null;
   }
 }

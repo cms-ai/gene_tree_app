@@ -48,7 +48,34 @@ class CmDialogScreen {
       case CmDialogType.success:
         await _showSuccessDialog(context);
         break;
+      case CmDialogType.bottomSheet:
+        await _showBottomSheet(context);
+        break;
     }
+  }
+
+  Future<void> _showBottomSheet(BuildContext context) async {
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      backgroundColor: themeData.value.color.bgPopupColor,
+      builder: (context) {
+        return FractionallySizedBox(
+          heightFactor: .5, // 50% chiều cao màn hình
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: argument.bottomSheetConfigs?.child ?? Container(),
+          ),
+        );
+      },
+    ).then((_) {
+      _isDialogShowing = false;
+      type = null;
+    });
+    ;
   }
 
   Future<void> dismissCurrentDialog(BuildContext context) async {

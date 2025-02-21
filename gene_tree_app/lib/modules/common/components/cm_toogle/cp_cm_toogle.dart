@@ -36,11 +36,11 @@ class _CPCmToogleState extends State<CPCmToogle> {
       onTap: toggleSwitch, // Toggle khi nhấn
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        width: 50.h,
-        height: 30.h,
+        width: 36.h,
+        height: 22.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: isToggled ? Colors.green : Colors.grey,
+          color: isToggled ? themeData.value.color.btnColor1 : Colors.grey,
         ),
         child: Stack(
           children: [
@@ -50,8 +50,8 @@ class _CPCmToogleState extends State<CPCmToogle> {
                   isToggled ? Alignment.centerRight : Alignment.centerLeft,
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
-                width: 20.h,
-                height: 20.h,
+                width: 16.h,
+                height: 16.h,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,

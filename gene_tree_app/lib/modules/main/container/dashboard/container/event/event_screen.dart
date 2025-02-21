@@ -11,6 +11,7 @@ import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
 import 'package:gene_tree_app/modules/common/components/cm_text_field/cp_cm_text_field.dart';
 import 'package:gene_tree_app/modules/common/components/event_item/cp_event_item.dart';
 import 'package:gene_tree_app/modules/main/l10n/generated/l10n.dart';
+import 'package:gene_tree_app/modules/main/main_module.dart';
 import '../../../../../../core/utils/helpers/helpers.dart';
 import 'bloc/event_bloc.dart';
 part 'models/event_argument.dart';
@@ -133,53 +134,16 @@ extension _EventScreenStateExt on _EventScreenState {
               textStyle: themeData.value.typo.t12Semibold,
               content: "Add",
               onTap: () {
-                // TODO: See details clan
+                Modular.to.pushNamed(
+                  MainModule.getRoutePath(
+                    MainModuleEnum.createClanMember,
+                  ),
+                );
               },
             ),
           ),
-          // Container(
-          //   padding: EdgeInsets.all(
-          //     themeState.appThemeEnum.themeData().spacing.s6,
-          //   ),
-          //   decoration: BoxDecoration(
-          //     color: themeState.appThemeEnum
-          //         .themeData()
-          //         .color
-          //         .bgColor2
-          //         .withOpacity(0.1),
-          //     shape: BoxShape.circle,
-          //   ),
-          //   child: Stack(
-          //     children: [
-          //       Icon(
-          //         Icons.filter_list_outlined,
-          //         size: 18.h,
-          //       ),
-          //       Positioned(
-          //         right: 0,
-          //         top: 2,
-          //         child: Container(
-          //           width: 5.h,
-          //           height: 5.h,
-          //           decoration: const BoxDecoration(
-          //             color: Colors.red,
-          //             shape: BoxShape.circle,
-          //           ),
-          //         ),
-          //       )
-          //     ],
-          //   ),
-          // )
         ],
       ),
     );
-  }
-
-  ///
-  /// event today widget
-  ///
-
-  Widget _buildEventTodayList() {
-    return Container();
   }
 }

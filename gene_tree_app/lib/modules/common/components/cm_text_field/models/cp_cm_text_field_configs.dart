@@ -1,6 +1,6 @@
 part of '../cp_cm_text_field.dart';
 
-enum CMTexFieldTypeEnum { normal, password, search, datetime }
+enum CMTexFieldTypeEnum { normal, password, search, datetime, pickOption }
 
 class CPCmTextFieldConfigs {
   final CMTexFieldTypeEnum type;

@@ -6,6 +6,7 @@ import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaff
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/modules/common/components/cm_avatar/cp_cm_avatar.dart';
+import 'package:gene_tree_app/modules/common/components/cm_toogle/cp_cm_toogle.dart';
 import './bloc/settings_bloc.dart';
 part './models/settings_argument.dart';
 
@@ -44,11 +45,21 @@ class SettingsScreen extends StatelessWidget {
                       _buildOptionItem(title: "Language"),
                       _buildOptionItem(
                         title: "Dark mode",
-                        suffixWidget: _buildSwitch(),
+                        suffixWidget: CPCmToogle(
+                          configs: CPCmToogleConfigs(
+                            isToogled: true,
+                            onChange: (value) {},
+                          ),
+                        ),
                       ),
                       _buildOptionItem(
                         title: "Notification",
-                        suffixWidget: _buildSwitch(),
+                        suffixWidget: CPCmToogle(
+                          configs: CPCmToogleConfigs(
+                            isToogled: true,
+                            onChange: (value) {},
+                          ),
+                        ),
                       ),
                       _buildOptionItem(title: "About"),
                       _buildOptionItem(title: "Log out"),
@@ -60,24 +71,6 @@ class SettingsScreen extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildSwitch({
-    bool? isEnable,
-  }) {
-    return SizedBox(
-      height: 24.h,
-      width: 35.w,
-      child: FittedBox(
-        fit: BoxFit.fill,
-        child: Switch(
-          value: isEnable ?? false,
-          activeColor: themeData.value.color.mainSecondaryColor,
-          activeTrackColor: themeData.value.color.btnColor1,
-          onChanged: (value) {},
-        ),
-      ),
     );
   }
 

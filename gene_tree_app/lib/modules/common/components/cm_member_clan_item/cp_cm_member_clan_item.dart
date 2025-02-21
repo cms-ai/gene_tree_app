@@ -24,29 +24,32 @@ class CPCmMemberClanItem extends StatelessWidget {
               ),
             ),
             SizedBox(width: 10.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Trần Công Ái",
-                  maxLines: 1,
-                  style: themeData.value.typo.t12Semibold.copyWith(
-                    color: themeData.value.color.mainSecondaryColor1,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Trần Công Ái",
+                    maxLines: 1,
+                    style: themeData.value.typo.t12Semibold.copyWith(
+                      color: themeData.value.color.mainSecondaryColor1,
+                    ),
                   ),
-                ),
-                Text(
-                  "Tộc trưởng",
-                  maxLines: 1,
-                  style: themeData.value.typo.t10Regular.copyWith(
-                    color:
-                        themeData.value.color.mainPrimaryColor.withOpacity(.5),
+                  Text(
+                    "Tộc trưởng",
+                    maxLines: 1,
+                    style: themeData.value.typo.t10Regular.copyWith(
+                      color: themeData.value.color.mainPrimaryColor
+                          .withOpacity(.5),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
+            configs.suffixWidget ?? Container()
           ],
         ),
-        Container(
+        SizedBox(
           width: double.infinity,
           child: Divider(
             color: themeData.value.color.mainPrimaryColor.withOpacity(.5),

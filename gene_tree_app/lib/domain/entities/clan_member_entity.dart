@@ -25,6 +25,33 @@ enum RelationParentEnum {
   adoptedDaughter,
 }
 
+extension RelationParentEnumExtension on RelationParentEnum {
+  String get displayName {
+    switch (this) {
+      case RelationParentEnum.father:
+        return 'Bố';
+      case RelationParentEnum.mother:
+        return 'Mẹ';
+      case RelationParentEnum.olderBrother:
+        return 'Anh trai';
+      case RelationParentEnum.youngerBrother:
+        return 'Em trai';
+      case RelationParentEnum.olderSister:
+        return 'Chị gái';
+      case RelationParentEnum.youngerSister:
+        return 'Em gái';
+      case RelationParentEnum.son:
+        return 'Con trai';
+      case RelationParentEnum.daughter:
+        return 'Con gái';
+      case RelationParentEnum.adoptedSon:
+        return 'Con trai nuôi';
+      case RelationParentEnum.adoptedDaughter:
+        return 'Con gái nuôi';
+    }
+  }
+}
+
 enum ClanRoleEnum {
   @JsonValue('CLAN_LEADER')
   clanLeader,

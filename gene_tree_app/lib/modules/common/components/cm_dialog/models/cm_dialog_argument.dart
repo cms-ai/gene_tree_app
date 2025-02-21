@@ -7,6 +7,7 @@ enum CmDialogType {
   loading,
   none,
   success,
+  bottomSheet,
 }
 
 class CmDialogArgument {
@@ -15,6 +16,7 @@ class CmDialogArgument {
   final String? content;
   final VoidCallback? onConfirm;
   final VoidCallback? onCancel;
+  final BottomSheetConfigs? bottomSheetConfigs;
 
   CmDialogArgument({
     required this.type,
@@ -22,5 +24,16 @@ class CmDialogArgument {
     this.content,
     this.onConfirm,
     this.onCancel,
+    this.bottomSheetConfigs,
+  });
+}
+
+class BottomSheetConfigs {
+  final Widget? child;
+  final Function? onTap;
+
+  BottomSheetConfigs({
+    this.onTap,
+    this.child,
   });
 }

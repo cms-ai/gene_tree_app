@@ -67,8 +67,76 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
             return _buildSearchTextField();
           case CMTexFieldTypeEnum.datetime:
             return _buildDateTimeTextField();
+          case CMTexFieldTypeEnum.pickOption:
+            return _buildPickOptionTextField();
         }
       },
+    );
+  }
+
+  Widget _buildPickOptionTextField() {
+    return InkWell(
+      onTap: () {
+        if (widget.configs.onSubmit != null) {
+          widget.configs.onSubmit!(widget.configs.controller?.text.trim());
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: themeData.value.color.bgColor2,
+          borderRadius: BorderRadius.circular(14.r),
+        ),
+        padding: widget.configs.contentPadding ?? EdgeInsets.all(12.h),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (widget.configs.labelText != null)
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 2.h),
+                      child: Text(
+                        widget.configs.labelText ?? "",
+                        style: themeData.value.typo.t10Semibold.copyWith(
+                          color: themeData.value.color.mainSecondaryColor1,
+                        ),
+                      ),
+                    ),
+                  TextField(
+                    controller: widget.configs.controller,
+                    readOnly: true,
+                    enabled: false,
+                    style: themeData.value.typo.t12Regular.copyWith(
+                        color: themeData.value.color.mainPrimaryColor),
+                    decoration: InputDecoration(
+                      hintText: hintTextConfigs?.hintText,
+                      hintStyle: hintTextConfigs?.hintStyle ??
+                          themeData.value.typo.t12Regular.copyWith(
+                            color: themeData.value.color.mainPrimaryColor
+                                .withOpacity(.4),
+                          ),
+                      contentPadding:
+                          // widget.configs.contentPadding ?? EdgeInsets.all(12.h),
+                          EdgeInsets.zero,
+                      isDense: true,
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                    onChanged: widget.configs.onChanged,
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: themeData.value.color.mainPrimaryColor,
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -236,8 +304,8 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
                 child: Icon(
                   Icons.search_rounded,
                   color: snapshot.data?.isNotEmpty == true
-                      ? themeData.value.color.mainPrimaryColor
-                      : themeData.value.color.mainSecondaryColor1,
+                      ? themeData.value.color.mainSecondaryColor1
+                      : themeData.value.color.mainPrimaryColor,
                 ),
               );
             },
