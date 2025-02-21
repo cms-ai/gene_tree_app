@@ -38,6 +38,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noAccountBefore": MessageLookupByLibrary.simpleMessage(
       "Bạn chưa có tài khoản",
     ),
+    "noClanDes": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have any clan events",
+    ),
     "signIn": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
     "signInWithGoogle": MessageLookupByLibrary.simpleMessage(
       "Đăng nhặp với google",

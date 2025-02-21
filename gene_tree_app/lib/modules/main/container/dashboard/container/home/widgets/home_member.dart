@@ -145,12 +145,12 @@ class _HomeMemberState extends State<HomeMember> {
                 onTap: () {},
                 child: Row(
                   children: [
-                    Text(
-                      MainLocalizations.current.viewAll,
-                      style: themeData.value.typo.t10Bold.copyWith(
-                        color: themeData.value.color.mainSecondaryColor1,
-                      ),
-                    ),
+                    // Text(
+                    //   MainLocalizations.current.viewAll,
+                    //   style: themeData.value.typo.t10Bold.copyWith(
+                    //     color: themeData.value.color.mainSecondaryColor1,
+                    //   ),
+                    // ),
                     SizedBox(width: 4.w),
                     Icon(
                       Icons.arrow_forward_ios_rounded,
