@@ -155,7 +155,8 @@ class _HomeClanEventState extends State<HomeClanEvent> {
               case AsyncStatus.success:
                 return ListView.separated(
                   itemBuilder: (context, index) => CPEventItem(
-                    configs: CPEventItemConfigs(data: ClanEventEntity()),
+                    data: ClanEventEntity(),
+                    configs: CPEventItemConfigs(),
                   ),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

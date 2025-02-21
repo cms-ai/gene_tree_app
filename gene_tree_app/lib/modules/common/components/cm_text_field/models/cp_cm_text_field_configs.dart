@@ -10,6 +10,8 @@ class CPCmTextFieldConfigs {
   final TextEditingController? controller;
   final int? maxLines;
   final void Function(String)? onChanged;
+  final void Function(String? onSubmit)? onSubmit;
+
   const CPCmTextFieldConfigs({
     this.type = CMTexFieldTypeEnum.normal,
     this.labelText,
@@ -18,6 +20,7 @@ class CPCmTextFieldConfigs {
     this.controller,
     this.maxLines,
     this.onChanged,
+    this.onSubmit,
   });
 }
 

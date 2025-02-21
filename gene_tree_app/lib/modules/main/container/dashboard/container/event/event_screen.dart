@@ -9,6 +9,8 @@ import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
 import 'package:gene_tree_app/modules/common/components/cm_text_field/cp_cm_text_field.dart';
+import 'package:gene_tree_app/modules/common/components/event_item/cp_event_item.dart';
+import 'package:gene_tree_app/modules/main/l10n/generated/l10n.dart';
 import '../../../../../../core/utils/helpers/helpers.dart';
 import 'bloc/event_bloc.dart';
 part 'models/event_argument.dart';
@@ -35,6 +37,7 @@ class _EventScreenState extends State<EventScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
     return BaseScreen(
       scaffoldBuilder: () {
         return BlocProvider.value(
@@ -56,30 +59,32 @@ class _EventScreenState extends State<EventScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         _buildHeader(themeState),
-                        // SizedBox(
-                        //   height: 40.h,
-                        //   child: CPCmTextField(
-                        //     configs: CPCmTextFieldConfigs(
-                        //       hintTextConfigs: HintTextConfigs(
-                        //         hintText: "Tìm sự kiện",
-                        //         hintStyle: themeData.value.typo.t12Regular.copyWith(
-                        //           color: Colors.grey,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                        // SizedBox(height: 14.h),
+                        CPCmTextField(
+                          configs: CPCmTextFieldConfigs(
+                            controller: controller,
+                            type: CMTexFieldTypeEnum.search,
+                            hintTextConfigs: HintTextConfigs(
+                              hintText: "Search event...",
+                              hintStyle:
+                                  themeData.value.typo.t12Regular.copyWith(
+                                color: themeData.value.color.mainPrimaryColor
+                                    .withOpacity(.5),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 14.h),
                         Text(
                           "Total results (${dataList.length})",
-                          style: themeData.value.typo.t14Semibold.copyWith(),
+                          style: themeData.value.typo.t12Bold.copyWith(),
                         ),
                         SizedBox(height: 10.h),
                         Expanded(
                           child: ListView.separated(
                             itemCount: dataList.length,
-                            itemBuilder: (context, index) => _buildEvent(
-                              dataList[index],
+                            itemBuilder: (context, index) => CPEventItem(
+                              data: dataList[index],
+                              configs: CPEventItemConfigs(),
                             ),
                             separatorBuilder: (
                               BuildContext context,
@@ -178,11 +183,11 @@ extension _EventScreenStateExt on _EventScreenState {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Event",
-            style: themeState.appThemeEnum.themeData().typo.tHeader.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: themeData.value.color.btnColor2,
-                ),
+            MainLocalizations.current.event,
+            textAlign: TextAlign.center,
+            style: themeData.value.typo.t16Bold.copyWith(
+              color: themeData.value.color.mainSecondaryColor1,
+            ),
           ),
           const Spacer(),
           CPButton(

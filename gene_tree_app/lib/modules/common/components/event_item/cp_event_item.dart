@@ -12,8 +12,10 @@ class CPEventItem extends StatelessWidget {
   const CPEventItem({
     super.key,
     required this.configs,
+    required this.data,
   });
   final CPEventItemConfigs configs;
+  final ClanEventEntity data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,7 +49,7 @@ class CPEventItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        configs.data.title ?? "",
+                        data.title ?? "",
                         textAlign: TextAlign.start,
                         style: themeData.value.typo.t12Bold.copyWith(
                           color: themeData.value.color.mainSecondaryColor1,
@@ -59,7 +61,7 @@ class CPEventItem extends StatelessWidget {
                 ),
                 SizedBox(height: 2.h),
                 Text(
-                  configs.data.description ?? "",
+                  data.description ?? "",
                   textAlign: TextAlign.start,
                   maxLines: 2,
                   style: themeData.value.typo.t10Regular.copyWith(),
@@ -80,7 +82,7 @@ class CPEventItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: Text(
-        configs.toStatusString(),
+        data.toStatusString(),
         style: themeData.value.typo.t10Semibold.copyWith(
           fontSize: 8.sp,
         ),

@@ -6,6 +6,12 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'clan_event_entity.g.dart'; // Thêm phần này để liên kết với file .g.dart
 
+enum EventStatutsEnum {
+  ended,
+  coming,
+  progessing,
+}
+
 @JsonSerializable()
 class ClanEventEntity {
   final String? id;
@@ -15,10 +21,10 @@ class ClanEventEntity {
   final String? description;
   @JsonKey(name: "created_at")
   final DateTime? createdAt;
-  
+
   @JsonKey(name: "start_date")
   final DateTime? startDate;
-  
+
   @JsonKey(name: "end_date")
   final DateTime? endDate;
 
@@ -37,4 +43,28 @@ class ClanEventEntity {
       _$ClanEventEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$ClanEventEntityToJson(this);
+
+  EventStatutsEnum get status$ {
+    if (startDate == null || endDate == null) {
+      return EventStatutsEnum.ended;
+    }
+    if (startDate!.isAfter(DateTime.now())) {
+      return EventStatutsEnum.coming;
+    } else if (startDate!.isBefore(DateTime.now()) &&
+        endDate!.isAfter(DateTime.now())) {
+      return EventStatutsEnum.progessing;
+    }
+    return EventStatutsEnum.coming;
+  }
+
+  String toStatusString() {
+    switch (status$) {
+      case EventStatutsEnum.progessing:
+        return "Đang diễn ra";
+      case EventStatutsEnum.coming:
+        return "Sắp diễn ra";
+      case EventStatutsEnum.ended:
+        return "Đã kết thúc";
+    }
+  }
 }
