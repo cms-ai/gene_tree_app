@@ -105,69 +105,6 @@ class _EventScreenState extends State<EventScreen> {
       },
     );
   }
-
-  Widget _buildEvent(ClanEventEntity data) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 10.h),
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
-      decoration: BoxDecoration(
-        gradient: themeData.value.color.linegradientColor2,
-        borderRadius: BorderRadius.circular(10.r),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            data.title ?? "",
-            // textAlign: TextAlign.center,
-            style: themeData.value.typo.t14Bold.copyWith(
-              color: themeData.value.color.btnColor2,
-            ),
-          ),
-          SizedBox(height: 6.h),
-          Text(
-            data.description ?? "",
-
-            // textAlign: TextAlign.center,
-            style: themeData.value.typo.t12Regular.copyWith(),
-          ),
-          SizedBox(height: 6.h),
-          SizedBox(height: 6.h),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  "Author: ${data.author?.fullName}",
-                  textAlign: TextAlign.start,
-                  style: themeData.value.typo.t10Regular.copyWith(),
-                ),
-              ),
-              RichText(
-                text: TextSpan(
-                  style: themeData.value.typo.t10Regular.copyWith(),
-                  children: [
-                    TextSpan(
-                      text: DateTimeHelper.formatDateTime(
-                        data.startDate ?? DateTime.now(),
-                        format: "dd/MM/yyyy",
-                      ),
-                    ),
-                    const TextSpan(text: " - "),
-                    TextSpan(
-                      text: DateTimeHelper.formatDateTime(
-                        data.endDate ?? DateTime.now(),
-                        format: "dd/MM/yyyy",
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
 }
 
 extension _EventScreenStateExt on _EventScreenState {

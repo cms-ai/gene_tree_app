@@ -139,7 +139,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 height: isSelected ? 5.h : 0,
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? themeData.color.btnColor1
+                      ? themeData.color.mainSecondaryColor1
                       : themeData.color.mainPrimaryColor,
                   shape: BoxShape.circle,
                 ),

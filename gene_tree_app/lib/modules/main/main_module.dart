@@ -14,6 +14,7 @@ import 'package:gene_tree_app/modules/main/container/clan_member/create_clan_mem
 import 'package:gene_tree_app/modules/main/container/dashboard/bloc/dashboard_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/event/bloc/event_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/dashboard/container/member/bloc/member_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/dashboard_screen.dart';
 
 class MainModule extends Module {
@@ -73,6 +74,12 @@ class MainModule extends Module {
     );
     i.addLazySingleton<EventBloc>(
       EventBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+    i.addLazySingleton<MemberBloc>(
+      MemberBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
