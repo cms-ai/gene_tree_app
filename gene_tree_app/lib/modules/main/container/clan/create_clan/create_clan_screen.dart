@@ -67,7 +67,7 @@ class _CreateClanScreenState extends State<CreateClanScreen> {
                     SizedBox(height: 10.h),
                     CPCmTextField(
                       configs: CPCmTextFieldConfigs(
-                        controller: nameController,
+                        controller: desController,
                         labelText: "Description",
                         hintTextConfigs: const HintTextConfigs(
                           hintText: "Enter clan description ...",

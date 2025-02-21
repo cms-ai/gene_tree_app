@@ -120,31 +120,23 @@ class _UpdateClanScreenState extends State<UpdateClanScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 60.h),
-                    Text(
-                      "Tên gia tộc",
-                      style: themeData.value.typo.t14Bold,
-                    ),
                     SizedBox(height: 10.h),
                     CPCmTextField(
                       configs: CPCmTextFieldConfigs(
                         controller: nameController,
+                        labelText: "Clan name",
                         hintTextConfigs: const HintTextConfigs(
-                          hintText: "Nhập tên gia tộc",
+                          hintText: "Enter your clan name ...",
                         ),
                       ),
-                    ),
-                    SizedBox(height: 30.h),
-                    Text(
-                      "Desciption",
-                      style: themeData.value.typo.t14Bold,
                     ),
                     SizedBox(height: 10.h),
                     CPCmTextField(
                       configs: CPCmTextFieldConfigs(
                         controller: desController,
+                        labelText: "Description",
                         hintTextConfigs: const HintTextConfigs(
-                          hintText: "Nhập mô tả",
+                          hintText: "Enter clan description ...",
                         ),
                       ),
                     ),

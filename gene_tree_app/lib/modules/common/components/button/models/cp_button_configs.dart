@@ -18,6 +18,7 @@ class CPButtonConfigs {
   final TextStyle? textStyle;
   final Decoration? decoration;
   final bool? isDiabled;
+  final BorderRadiusGeometry? borderRadius;
   const CPButtonConfigs({
     this.type = ButtonType.primary,
     this.content = '',
@@ -29,6 +30,7 @@ class CPButtonConfigs {
     this.textStyle,
     this.decoration,
     this.isDiabled,
+    this.borderRadius,
   });
 
   CPButtonConfigs copyWith(ButtonType? type) {

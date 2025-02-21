@@ -32,7 +32,8 @@ class _CPButtonState extends State<CPButton> {
         return widget.configs.decoration ??
             BoxDecoration(
               gradient: themeData.value.color.linearBtnColor1,
-              borderRadius: BorderRadius.circular(8.r),
+              borderRadius:
+                  widget.configs.borderRadius ?? BorderRadius.circular(8.r),
             );
 
       case ButtonType.outline:

@@ -5,6 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/gen/assets.gen.dart';
+import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
 import 'package:gene_tree_app/modules/common/components/lottie/cp_lottie.dart';
 
 part 'models/cm_dialog_argument.dart';
@@ -241,37 +242,77 @@ class CmDialogScreen {
 
   Future<void> _showConfirmationDialog(BuildContext context) async {
     await showDialog(
-      barrierColor: Colors.transparent,
+      // barrierColor: Colors.transparent,
       barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
             argument.title ?? 'Confirmation',
-            style: themeData.value.typo.t14Bold.copyWith(),
+            textAlign: TextAlign.center,
+            style: themeData.value.typo.t16Semibold.copyWith(
+              color: themeData.value.color.mainSecondaryColor1,
+            ),
           ),
-          content: Text(argument.content ?? 'Are you sure?'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                if (argument.onCancel != null) argument.onCancel!();
-              },
-              child: Text(
-                'Cancel',
-                style: TextStyle(
-                  color: themeData.value.color.btnColor2,
+          backgroundColor: Color(0xFFF8F9FA),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                argument.content ?? 'Are you sure?',
+                textAlign: TextAlign.center,
+                style: themeData.value.typo.t12Regular.copyWith(
+                  color: themeData.value.color.mainPrimaryColor,
                 ),
               ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                if (argument.onConfirm != null) argument.onConfirm!();
-              },
-              child: const Text('Confirm'),
-            ),
-          ],
+              SizedBox(height: 20.h),
+              CPButton(
+                configs: CPButtonConfigs(
+                  content: "Confirm",
+                  padding: EdgeInsets.symmetric(vertical: 9.h),
+                  textStyle: themeData.value.typo.t12Semibold,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    if (argument.onConfirm != null) argument.onConfirm!();
+                  },
+                ),
+              ),
+              SizedBox(height: 10.h),
+              CPButton(
+                configs: CPButtonConfigs(
+                  type: ButtonType.outline,
+                  content: "Cancel",
+                  padding: EdgeInsets.symmetric(vertical: 9.h),
+                  textStyle: themeData.value.typo.t12Semibold,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    if (argument.onCancel != null) argument.onCancel!();
+                  },
+                ),
+              ),
+            ],
+          ),
+          // actions: [
+          //   TextButton(
+          //     onPressed: () {
+          //       Navigator.of(context).pop();
+          //       if (argument.onCancel != null) argument.onCancel!();
+          //     },
+          //     child: Text(
+          //       'Cancel',
+          //       style: TextStyle(
+          //         color: themeData.value.color.btnColor2,
+          //       ),
+          //     ),
+          //   ),
+          //   TextButton(
+          //     onPressed: () {
+          //       Navigator.of(context).pop();
+          //       if (argument.onConfirm != null) argument.onConfirm!();
+          //     },
+          //     child: const Text('Confirm'),
+          //   ),
+          // ],
         );
       },
     ).then((_) {
