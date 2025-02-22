@@ -12,6 +12,19 @@ enum EventStatutsEnum {
   progessing,
 }
 
+extension EventStatutsEnumExt on EventStatutsEnum {
+  String toStatusString() {
+    switch (this) {
+      case EventStatutsEnum.progessing:
+        return "Đang diễn ra";
+      case EventStatutsEnum.coming:
+        return "Sắp diễn ra";
+      case EventStatutsEnum.ended:
+        return "Đã kết thúc";
+    }
+  }
+}
+
 @JsonSerializable()
 class ClanEventEntity {
   final String? id;

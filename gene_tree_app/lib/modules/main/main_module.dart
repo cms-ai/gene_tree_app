@@ -1,4 +1,3 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/modules/common/common_module.dart';
 import 'package:gene_tree_app/modules/main/container/clan/clan_detail/bloc/clan_detail_bloc.dart';
@@ -9,6 +8,8 @@ import 'package:gene_tree_app/modules/main/container/clan/update_clan/bloc/updat
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/update_clan_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan_event/clan_event_detail/bloc/clan_event_detail_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan_event/clan_event_detail/clan_event_detail_screen.dart';
+import 'package:gene_tree_app/modules/main/container/clan_event/clan_event_list/bloc/clan_event_list_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan_event/clan_event_list/clan_event_list_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan_event/create_or_edit_clan_event/bloc/create_or_edit_clan_event_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan_event/create_or_edit_clan_event/create_or_edit_clan_event_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan_member/clan_member_list/bloc/clan_member_list_bloc.dart';
@@ -63,6 +64,10 @@ class MainModule extends Module {
     r.child(
       MainModuleEnum.eventClanDetail.path,
       child: (context) => ClanEventDetailScreen(argument: r.args.data),
+    );
+    r.child(
+      MainModuleEnum.eventClanList.path,
+      child: (context) => ClanEventListScreen(argument: r.args.data),
     );
 
     super.routes(r);
@@ -147,6 +152,12 @@ class MainModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
+    i.addLazySingleton<ClanEventListBloc>(
+      ClanEventListBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
   }
 }
 
@@ -159,7 +170,8 @@ enum MainModuleEnum {
   clanMemberList('/clanMemberList'),
   createClanMember('/createClanMember'),
   createOrEditClanEvent('/createOrEditClanEvent'),
-  eventClanDetail('/eventClanDetail');
+  eventClanDetail('/eventClanDetail'),
+  eventClanList('/eventClanList');
 
   final String path;
   const MainModuleEnum(this.path);
