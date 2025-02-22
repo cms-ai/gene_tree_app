@@ -7,6 +7,8 @@ import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/creat
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/create_clan_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/bloc/update_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/update_clan_screen.dart';
+import 'package:gene_tree_app/modules/main/container/clan_event/create_or_edit_clan_event/bloc/create_or_edit_clan_event_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan_event/create_or_edit_clan_event/create_or_edit_clan_event_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan_member/clan_member_list/bloc/clan_member_list_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan_member/clan_member_list/clan_member_list_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan_member/create_clan_member/bloc/create_clan_member_bloc.dart';
@@ -51,6 +53,10 @@ class MainModule extends Module {
     r.child(
       MainModuleEnum.createClanMember.path,
       child: (context) => CreateClanMemberScreen(argument: r.args.data),
+    );
+     r.child(
+      MainModuleEnum.createOrEditClanEvent.path,
+      child: (context) => CreateOrEditClanEventScreen(argument: r.args.data),
     );
 
     super.routes(r);
@@ -123,6 +129,12 @@ class MainModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
+     i.addLazySingleton<CreateOrEditClanEventBloc>(
+      CreateOrEditClanEventBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
   }
 }
 
@@ -133,7 +145,8 @@ enum MainModuleEnum {
   updateClan('/updateClan'),
   clanDetail('/clanDetail'),
   clanMemberList('/clanMemberList'),
-  createClanMember('/createClanMember');
+  createClanMember('/createClanMember'),
+  createOrEditClanEvent('/createOrEditClanEvent');
 
   final String path;
   const MainModuleEnum(this.path);
