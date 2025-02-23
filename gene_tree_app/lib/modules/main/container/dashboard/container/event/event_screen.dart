@@ -136,7 +136,7 @@ extension _EventScreenStateExt on _EventScreenState {
               onTap: () {
                 Modular.to.pushNamed(
                   MainModule.getRoutePath(
-                    MainModuleEnum.createClanMember,
+                    MainModuleEnum.createOrEditClanEvent,
                   ),
                 );
               },

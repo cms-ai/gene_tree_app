@@ -42,7 +42,16 @@ class SettingsScreen extends StatelessWidget {
 
                       // Options List
                       SizedBox(height: 20.h),
-                      _buildOptionItem(title: "My clan"),
+                      _buildOptionItem(
+                        title: "My clan",
+                        onTap: () {
+                          Modular.to.pushNamed(
+                            MainModule.getRoutePath(
+                              MainModuleEnum.myClan,
+                            ),
+                          );
+                        },
+                      ),
                       _buildOptionItem(
                           title: "Language",
                           onTap: () {

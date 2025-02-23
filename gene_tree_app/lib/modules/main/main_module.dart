@@ -4,6 +4,8 @@ import 'package:gene_tree_app/modules/main/container/clan/clan_detail/bloc/clan_
 import 'package:gene_tree_app/modules/main/container/clan/clan_detail/clan_detail_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/create_clan_screen.dart';
+import 'package:gene_tree_app/modules/main/container/clan/my_clan/bloc/my_clan_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan/my_clan/my_clan_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/bloc/update_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/update_clan_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan_event/clan_event_detail/bloc/clan_event_detail_bloc.dart';
@@ -98,6 +100,10 @@ class MainModule extends Module {
     r.child(
       MainModuleEnum.language.path,
       child: (context) => LanguageScreen(argument: r.args.data),
+    );
+    r.child(
+      MainModuleEnum.myClan.path,
+      child: (context) => MyClanScreen(argument: r.args.data),
     );
 
     super.routes(r);
@@ -218,6 +224,12 @@ class MainModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
+    i.addLazySingleton<MyClanBloc>(
+      MyClanBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
   }
 }
 
@@ -236,7 +248,8 @@ enum MainModuleEnum {
   goldenBoardList('/goldenBoardList'),
   eventClanDetail('/eventClanDetail'),
   eventClanList('/eventClanList'),
-  language('/language');
+  language('/language'),
+  myClan('/myClan');
 
   final String path;
   const MainModuleEnum(this.path);
