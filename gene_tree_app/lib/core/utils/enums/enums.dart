@@ -22,6 +22,19 @@ enum SharePreferenceKeys {
   clanId
 }
 
+enum LanguageEnum { en, vi }
+
+extension LanguageEnumExt on LanguageEnum {
+  String title() {
+    switch (this) {
+      case LanguageEnum.en:
+        return "English";
+      case LanguageEnum.vi:
+        return "Vietnamese";
+    }
+  }
+}
+
 // AsyncValue giúp dễ dàng quản lý loading, success và error cho từng phần dữ liệu.
 enum AsyncStatus { loading, success, error }
 

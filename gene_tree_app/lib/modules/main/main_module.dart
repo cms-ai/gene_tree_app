@@ -30,6 +30,8 @@ import 'package:gene_tree_app/modules/main/container/golden_board/create_or_edit
 import 'package:gene_tree_app/modules/main/container/golden_board/create_or_edit_golden_board/create_or_edit_golden_board_screen.dart';
 import 'package:gene_tree_app/modules/main/container/golden_board/golden_board_list/bloc/golden_board_list_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/golden_board/golden_board_list/golden_board_list_screen.dart';
+import 'package:gene_tree_app/modules/main/container/language/bloc/language_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/language/language_screen.dart';
 
 class MainModule extends Module {
   static const String path = "/dashboard/";
@@ -92,6 +94,10 @@ class MainModule extends Module {
     r.child(
       MainModuleEnum.clanTransList.path,
       child: (context) => ClanTransListScreen(argument: r.args.data),
+    );
+    r.child(
+      MainModuleEnum.language.path,
+      child: (context) => LanguageScreen(argument: r.args.data),
     );
 
     super.routes(r);
@@ -206,6 +212,12 @@ class MainModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
+    i.addLazySingleton<LanguageBloc>(
+      LanguageBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
   }
 }
 
@@ -223,7 +235,8 @@ enum MainModuleEnum {
   clanTransList('/clanTransList'),
   goldenBoardList('/goldenBoardList'),
   eventClanDetail('/eventClanDetail'),
-  eventClanList('/eventClanList');
+  eventClanList('/eventClanList'),
+  language('/language');
 
   final String path;
   const MainModuleEnum(this.path);

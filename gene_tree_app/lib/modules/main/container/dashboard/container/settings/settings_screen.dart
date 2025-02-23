@@ -7,6 +7,7 @@ import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/modules/common/components/cm_avatar/cp_cm_avatar.dart';
 import 'package:gene_tree_app/modules/common/components/cm_toogle/cp_cm_toogle.dart';
+import 'package:gene_tree_app/modules/main/main_module.dart';
 import './bloc/settings_bloc.dart';
 part './models/settings_argument.dart';
 
@@ -42,7 +43,15 @@ class SettingsScreen extends StatelessWidget {
                       // Options List
                       SizedBox(height: 20.h),
                       _buildOptionItem(title: "My clan"),
-                      _buildOptionItem(title: "Language"),
+                      _buildOptionItem(
+                          title: "Language",
+                          onTap: () {
+                            Modular.to.pushNamed(
+                              MainModule.getRoutePath(
+                                MainModuleEnum.language,
+                              ),
+                            );
+                          }),
                       _buildOptionItem(
                         title: "Dark mode",
                         suffixWidget: CPCmToogle(
@@ -79,30 +88,33 @@ class SettingsScreen extends StatelessWidget {
     Function? onTap,
     Widget? suffixWidget,
   }) {
-    return Container(
-      width: double.infinity,
-      height: 50.h,
-      margin: EdgeInsets.only(bottom: 10.h),
-      decoration: BoxDecoration(
-        color: themeData.value.color.btnColor2,
-        borderRadius: BorderRadius.circular(14.r),
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              title ?? "",
-              style: themeData.value.typo.t12Semibold,
+    return GestureDetector(
+      onTap: () => onTap != null ? onTap() : () {},
+      child: Container(
+        width: double.infinity,
+        height: 50.h,
+        margin: EdgeInsets.only(bottom: 10.h),
+        decoration: BoxDecoration(
+          color: themeData.value.color.btnColor2,
+          borderRadius: BorderRadius.circular(14.r),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                title ?? "",
+                style: themeData.value.typo.t12Semibold,
+              ),
             ),
-          ),
-          suffixWidget ??
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 18.h,
-                color: themeData.value.color.mainPrimaryColor,
-              )
-        ],
+            suffixWidget ??
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 18.h,
+                  color: themeData.value.color.mainPrimaryColor,
+                )
+          ],
+        ),
       ),
     );
   }

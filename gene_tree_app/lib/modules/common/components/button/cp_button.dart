@@ -113,9 +113,11 @@ class _CPButtonState extends State<CPButton> {
                   borderRadius: BorderRadius.circular(8.0), // Bo góc
                 ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment:
+                  widget.configs.mainAxisAlignment ?? MainAxisAlignment.center,
               children: [
-                widget.configs.prefixIcon ?? Container(),
+                if (widget.configs.prefixIcon != null)
+                  widget.configs.prefixIcon ?? Container(),
                 Text(
                   widget.configs.content,
                   style: widget.configs.textStyle ??
@@ -124,6 +126,8 @@ class _CPButtonState extends State<CPButton> {
                             .value.color.mainPrimaryColor, // Màu chữ của button
                       ),
                 ),
+                if (widget.configs.suffixWidget != null)
+                  widget.configs.suffixWidget ?? Container(),
               ],
             ),
           ),
