@@ -136,7 +136,9 @@ class _ClanTransListScreenState extends State<ClanTransListScreen> {
                 Text(
                   "-3tr",
                   style: themeData.value.typo.t12Regular.copyWith(
-                    color: Colors.green,
+                    color: type == TransactionType.expense
+                        ? Colors.red
+                        : Colors.green,
                   ),
                 )
               ],
