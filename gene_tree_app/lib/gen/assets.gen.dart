@@ -119,11 +119,25 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_apple.svg
   SvgGenImage get icApple => const SvgGenImage('assets/icons/ic_apple.svg');
 
+  /// File path: assets/icons/ic_expense.png
+  AssetGenImage get icExpense =>
+      const AssetGenImage('assets/icons/ic_expense.png');
+
   /// File path: assets/icons/ic_google.svg
   SvgGenImage get icGoogle => const SvgGenImage('assets/icons/ic_google.svg');
 
+  /// File path: assets/icons/ic_income.png
+  AssetGenImage get icIncome =>
+      const AssetGenImage('assets/icons/ic_income.png');
+
   /// List of all assets
-  List<dynamic> get values => [avatarIconTest, icApple, icGoogle];
+  List<dynamic> get values => [
+        avatarIconTest,
+        icApple,
+        icExpense,
+        icGoogle,
+        icIncome,
+      ];
 }
 
 class $AssetsImagesGen {

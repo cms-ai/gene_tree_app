@@ -16,6 +16,10 @@ import 'package:gene_tree_app/modules/main/container/clan_member/clan_member_lis
 import 'package:gene_tree_app/modules/main/container/clan_member/clan_member_list/clan_member_list_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan_member/create_clan_member/bloc/create_clan_member_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan_member/create_clan_member/create_clan_member_screen.dart';
+import 'package:gene_tree_app/modules/main/container/clan_transaction/clan_trans_list/bloc/clan_trans_list_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan_transaction/clan_trans_list/clan_trans_list_screen.dart';
+import 'package:gene_tree_app/modules/main/container/clan_transaction/create_or_edit_trans/bloc/create_or_edit_trans_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan_transaction/create_or_edit_trans/create_or_edit_trans_screen.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/bloc/dashboard_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/event/bloc/event_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
@@ -80,6 +84,14 @@ class MainModule extends Module {
     r.child(
       MainModuleEnum.goldenBoardList.path,
       child: (context) => GoldenBoardListScreen(argument: r.args.data),
+    );
+    r.child(
+      MainModuleEnum.createOrEditTrans.path,
+      child: (context) => CreateOrEditTransScreen(argument: r.args.data),
+    );
+    r.child(
+      MainModuleEnum.clanTransList.path,
+      child: (context) => ClanTransListScreen(argument: r.args.data),
     );
 
     super.routes(r);
@@ -182,6 +194,18 @@ class MainModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
+    i.addLazySingleton<CreateOrEditTransBloc>(
+      CreateOrEditTransBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+    i.addLazySingleton<ClanTransListBloc>(
+      ClanTransListBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
   }
 }
 
@@ -195,6 +219,8 @@ enum MainModuleEnum {
   createClanMember('/createClanMember'),
   createOrEditClanEvent('/createOrEditClanEvent'),
   createOrEditGoldenBoard('/createOrEditGoldenBoard'),
+  createOrEditTrans('/createOrEditTrans'),
+  clanTransList('/clanTransList'),
   goldenBoardList('/goldenBoardList'),
   eventClanDetail('/eventClanDetail'),
   eventClanList('/eventClanList');

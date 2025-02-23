@@ -7,6 +7,17 @@ enum TransactionType {
   expense,
 }
 
+extension TransactionTypeExt on TransactionType {
+  String title() {
+    switch (this) {
+      case TransactionType.income:
+        return "Coming";
+      case TransactionType.expense:
+        return "Expense";
+    }
+  }
+}
+
 @JsonSerializable()
 class ClanTransactionEntity {
   final String id;

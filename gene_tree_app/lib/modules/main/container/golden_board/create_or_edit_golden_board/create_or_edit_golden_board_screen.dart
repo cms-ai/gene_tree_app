@@ -37,61 +37,59 @@ class CreateOrEditGoldenBoardScreen extends StatelessWidget {
                   title: "Golden board",
                 ),
               ),
-              body: (themeState) => Container(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: themeData.value.spacing.screenHorizontal,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 20.h),
-                        const CPCmTextField(
-                          configs: CPCmTextFieldConfigs(
-                            labelText: "Tên sự kiện",
-                            hintTextConfigs: HintTextConfigs(
-                              hintText: "Nhập tên sự kiện...",
-                            ),
+              body: (themeState) => Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: themeData.value.spacing.screenHorizontal,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20.h),
+                      const CPCmTextField(
+                        configs: CPCmTextFieldConfigs(
+                          labelText: "Tên sự kiện",
+                          hintTextConfigs: HintTextConfigs(
+                            hintText: "Nhập tên sự kiện...",
                           ),
                         ),
-                        SizedBox(height: 10.h),
-                        const CPCmTextField(
-                          configs: CPCmTextFieldConfigs(
-                            labelText: "Mô tả",
-                            maxLines: 2,
-                            hintTextConfigs: HintTextConfigs(
-                              hintText: "Nhập mô tả",
-                            ),
+                      ),
+                      SizedBox(height: 10.h),
+                      const CPCmTextField(
+                        configs: CPCmTextFieldConfigs(
+                          labelText: "Mô tả",
+                          maxLines: 2,
+                          hintTextConfigs: HintTextConfigs(
+                            hintText: "Nhập mô tả",
                           ),
                         ),
-                        SizedBox(height: 10.h),
-                        CPCmTextField(
-                          configs: CPCmTextFieldConfigs(
-                            labelText: "Thành viên",
-                            type: CMTexFieldTypeEnum.pickOption,
-                            hintTextConfigs: HintTextConfigs(
-                              hintText: "Chọn thành viên ",
-                            ),
-                            onSubmit: (onSubmit) {
-                              handleUserBottomSheet(context);
-                            },
+                      ),
+                      SizedBox(height: 10.h),
+                      CPCmTextField(
+                        configs: CPCmTextFieldConfigs(
+                          labelText: "Thành viên",
+                          type: CMTexFieldTypeEnum.pickOption,
+                          hintTextConfigs: HintTextConfigs(
+                            hintText: "Chọn thành viên ",
                           ),
+                          onSubmit: (onSubmit) {
+                            handleUserBottomSheet(context);
+                          },
                         ),
-                        SizedBox(height: 10.h),
-                        CPCmTextField(
-                          configs: CPCmTextFieldConfigs(
-                            labelText: "Thời gian",
-                            type: CMTexFieldTypeEnum.datetime,
-                            hintTextConfigs: HintTextConfigs(
-                              hintText: "Chọn thời gian",
-                            ),
-                            onSubmit: (onSubmit) {},
+                      ),
+                      SizedBox(height: 10.h),
+                      CPCmTextField(
+                        configs: CPCmTextFieldConfigs(
+                          labelText: "Thời gian",
+                          type: CMTexFieldTypeEnum.datetime,
+                          hintTextConfigs: HintTextConfigs(
+                            hintText: "Chọn thời gian",
                           ),
+                          onSubmit: (onSubmit) {},
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
