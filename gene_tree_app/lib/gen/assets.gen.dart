@@ -10,7 +10,104 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart' as _svg;
+import 'package:lottie/lottie.dart' as _lottie;
 import 'package:vector_graphics/vector_graphics.dart' as _vg;
+
+class $EnvGen {
+  const $EnvGen();
+
+  /// File path: env/.env.dev
+  String get aEnvDev => 'env/.env.dev';
+
+  /// File path: env/.env.prod
+  String get aEnvProd => 'env/.env.prod';
+
+  /// List of all assets
+  List<String> get values => [aEnvDev, aEnvProd];
+}
+
+class $AssetsGifGen {
+  const $AssetsGifGen();
+
+  /// File path: assets/gif/ic_calendar.json
+  LottieGenImage get icCalendar =>
+      const LottieGenImage('assets/gif/ic_calendar.json');
+
+  /// File path: assets/gif/ic_chat_dark.json
+  LottieGenImage get icChatDark =>
+      const LottieGenImage('assets/gif/ic_chat_dark.json');
+
+  /// File path: assets/gif/ic_chat_light.json
+  LottieGenImage get icChatLight =>
+      const LottieGenImage('assets/gif/ic_chat_light.json');
+
+  /// File path: assets/gif/ic_error.json
+  LottieGenImage get icError =>
+      const LottieGenImage('assets/gif/ic_error.json');
+
+  /// File path: assets/gif/ic_gene_dark.json
+  LottieGenImage get icGeneDark =>
+      const LottieGenImage('assets/gif/ic_gene_dark.json');
+
+  /// File path: assets/gif/ic_gene_light.json
+  LottieGenImage get icGeneLight =>
+      const LottieGenImage('assets/gif/ic_gene_light.json');
+
+  /// File path: assets/gif/ic_home_dark.json
+  LottieGenImage get icHomeDark =>
+      const LottieGenImage('assets/gif/ic_home_dark.json');
+
+  /// File path: assets/gif/ic_home_light.json
+  LottieGenImage get icHomeLight =>
+      const LottieGenImage('assets/gif/ic_home_light.json');
+
+  /// File path: assets/gif/ic_loading.json
+  LottieGenImage get icLoading =>
+      const LottieGenImage('assets/gif/ic_loading.json');
+
+  /// File path: assets/gif/ic_member.json
+  LottieGenImage get icMember =>
+      const LottieGenImage('assets/gif/ic_member.json');
+
+  /// File path: assets/gif/ic_notify_dark.json
+  LottieGenImage get icNotifyDark =>
+      const LottieGenImage('assets/gif/ic_notify_dark.json');
+
+  /// File path: assets/gif/ic_notify_light.json
+  LottieGenImage get icNotifyLight =>
+      const LottieGenImage('assets/gif/ic_notify_light.json');
+
+  /// File path: assets/gif/ic_profile_dark.json
+  LottieGenImage get icProfileDark =>
+      const LottieGenImage('assets/gif/ic_profile_dark.json');
+
+  /// File path: assets/gif/ic_profile_light.json
+  LottieGenImage get icProfileLight =>
+      const LottieGenImage('assets/gif/ic_profile_light.json');
+
+  /// File path: assets/gif/ic_success.json
+  LottieGenImage get icSuccess =>
+      const LottieGenImage('assets/gif/ic_success.json');
+
+  /// List of all assets
+  List<LottieGenImage> get values => [
+        icCalendar,
+        icChatDark,
+        icChatLight,
+        icError,
+        icGeneDark,
+        icGeneLight,
+        icHomeDark,
+        icHomeLight,
+        icLoading,
+        icMember,
+        icNotifyDark,
+        icNotifyLight,
+        icProfileDark,
+        icProfileLight,
+        icSuccess
+      ];
+}
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
@@ -19,18 +116,53 @@ class $AssetsIconsGen {
   AssetGenImage get avatarIconTest =>
       const AssetGenImage('assets/icons/avatarIconTest.jpg');
 
+  /// File path: assets/icons/ic_apple.svg
+  SvgGenImage get icApple => const SvgGenImage('assets/icons/ic_apple.svg');
+
+  /// File path: assets/icons/ic_expense.png
+  AssetGenImage get icExpense =>
+      const AssetGenImage('assets/icons/ic_expense.png');
+
+  /// File path: assets/icons/ic_google.svg
+  SvgGenImage get icGoogle => const SvgGenImage('assets/icons/ic_google.svg');
+
+  /// File path: assets/icons/ic_income.png
+  AssetGenImage get icIncome =>
+      const AssetGenImage('assets/icons/ic_income.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [avatarIconTest];
+  List<dynamic> get values => [
+        avatarIconTest,
+        icApple,
+        icExpense,
+        icGoogle,
+        icIncome,
+      ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   /// File path: assets/images/avatar.jpg
-  AssetGenImage get avatar => const AssetGenImage('assets/images/avatar.jpg');
+  AssetGenImage get avatarJpg =>
+      const AssetGenImage('assets/images/avatar.jpg');
+
+  /// File path: assets/images/avatar.svg
+  SvgGenImage get avatarSvg => const SvgGenImage('assets/images/avatar.svg');
+
+  /// File path: assets/images/clan.png
+  AssetGenImage get clan => const AssetGenImage('assets/images/clan.png');
+
+  /// File path: assets/images/clan_image_1.jpg
+  AssetGenImage get clanImage1 =>
+      const AssetGenImage('assets/images/clan_image_1.jpg');
 
   /// File path: assets/images/dark_logo.svg
   SvgGenImage get darkLogo => const SvgGenImage('assets/images/dark_logo.svg');
+
+  /// File path: assets/images/image_bg.png
+  AssetGenImage get imageBg =>
+      const AssetGenImage('assets/images/image_bg.png');
 
   /// File path: assets/images/light_logo.svg
   SvgGenImage get lightLogo =>
@@ -52,23 +184,33 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding4 =>
       const AssetGenImage('assets/images/onboarding_4.png');
 
+  /// File path: assets/images/welcome.png
+  AssetGenImage get welcome => const AssetGenImage('assets/images/welcome.png');
+
   /// List of all assets
   List<dynamic> get values => [
-        avatar,
+        avatarJpg,
+        avatarSvg,
+        clan,
+        clanImage1,
         darkLogo,
+        imageBg,
         lightLogo,
         onboarding1,
         onboarding2,
         onboarding3,
-        onboarding4
+        onboarding4,
+        welcome
       ];
 }
 
 class Assets {
   Assets._();
 
+  static const $AssetsGifGen gif = $AssetsGifGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $EnvGen env = $EnvGen();
 }
 
 class AssetGenImage {
@@ -221,6 +363,73 @@ class SvgGenImage {
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
+    );
+  }
+
+  String get path => _assetName;
+
+  String get keyName => _assetName;
+}
+
+class LottieGenImage {
+  const LottieGenImage(
+    this._assetName, {
+    this.flavors = const {},
+  });
+
+  final String _assetName;
+  final Set<String> flavors;
+
+  _lottie.LottieBuilder lottie({
+    Animation<double>? controller,
+    bool? animate,
+    _lottie.FrameRate? frameRate,
+    bool? repeat,
+    bool? reverse,
+    _lottie.LottieDelegates? delegates,
+    _lottie.LottieOptions? options,
+    void Function(_lottie.LottieComposition)? onLoaded,
+    _lottie.LottieImageProviderFactory? imageProviderFactory,
+    Key? key,
+    AssetBundle? bundle,
+    Widget Function(
+      BuildContext,
+      Widget,
+      _lottie.LottieComposition?,
+    )? frameBuilder,
+    ImageErrorWidgetBuilder? errorBuilder,
+    double? width,
+    double? height,
+    BoxFit? fit,
+    AlignmentGeometry? alignment,
+    String? package,
+    bool? addRepaintBoundary,
+    FilterQuality? filterQuality,
+    void Function(String)? onWarning,
+  }) {
+    return _lottie.Lottie.asset(
+      _assetName,
+      controller: controller,
+      animate: animate,
+      frameRate: frameRate,
+      repeat: repeat,
+      reverse: reverse,
+      delegates: delegates,
+      options: options,
+      onLoaded: onLoaded,
+      imageProviderFactory: imageProviderFactory,
+      key: key,
+      bundle: bundle,
+      frameBuilder: frameBuilder,
+      errorBuilder: errorBuilder,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      package: package,
+      addRepaintBoundary: addRepaintBoundary,
+      filterQuality: filterQuality,
+      onWarning: onWarning,
     );
   }
 

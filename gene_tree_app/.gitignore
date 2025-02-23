@@ -29,6 +29,13 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
+*.freezed.dart
+# Generated files by freezed
+.freezed.dart
+*.g.dart
+*.gen.dart
+
+/env/
 /build/
 
 # Symbolication related
@@ -43,3 +50,4 @@ app.*.map.json
 google-services.json
 /android/app/release
 .env
+lib/firebase_options.dart

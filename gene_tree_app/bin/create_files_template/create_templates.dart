@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:io';
-
 import 'package:gene_tree_app/modules/common/extensions/string_extensions.dart';
 
 part 'helpers.dart';
@@ -56,6 +55,9 @@ void main() {
         _CreateFileHelper.createComponent();
 
         break;
+      case "5":
+        isInputValueValid = true;
+        _CreateFileHelper.createApi();
       default:
     }
   } while (!isInputValueValid);

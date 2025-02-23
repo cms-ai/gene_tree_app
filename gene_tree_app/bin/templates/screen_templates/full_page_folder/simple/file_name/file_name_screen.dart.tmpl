@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import './bloc/$FileName$_bloc.dart';
 part './models/$FileName$_argument.dart';
 
@@ -14,15 +15,18 @@ class $ClassName$Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final $ClassName$Bloc bloc = Modular.get<$ClassName$Bloc>();
+
     return BaseScreen(
       scaffoldBuilder: () {
-        return BaseScaffold(
-          configs: BaseScaffoldConfigs(
-            nameScreen: "Home",
-            body: BlocProvider(
-              lazy: false,
-              create: (context) => $ClassName$Bloc(),
-              child: Container(),
+        return BlocProvider.value(
+          value: bloc,
+          child: BaseScaffold(
+            configs: BaseScaffoldConfigs(
+              nameScreen: "$ClassName$",
+              body: (themeState) => Container(
+                child: Text("$ClassName$Screen"),
+              ),
             ),
           ),
         );
@@ -30,3 +34,4 @@ class $ClassName$Screen extends StatelessWidget {
     );
   }
 }
+

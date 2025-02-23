@@ -87,6 +87,43 @@ class _CreateFileHelper {
     // Khởi tạo bloc vs function createFile
   }
 
+  static Future<void> createApi() async {
+    String currentDir = Directory.current.path;
+    _ReplaceRegexHolderHelper.handleGetPathAndScreenName(
+      defaultPathInput: "$currentDir/lib/api",
+      onValidInput: (pathInput, fileNameInput) async {
+        final className = fileNameInput.toPascalCase();
+        final fileName = fileNameInput.toSnakeCase();
+        await _CreateFileHelper.createFile(
+          templatePath:
+              "bin/templates/screen_templates/full_page_folder/api/file_name/models/request/file_name_request.dart.tmpl",
+          destinationPath:
+              "$pathInput/$fileName/models/request/${fileNameInput}_request.dart",
+          from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
+          replace: [className, fileName],
+        );
+
+        await _CreateFileHelper.createFile(
+          templatePath:
+              "bin/templates/screen_templates/full_page_folder/api/file_name/models/response/file_name_response.dart.tmpl",
+          destinationPath:
+              "$pathInput/$fileName/models/response/${fileNameInput}_response.dart",
+          from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
+          replace: [className, fileName],
+        );
+
+        await _CreateFileHelper.createFile(
+          templatePath:
+              "bin/templates/screen_templates/full_page_folder/api/file_name/file_name_service.dart.tmpl",
+          destinationPath: "$pathInput/$fileName/${fileNameInput}_service.dart",
+          from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
+          replace: [className, fileName],
+        );
+      },
+    );
+    // Khởi tạo bloc vs function createFile
+  }
+
   static Future<void> createComponent() async {
     _ReplaceRegexHolderHelper.handleGetPathAndScreenName(
       onValidInput: (pathInput, fileNameInput) async {

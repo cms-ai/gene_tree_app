@@ -1,9 +1,45 @@
 part of '../cp_button.dart';
 
-class CPButtonConfigs {
-  const CPButtonConfigs();
+enum ButtonType {
+  primary,
+  secondary,
+  danger,
+  outline,
+}
 
-  CPButtonConfigs copyWith() {
-    return const CPButtonConfigs();
+class CPButtonConfigs {
+  final ButtonType type;
+  final String content;
+  final double? width;
+  final double? height;
+  final EdgeInsetsGeometry? padding;
+  final Widget? prefixIcon;
+  final Widget? suffixWidget;
+  final void Function()? onTap;
+  final TextStyle? textStyle;
+  final Decoration? decoration;
+  final bool? isDiabled;
+  final BorderRadiusGeometry? borderRadius;
+  final MainAxisAlignment? mainAxisAlignment;
+  const CPButtonConfigs({
+    this.type = ButtonType.primary,
+    this.content = '',
+    this.width,
+    this.height,
+    this.padding,
+    this.onTap,
+    this.prefixIcon,
+    this.suffixWidget,
+    this.textStyle,
+    this.decoration,
+    this.isDiabled,
+    this.borderRadius,
+    this.mainAxisAlignment,
+  });
+
+  CPButtonConfigs copyWith(ButtonType? type) {
+    return CPButtonConfigs(
+      type: type ?? this.type,
+    );
   }
 }

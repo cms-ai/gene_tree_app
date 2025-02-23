@@ -1,0 +1,4 @@
+enum CpLottieEnum {
+  asset,
+  network,
+}

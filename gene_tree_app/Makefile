@@ -22,7 +22,7 @@ test:
 .PHONY: build-runner
 # Build runner cho project
 build-runner:
-
+	flutter pub run build_runner build --delete-conflicting-outputs
 
 .PHONY: run_flutterfire
 run_flutterfire:

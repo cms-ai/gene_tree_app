@@ -1,0 +1,18 @@
+{
+  "@@locale": "en",
+  "enterEmailHint": "Enter email",
+  "enterPassHint": "Enter password",
+  "forgotPass": "Forgot password",
+  "noAccountBefore": "You don’t have an account",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "signInWithGoogle": "Sign in with Google",
+  "haveAcountBefore": "You already have an account",
+  "clanName": "Clan: {name}",
+  "detail": "Detail",
+  "hello": "Hello!",
+  "event": "Event",
+  "member": "Members",
+  "viewAll": "View all",
+  "noClanDes": "You don't have any clan events"
+}

@@ -1,5 +1,14 @@
 {
   "@@locale": "en",
-  "test": "This is test common string for the project",
-  "text2": "Hello world"
+  "enterEmailHint": "Enter email",
+  "enterPassHint": "Enter password",
+  "forgotPass": "Forgot password",
+  "noAccountBefore": "You don’t have an account",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "signInWithGoogle": "Sign in with Google",
+  "haveAcountBefore": "You already have an account",
+  "next": "Next",
+  "submit": "Submit",
+  "gender": "Gender"
 }

@@ -1,0 +1,21 @@
+import 'package:dio/dio.dart';
+import 'package:gene_tree_app/api/$FileName$/models/request/$FileName$_request.dart';
+import 'package:gene_tree_app/api/$FileName$/models/response/$FileName$_response.dart';
+import '../core/dio_client.dart';
+import '../core/base_response.dart';
+
+class $ClassName$Services {
+  final Dio _dio = DioClient().dio;
+  Future<BaseResponse<$ClassName$Response>> get($ClassName$RequestImpl data) async {
+    try {
+      final response = await _dio.get('/$FileName$', data: data.toJson());
+      return BaseResponse<$ClassName$Response>.fromJson(
+        response.data,
+        (json) => $ClassName$Response.fromJson(json),
+      );
+    } catch (e) {
+      // Xử lý lỗi
+      throw Exception('Failed to login: $e');
+    }
+  }
+}

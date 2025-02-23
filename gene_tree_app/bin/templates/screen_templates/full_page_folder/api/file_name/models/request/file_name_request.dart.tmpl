@@ -1,0 +1,17 @@
+
+abstract class $ClassName$RequestImpl {
+  Map<String, dynamic> toJson();
+}
+
+class $ClassName$Request implements $ClassName$RequestImpl {
+  final String? id;
+  $ClassName$Request({
+    this.id,
+  });
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+    };
+  }
+}

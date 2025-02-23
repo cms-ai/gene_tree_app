@@ -2,9 +2,13 @@ part of 'splash_bloc.dart';
 
 @freezed
 class SplashState with _$SplashState {
-  const factory SplashState() = _SplashState;
+  const factory SplashState.initial() = _Initial;
 
-  factory SplashState.initial() {
-    return const SplashState();
-  }
+  const factory SplashState.unAuthenticated({
+    required bool firstLogin,
+  }) = _UnAuthenticated;
+
+  const factory SplashState.authenticated({
+    required bool completedUser,
+  }) = _Authenticated;
 }

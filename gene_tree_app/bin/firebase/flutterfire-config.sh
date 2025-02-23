@@ -10,7 +10,7 @@ fi
 case $1 in
   dev)
     flutterfire config \
-      --project=gene-tree-dev-2e250 \
+      --project= v0 \
       --out=lib/firebase_options_dev.dart \
       --ios-bundle-id=com.aigenetreemobile.dev \
       --ios-out=ios/flavors/dev/GoogleService-Info.plist \
