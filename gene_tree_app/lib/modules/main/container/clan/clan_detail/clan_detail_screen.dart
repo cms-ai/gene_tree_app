@@ -9,6 +9,7 @@ import 'package:gene_tree_app/gen/assets.gen.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/modules/common/components/cm_app_bar/cp_cm_app_bar.dart';
+import 'package:gene_tree_app/modules/common/components/cm_avatar/cp_cm_avatar.dart';
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/update_clan_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan_member/clan_member_list/clan_member_list_screen.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/event/event_screen.dart';
@@ -33,7 +34,6 @@ class _ClanDetailScreenState extends State<ClanDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> items = [
-      _buildClanOption(title: "Cõi vĩnh hằng", onTap: () {}),
       _buildClanOption(
           title: "Thành viên",
           onTap: () {
@@ -46,7 +46,6 @@ class _ClanDetailScreenState extends State<ClanDetailScreen> {
           }),
       _buildClanOption(title: "Bảng vàng", onTap: () {}),
       _buildClanOption(title: "Sự kiện", onTap: () {}),
-      _buildClanOption(title: "Công đức", onTap: () {}),
       _buildClanOption(title: "Thu chi", onTap: () {}),
     ];
 
@@ -84,14 +83,31 @@ class _ClanDetailScreenState extends State<ClanDetailScreen> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Assets.images.clan.image(height: 60.h),
+                    CPCmAvatar(
+                      configs: CPCmAvatarConfigs(
+                        type: AvatarTypeEnum.network,
+                        size: 60.h,
+                        imageUrl: "",
+                      ),
+                    ),
                     SizedBox(
                       height: 10.h,
                     ),
-                    Text(
-                      "Gia tộc ${widget.argument?.clanEntity?.clanName}",
-                      textAlign: TextAlign.center,
-                      style: themeData.value.typo.t12Bold.copyWith(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Gia tộc ${widget.argument?.clanEntity?.clanName}",
+                          textAlign: TextAlign.center,
+                          style: themeData.value.typo.t12Bold.copyWith(),
+                        ),
+                        SizedBox(width: 6.w),
+                        Icon(
+                          Icons.edit,
+                          color: themeData.value.color.mainPrimaryColor,
+                          size: 14.h,
+                        )
+                      ],
                     ),
                     SizedBox(height: 10.h),
                     Row(
@@ -101,7 +117,7 @@ class _ClanDetailScreenState extends State<ClanDetailScreen> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 20.w, vertical: 8.h),
                             decoration: BoxDecoration(
-                              gradient: themeData.value.color.linegradientColor,
+                              color: themeData.value.color.btnColor2,
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Column(
@@ -109,8 +125,10 @@ class _ClanDetailScreenState extends State<ClanDetailScreen> {
                                 Text(
                                   "Ngày tạo",
                                   textAlign: TextAlign.center,
-                                  style: themeData.value.typo.t12Bold.copyWith(
-                                    color: themeData.value.color.btnColor2,
+                                  style:
+                                      themeData.value.typo.t12Semibold.copyWith(
+                                    color:
+                                        themeData.value.color.mainPrimaryColor,
                                   ),
                                 ),
                                 SizedBox(height: 6.h),
@@ -121,7 +139,8 @@ class _ClanDetailScreenState extends State<ClanDetailScreen> {
                                     format: "dd/MM/yyyy",
                                   ),
                                   textAlign: TextAlign.center,
-                                  style: themeData.value.typo.t12Regular.copyWith(),
+                                  style: themeData.value.typo.t12Regular
+                                      .copyWith(),
                                 ),
                               ],
                             ),
@@ -133,7 +152,7 @@ class _ClanDetailScreenState extends State<ClanDetailScreen> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 20.w, vertical: 8.h),
                             decoration: BoxDecoration(
-                              gradient: themeData.value.color.linegradientColor,
+                              color: themeData.value.color.btnColor2,
                               borderRadius: BorderRadius.circular(10.r),
                             ),
                             child: Column(
@@ -141,9 +160,7 @@ class _ClanDetailScreenState extends State<ClanDetailScreen> {
                                 Text(
                                   "Author",
                                   textAlign: TextAlign.center,
-                                  style: themeData.value.typo.t12Bold.copyWith(
-                                    color: themeData.value.color.btnColor2,
-                                  ),
+                                  style: themeData.value.typo.t12Semibold,
                                 ),
                                 SizedBox(height: 6.h),
                                 Text(
@@ -151,7 +168,7 @@ class _ClanDetailScreenState extends State<ClanDetailScreen> {
                                           ?.fullName ??
                                       "",
                                   textAlign: TextAlign.center,
-                                  style: themeData.value.typo.t12Regular.copyWith(),
+                                  style: themeData.value.typo.t12Regular,
                                 ),
                               ],
                             ),
@@ -195,8 +212,7 @@ class _ClanDetailScreenState extends State<ClanDetailScreen> {
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          // color: themeData.value.color.btnColor2.withOpacity(.7),
-          gradient: themeData.value.color.linegradientColor2,
+          color: themeData.value.color.btnColor2,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(
