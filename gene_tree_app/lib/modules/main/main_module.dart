@@ -22,6 +22,10 @@ import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bl
 import 'package:gene_tree_app/modules/main/container/dashboard/container/member/bloc/member_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/settings/bloc/settings_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/dashboard_screen.dart';
+import 'package:gene_tree_app/modules/main/container/golden_board/create_or_edit_golden_board/bloc/create_or_edit_golden_board_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/golden_board/create_or_edit_golden_board/create_or_edit_golden_board_screen.dart';
+import 'package:gene_tree_app/modules/main/container/golden_board/golden_board_list/bloc/golden_board_list_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/golden_board/golden_board_list/golden_board_list_screen.dart';
 
 class MainModule extends Module {
   static const String path = "/dashboard/";
@@ -68,6 +72,14 @@ class MainModule extends Module {
     r.child(
       MainModuleEnum.eventClanList.path,
       child: (context) => ClanEventListScreen(argument: r.args.data),
+    );
+    r.child(
+      MainModuleEnum.createOrEditGoldenBoard.path,
+      child: (context) => CreateOrEditGoldenBoardScreen(argument: r.args.data),
+    );
+    r.child(
+      MainModuleEnum.goldenBoardList.path,
+      child: (context) => GoldenBoardListScreen(argument: r.args.data),
     );
 
     super.routes(r);
@@ -158,6 +170,18 @@ class MainModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
+    i.addLazySingleton<CreateOrEditGoldenBoardBloc>(
+      CreateOrEditGoldenBoardBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+    i.addLazySingleton<GoldenBoardListBloc>(
+      GoldenBoardListBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
   }
 }
 
@@ -170,6 +194,8 @@ enum MainModuleEnum {
   clanMemberList('/clanMemberList'),
   createClanMember('/createClanMember'),
   createOrEditClanEvent('/createOrEditClanEvent'),
+  createOrEditGoldenBoard('/createOrEditGoldenBoard'),
+  goldenBoardList('/goldenBoardList'),
   eventClanDetail('/eventClanDetail'),
   eventClanList('/eventClanList');
 
