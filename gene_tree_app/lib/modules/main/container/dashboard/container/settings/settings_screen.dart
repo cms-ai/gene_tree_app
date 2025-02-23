@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -65,8 +66,13 @@ class SettingsScreen extends StatelessWidget {
                         title: "Dark mode",
                         suffixWidget: CPCmToogle(
                           configs: CPCmToogleConfigs(
-                            isToogled: true,
-                            onChange: (value) {},
+                            isToogled:
+                                Modular.get<ThemeBloc>().state.appThemeEnum ==
+                                    AppThemeEnum.darkTheme,
+                            onChange: (value) {
+                              Modular.get<ThemeBloc>()
+                                  .add(const ThemeEvent.toogleTheme());
+                            },
                           ),
                         ),
                       ),
@@ -79,7 +85,15 @@ class SettingsScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      _buildOptionItem(title: "About"),
+                      _buildOptionItem(
+                          title: "About",
+                          onTap: () {
+                            Modular.to.pushNamed(
+                              MainModule.getRoutePath(
+                                MainModuleEnum.aboutApp,
+                              ),
+                            );
+                          }),
                       _buildOptionItem(title: "Log out"),
                     ],
                   ),

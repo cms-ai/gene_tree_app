@@ -1,5 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/modules/common/common_module.dart';
+import 'package:gene_tree_app/modules/main/container/about_app/about_app_screen.dart';
+import 'package:gene_tree_app/modules/main/container/about_app/bloc/about_app_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/clan_detail/bloc/clan_detail_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/clan_detail/clan_detail_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
@@ -104,6 +106,10 @@ class MainModule extends Module {
     r.child(
       MainModuleEnum.myClan.path,
       child: (context) => MyClanScreen(argument: r.args.data),
+    );
+    r.child(
+      MainModuleEnum.aboutApp.path,
+      child: (context) => AboutAppScreen(argument: r.args.data),
     );
 
     super.routes(r);
@@ -230,6 +236,12 @@ class MainModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
+    i.addLazySingleton<AboutAppBloc>(
+      AboutAppBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
   }
 }
 
@@ -249,7 +261,8 @@ enum MainModuleEnum {
   eventClanDetail('/eventClanDetail'),
   eventClanList('/eventClanList'),
   language('/language'),
-  myClan('/myClan');
+  myClan('/myClan'),
+  aboutApp('/aboutApp');
 
   final String path;
   const MainModuleEnum(this.path);
