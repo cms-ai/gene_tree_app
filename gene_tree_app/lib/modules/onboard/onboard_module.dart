@@ -7,7 +7,6 @@ import 'package:gene_tree_app/modules/onboard/container/profile_setup/bloc/profi
 import 'package:gene_tree_app/modules/onboard/container/profile_setup/profile_setup_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/bloc/sign_in_bloc.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/sign_in_screen.dart';
-import 'package:gene_tree_app/modules/onboard/container/sign_up/sign_up_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/splash/bloc/splash_bloc.dart';
 import 'package:gene_tree_app/modules/onboard/container/splash/splash_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/welcome/bloc/welcome_bloc.dart';
@@ -42,10 +41,6 @@ class OnboardModule extends Module {
       child: (context) => SignInScreen(argument: r.args.data),
     );
 
-    r.child(
-      OnboardModuleEnum.signUp.path,
-      child: (context) => SignUpScreen(argument: r.args.data),
-    );
     r.child(
       OnboardModuleEnum.welcome.path,
       child: (context) => WelcomeScreen(argument: r.args.data),
@@ -110,7 +105,6 @@ enum OnboardModuleEnum {
   intro("/intro"),
   welcome("/welcome"),
   signIn("/signIn"),
-  signUp("/signUp"),
   createClan("/createClan"),
   profileSetup("/profileSetup");
 
