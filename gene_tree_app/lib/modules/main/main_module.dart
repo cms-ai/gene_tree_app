@@ -36,6 +36,8 @@ import 'package:gene_tree_app/modules/main/container/golden_board/golden_board_l
 import 'package:gene_tree_app/modules/main/container/golden_board/golden_board_list/golden_board_list_screen.dart';
 import 'package:gene_tree_app/modules/main/container/language/bloc/language_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/language/language_screen.dart';
+import 'package:gene_tree_app/modules/main/container/notification/bloc/notification_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/notification/notification_screen.dart';
 
 class MainModule extends Module {
   static const String path = "/dashboard/";
@@ -110,6 +112,10 @@ class MainModule extends Module {
     r.child(
       MainModuleEnum.aboutApp.path,
       child: (context) => AboutAppScreen(argument: r.args.data),
+    );
+    r.child(
+      MainModuleEnum.notification.path,
+      child: (context) => NotificationScreen(argument: r.args.data),
     );
 
     super.routes(r);
@@ -242,6 +248,12 @@ class MainModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
+    i.addLazySingleton<NotificationBloc>(
+      NotificationBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
   }
 }
 
@@ -262,7 +274,8 @@ enum MainModuleEnum {
   eventClanList('/eventClanList'),
   language('/language'),
   myClan('/myClan'),
-  aboutApp('/aboutApp');
+  aboutApp('/aboutApp'),
+  notification('/notification');
 
   final String path;
   const MainModuleEnum(this.path);

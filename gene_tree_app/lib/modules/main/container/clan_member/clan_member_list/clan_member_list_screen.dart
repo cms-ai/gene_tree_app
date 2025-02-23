@@ -120,7 +120,7 @@ class _ClanMemberListScreenState extends State<ClanMemberListScreen> {
                                     ),
                                   )
                                 : Expanded(
-                                    child: Container(
+                                    child: SizedBox(
                                       width: double.infinity,
                                       child: Column(
                                         mainAxisAlignment:

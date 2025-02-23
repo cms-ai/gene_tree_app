@@ -7,7 +7,7 @@ part 'settings_state.dart';
 part 'settings_bloc.freezed.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
-  SettingsBloc() : super(SettingsState.initial()) {
+  SettingsBloc() : super(const SettingsState.initial()) {
     on<SettingsEvent>((event, emit) {
     });
   }

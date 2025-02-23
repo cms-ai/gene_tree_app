@@ -135,7 +135,7 @@ class _CreateOrEditTransScreenState extends State<CreateOrEditTransScreen> {
                         configs: CPCmTextFieldConfigs(
                           labelText: "Loại giao dịch",
                           type: CMTexFieldTypeEnum.pickOption,
-                          hintTextConfigs: HintTextConfigs(
+                          hintTextConfigs: const HintTextConfigs(
                             hintText: "Chọn loại giao dịch",
                           ),
                           onSubmit: (onSubmit) {

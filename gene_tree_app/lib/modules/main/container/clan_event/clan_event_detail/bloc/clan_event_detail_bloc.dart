@@ -7,7 +7,7 @@ part 'clan_event_detail_state.dart';
 part 'clan_event_detail_bloc.freezed.dart';
 
 class ClanEventDetailBloc extends Bloc<ClanEventDetailEvent, ClanEventDetailState> {
-  ClanEventDetailBloc() : super(ClanEventDetailState.initial()) {
+  ClanEventDetailBloc() : super(const ClanEventDetailState.initial()) {
     on<ClanEventDetailEvent>((event, emit) {
     });
   }

@@ -45,14 +45,14 @@ class _CPCmToogleState extends State<CPCmToogle> {
         child: Stack(
           children: [
             AnimatedAlign(
-              duration: Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 200),
               alignment:
                   isToggled ? Alignment.centerRight : Alignment.centerLeft,
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 5),
+                margin: const EdgeInsets.symmetric(horizontal: 5),
                 width: 16.h,
                 height: 16.h,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
                 ),

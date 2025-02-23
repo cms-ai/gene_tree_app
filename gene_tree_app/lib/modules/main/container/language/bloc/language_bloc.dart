@@ -7,7 +7,7 @@ part 'language_state.dart';
 part 'language_bloc.freezed.dart';
 
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
-  LanguageBloc() : super(LanguageState.initial()) {
+  LanguageBloc() : super(const LanguageState.initial()) {
     on<LanguageEvent>((event, emit) {
     });
   }

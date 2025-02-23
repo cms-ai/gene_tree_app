@@ -70,7 +70,7 @@ class CreateOrEditGoldenBoardScreen extends StatelessWidget {
                         configs: CPCmTextFieldConfigs(
                           labelText: "Thành viên",
                           type: CMTexFieldTypeEnum.pickOption,
-                          hintTextConfigs: HintTextConfigs(
+                          hintTextConfigs: const HintTextConfigs(
                             hintText: "Chọn thành viên ",
                           ),
                           onSubmit: (onSubmit) {
@@ -83,7 +83,7 @@ class CreateOrEditGoldenBoardScreen extends StatelessWidget {
                         configs: CPCmTextFieldConfigs(
                           labelText: "Thời gian",
                           type: CMTexFieldTypeEnum.datetime,
-                          hintTextConfigs: HintTextConfigs(
+                          hintTextConfigs: const HintTextConfigs(
                             hintText: "Chọn thời gian",
                           ),
                           onSubmit: (onSubmit) {},

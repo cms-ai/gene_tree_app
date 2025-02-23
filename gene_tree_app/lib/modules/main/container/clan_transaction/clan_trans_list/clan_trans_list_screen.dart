@@ -155,31 +155,29 @@ class _ClanTransListScreenState extends State<ClanTransListScreen> {
         ],
       );
 
-  Widget _buildAmount() => Container(
-        child: Column(
-          children: [
-            Text(
-              'Spent',
-              style: themeData.value.typo.t14Semibold.copyWith(
-                color: themeData.value.color.mainPrimaryColor.withOpacity(.5),
-              ),
-            ),
-            SizedBox(height: 6.h),
-            Text(
-              r'$ 2300',
-              style: themeData.value.typo.tHeader.copyWith(
-                color: themeData.value.color.mainSecondaryColor1,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 6.h),
-            Text(
-              r'From $25000',
-              style: themeData.value.typo.t14Semibold.copyWith(
-                color: themeData.value.color.mainPrimaryColor.withOpacity(.5),
-              ),
-            )
-          ],
+  Widget _buildAmount() => Column(
+    children: [
+      Text(
+        'Spent',
+        style: themeData.value.typo.t14Semibold.copyWith(
+          color: themeData.value.color.mainPrimaryColor.withOpacity(.5),
         ),
-      );
+      ),
+      SizedBox(height: 6.h),
+      Text(
+        r'$ 2300',
+        style: themeData.value.typo.tHeader.copyWith(
+          color: themeData.value.color.mainSecondaryColor1,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      SizedBox(height: 6.h),
+      Text(
+        r'From $25000',
+        style: themeData.value.typo.t14Semibold.copyWith(
+          color: themeData.value.color.mainPrimaryColor.withOpacity(.5),
+        ),
+      )
+    ],
+  );
 }

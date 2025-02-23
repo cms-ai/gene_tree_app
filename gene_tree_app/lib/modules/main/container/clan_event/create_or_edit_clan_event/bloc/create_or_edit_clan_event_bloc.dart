@@ -7,7 +7,7 @@ part 'create_or_edit_clan_event_state.dart';
 part 'create_or_edit_clan_event_bloc.freezed.dart';
 
 class CreateOrEditClanEventBloc extends Bloc<CreateOrEditClanEventEvent, CreateOrEditClanEventState> {
-  CreateOrEditClanEventBloc() : super(CreateOrEditClanEventState.initial()) {
+  CreateOrEditClanEventBloc() : super(const CreateOrEditClanEventState.initial()) {
     on<CreateOrEditClanEventEvent>((event, emit) {
     });
   }

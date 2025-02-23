@@ -93,7 +93,6 @@ class _UpdateClanScreenState extends State<UpdateClanScreen> {
                   title: "Update clan",
                   suffixWidget: GestureDetector(
                     onTap: () {
-                      print("========");
                       CmDialogScreen(
                         argument: CmDialogArgument(
                           type: CmDialogType.confirmation,

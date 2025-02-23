@@ -75,7 +75,6 @@ class CmDialogScreen {
       _isDialogShowing = false;
       type = null;
     });
-    ;
   }
 
   Future<void> dismissCurrentDialog(BuildContext context) async {
@@ -346,7 +345,6 @@ class CmDialogScreen {
       _isDialogShowing = false;
       type = null;
     });
-    ;
   }
 
   Future<void> _showCustomContentDialog(BuildContext context) async {

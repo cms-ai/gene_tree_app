@@ -32,7 +32,6 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
   }
 
   void _textListener() {
-    print("Heoooooo: ${widget.configs.controller?.text}");
     return _streamController.sink.add(widget.configs.controller?.text ?? "");
   }
 

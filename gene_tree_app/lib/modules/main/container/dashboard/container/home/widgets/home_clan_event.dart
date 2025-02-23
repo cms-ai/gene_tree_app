@@ -156,7 +156,7 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                 return ListView.separated(
                   itemBuilder: (context, index) => CPEventItem(
                     data: ClanEventEntity(),
-                    configs: CPEventItemConfigs(),
+                    configs: const CPEventItemConfigs(),
                   ),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

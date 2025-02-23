@@ -7,7 +7,7 @@ part 'create_or_edit_trans_state.dart';
 part 'create_or_edit_trans_bloc.freezed.dart';
 
 class CreateOrEditTransBloc extends Bloc<CreateOrEditTransEvent, CreateOrEditTransState> {
-  CreateOrEditTransBloc() : super(CreateOrEditTransState.initial()) {
+  CreateOrEditTransBloc() : super(const CreateOrEditTransState.initial()) {
     on<CreateOrEditTransEvent>((event, emit) {
     });
   }

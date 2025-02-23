@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gene_tree_app/domain/entities/clan_event_entity.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
@@ -12,7 +11,6 @@ import 'package:gene_tree_app/modules/common/components/cm_text_field/cp_cm_text
 import 'package:gene_tree_app/modules/common/components/event_item/cp_event_item.dart';
 import 'package:gene_tree_app/modules/main/l10n/generated/l10n.dart';
 import 'package:gene_tree_app/modules/main/main_module.dart';
-import '../../../../../../core/utils/helpers/helpers.dart';
 import 'bloc/event_bloc.dart';
 part 'models/event_argument.dart';
 

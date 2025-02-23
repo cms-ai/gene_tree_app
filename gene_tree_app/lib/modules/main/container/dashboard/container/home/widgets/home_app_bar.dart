@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:gene_tree_app/modules/common/components/cm_avatar/cp_cm_avatar.d
 import 'package:gene_tree_app/modules/common/components/lottie/cp_lottie.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
 import 'package:gene_tree_app/modules/main/l10n/generated/l10n.dart';
+import 'package:gene_tree_app/modules/main/main_module.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeAppBar extends StatefulWidget {
@@ -90,17 +92,37 @@ class _HomeAppBarState extends State<HomeAppBar> {
                       ],
                     ),
                   ),
-                  Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
-                    child: Container(
-                      width: 28.h,
-                      height: 28.h,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [Colors.grey.shade300, Colors.grey.shade400],
-                        ),
-                        borderRadius: BorderRadius.circular(10.r),
+                  // Shimmer.fromColors(
+                  //   baseColor: Colors.grey.shade300,
+                  //   highlightColor: Colors.grey.shade100,
+                  //   child: Container(
+                  //     width: 28.h,
+                  //     height: 28.h,
+                  //     decoration: BoxDecoration(
+                  //       gradient: LinearGradient(
+                  //         colors: [Colors.grey.shade300, Colors.grey.shade400],
+                  //       ),
+                  //       borderRadius: BorderRadius.circular(10.r),
+                  //     ),
+                  //   ),
+                  // ),
+                  ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      themeData.value.color.btnColor2,
+                      BlendMode.srcATop,
+                    ),
+                    child: CPLottie(
+                      configs: CPLottieConfigs(
+                        url: Assets.gif.icNotifyDark.path,
+                        height: 28.h,
+                        onTap: (controller) {
+                          // onTap();
+                          controller.forward(from: 0);
+                          Modular.to.pushNamed(
+                            MainModule.getRoutePath(
+                                MainModuleEnum.notification),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -155,6 +177,10 @@ class _HomeAppBarState extends State<HomeAppBar> {
                           onTap: (controller) {
                             // onTap();
                             controller.forward(from: 0);
+                            Modular.to.pushNamed(
+                              MainModule.getRoutePath(
+                                  MainModuleEnum.notification),
+                            );
                           },
                         ),
                       ),

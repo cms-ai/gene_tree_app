@@ -7,7 +7,7 @@ part 'about_app_state.dart';
 part 'about_app_bloc.freezed.dart';
 
 class AboutAppBloc extends Bloc<AboutAppEvent, AboutAppState> {
-  AboutAppBloc() : super(AboutAppState.initial()) {
+  AboutAppBloc() : super(const AboutAppState.initial()) {
     on<AboutAppEvent>((event, emit) {
     });
   }

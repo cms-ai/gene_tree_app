@@ -7,7 +7,7 @@ part 'create_or_edit_golden_board_state.dart';
 part 'create_or_edit_golden_board_bloc.freezed.dart';
 
 class CreateOrEditGoldenBoardBloc extends Bloc<CreateOrEditGoldenBoardEvent, CreateOrEditGoldenBoardState> {
-  CreateOrEditGoldenBoardBloc() : super(CreateOrEditGoldenBoardState.initial()) {
+  CreateOrEditGoldenBoardBloc() : super(const CreateOrEditGoldenBoardState.initial()) {
     on<CreateOrEditGoldenBoardEvent>((event, emit) {
     });
   }

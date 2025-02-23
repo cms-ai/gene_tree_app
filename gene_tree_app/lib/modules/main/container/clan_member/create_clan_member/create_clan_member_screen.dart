@@ -39,7 +39,7 @@ class _CreateClanMemberScreenState extends State<CreateClanMemberScreen> {
   PickUserStepEnum selectedUser = PickUserStepEnum.chooseUser;
   final StreamController<PickUserStepEnum> _streamController =
       StreamController<PickUserStepEnum>.broadcast();
-  PickUserStepEnum _currentStep = PickUserStepEnum.chooseUser;
+  final PickUserStepEnum _currentStep = PickUserStepEnum.chooseUser;
 
   void showGenderBottomSheeet() {
     CmDialogScreen(
@@ -310,7 +310,7 @@ class _CreateClanMemberScreenState extends State<CreateClanMemberScreen> {
                         configs: CPCmTextFieldConfigs(
                           labelText: "Mối quan hệ",
                           type: CMTexFieldTypeEnum.pickOption,
-                          hintTextConfigs: HintTextConfigs(
+                          hintTextConfigs: const HintTextConfigs(
                             hintText: "Tìm user có mối quan hệ",
                           ),
                           onSubmit: (onSubmit) {
@@ -323,7 +323,7 @@ class _CreateClanMemberScreenState extends State<CreateClanMemberScreen> {
                       const CPCmTextField(
                         configs: CPCmTextFieldConfigs(
                           labelText: "Quê quán",
-                          hintTextConfigs: const HintTextConfigs(
+                          hintTextConfigs: HintTextConfigs(
                             hintText: "Nhập quê quán",
                           ),
                         ),
@@ -355,7 +355,7 @@ class _CreateClanMemberScreenState extends State<CreateClanMemberScreen> {
                       const CPCmTextField(
                         configs: CPCmTextFieldConfigs(
                           labelText: "Nơi an nghỉ",
-                          hintTextConfigs: const HintTextConfigs(
+                          hintTextConfigs: HintTextConfigs(
                             hintText: "Nhập nơi an nghỉ",
                           ),
                         ),

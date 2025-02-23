@@ -1,11 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gene_tree_app/core/utils/helpers/date_time_helpers.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/domain/entities/clan_event_entity.dart';
 import 'package:gene_tree_app/modules/common/components/cm_image/cp_cm_image.dart';
-import 'package:intl/intl.dart';
 part './models/cp_event_item_configs.dart';
 
 class CPEventItem extends StatelessWidget {

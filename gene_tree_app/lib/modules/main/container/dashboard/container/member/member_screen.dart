@@ -74,7 +74,7 @@ class _MemberScreenState extends State<MemberScreen> {
                     Expanded(
                       child: ListView.separated(
                         itemCount: 10,
-                        itemBuilder: (context, index) => CPCmMemberClanItem(
+                        itemBuilder: (context, index) => const CPCmMemberClanItem(
                           configs: CPCmMemberClanItemConfigs(),
                         ),
                         separatorBuilder: (

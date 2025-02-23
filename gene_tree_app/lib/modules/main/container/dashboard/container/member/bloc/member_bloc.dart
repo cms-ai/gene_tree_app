@@ -7,7 +7,7 @@ part 'member_state.dart';
 part 'member_bloc.freezed.dart';
 
 class MemberBloc extends Bloc<MemberEvent, MemberState> {
-  MemberBloc() : super(MemberState.initial()) {
+  MemberBloc() : super(const MemberState.initial()) {
     on<MemberEvent>((event, emit) {
     });
   }

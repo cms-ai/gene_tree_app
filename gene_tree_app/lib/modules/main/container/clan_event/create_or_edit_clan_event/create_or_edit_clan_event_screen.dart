@@ -35,57 +35,55 @@ class CreateOrEditClanEventScreen extends StatelessWidget {
                   title: "Event",
                 ),
               ),
-              body: (themeState) => Container(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: themeData.value.spacing.screenHorizontal,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 20.h),
-                        const CPCmTextField(
-                          configs: CPCmTextFieldConfigs(
-                            labelText: "Tên sự kiện",
-                            hintTextConfigs: HintTextConfigs(
-                              hintText: "Nhập tên sự kiện...",
-                            ),
+              body: (themeState) => Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: themeData.value.spacing.screenHorizontal,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20.h),
+                      const CPCmTextField(
+                        configs: CPCmTextFieldConfigs(
+                          labelText: "Tên sự kiện",
+                          hintTextConfigs: HintTextConfigs(
+                            hintText: "Nhập tên sự kiện...",
                           ),
                         ),
-                        SizedBox(height: 10.h),
-                        const CPCmTextField(
-                          configs: CPCmTextFieldConfigs(
-                            labelText: "Mô tả",
-                            maxLines: 2,
-                            hintTextConfigs: HintTextConfigs(
-                              hintText: "Nhập mô tả",
-                            ),
+                      ),
+                      SizedBox(height: 10.h),
+                      const CPCmTextField(
+                        configs: CPCmTextFieldConfigs(
+                          labelText: "Mô tả",
+                          maxLines: 2,
+                          hintTextConfigs: HintTextConfigs(
+                            hintText: "Nhập mô tả",
                           ),
                         ),
-                        SizedBox(height: 10.h),
-                        const CPCmTextField(
-                          configs: CPCmTextFieldConfigs(
-                            type: CMTexFieldTypeEnum.datetime,
-                            labelText: "Ngày sinh",
-                            hintTextConfigs: HintTextConfigs(
-                              hintText: "dd//mm/yyyy",
-                            ),
+                      ),
+                      SizedBox(height: 10.h),
+                      const CPCmTextField(
+                        configs: CPCmTextFieldConfigs(
+                          type: CMTexFieldTypeEnum.datetime,
+                          labelText: "Ngày sinh",
+                          hintTextConfigs: HintTextConfigs(
+                            hintText: "dd//mm/yyyy",
                           ),
                         ),
-                        SizedBox(height: 10.h),
-                        const CPCmTextField(
-                          configs: CPCmTextFieldConfigs(
-                            type: CMTexFieldTypeEnum.datetime,
-                            labelText: "Ngày mất",
-                            hintTextConfigs: HintTextConfigs(
-                              hintText: "dd//mm/yyyy",
-                            ),
+                      ),
+                      SizedBox(height: 10.h),
+                      const CPCmTextField(
+                        configs: CPCmTextFieldConfigs(
+                          type: CMTexFieldTypeEnum.datetime,
+                          labelText: "Ngày mất",
+                          hintTextConfigs: HintTextConfigs(
+                            hintText: "dd//mm/yyyy",
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -7,7 +7,7 @@ part 'golden_board_list_state.dart';
 part 'golden_board_list_bloc.freezed.dart';
 
 class GoldenBoardListBloc extends Bloc<GoldenBoardListEvent, GoldenBoardListState> {
-  GoldenBoardListBloc() : super(GoldenBoardListState.initial()) {
+  GoldenBoardListBloc() : super(const GoldenBoardListState.initial()) {
     on<GoldenBoardListEvent>((event, emit) {
     });
   }

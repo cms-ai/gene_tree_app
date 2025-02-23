@@ -23,7 +23,7 @@ class ClanEventListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ClanEventListBloc bloc = Modular.get<ClanEventListBloc>();
-    final currentIndex = 0;
+    const currentIndex = 0;
     return BaseScreen(
       scaffoldBuilder: () {
         return BlocProvider.value(

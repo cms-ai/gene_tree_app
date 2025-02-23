@@ -7,7 +7,7 @@ part 'clan_trans_list_state.dart';
 part 'clan_trans_list_bloc.freezed.dart';
 
 class ClanTransListBloc extends Bloc<ClanTransListEvent, ClanTransListState> {
-  ClanTransListBloc() : super(ClanTransListState.initial()) {
+  ClanTransListBloc() : super(const ClanTransListState.initial()) {
     on<ClanTransListEvent>((event, emit) {
     });
   }
