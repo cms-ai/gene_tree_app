@@ -1,4 +1,4 @@
-package com.aigenetreemobile.gene_tree_app
+package com.aigenetreemobile.dev
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -50,7 +50,7 @@ android {
         }       
         prod {
             dimension "env"
-            applicationId "com.aigenetreemobile.prod"
+            applicationId "com.aigenetreemobile.dev"
         }
     }
 
