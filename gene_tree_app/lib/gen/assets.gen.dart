@@ -131,13 +131,8 @@ class $AssetsIconsGen {
       const AssetGenImage('assets/icons/ic_income.png');
 
   /// List of all assets
-  List<dynamic> get values => [
-        avatarIconTest,
-        icApple,
-        icExpense,
-        icGoogle,
-        icIncome,
-      ];
+  List<dynamic> get values =>
+      [avatarIconTest, icApple, icExpense, icGoogle, icIncome];
 }
 
 class $AssetsImagesGen {

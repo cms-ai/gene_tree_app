@@ -9,6 +9,10 @@ clean:
 setup:
 	bash ./bin/setup.bash
 
+.PHONY: setup-env
+setup-env:
+	bash ./bin/setup-env.bash
+
 # Build APK hoặc iOS
 .PHONY: build-android-dev
 build:
