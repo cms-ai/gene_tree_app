@@ -5,8 +5,7 @@ import 'package:gene_tree_app/modules/main/container/dashboard/container/exports
 enum DashboardTabEnum {
   home,
   event,
-  // geneTree,
-  member,
+  notify,
   profile,
 }
 
@@ -19,8 +18,8 @@ extension DashboardEnumExt on DashboardTabEnum {
         return Assets.gif.icCalendar.path;
       // case DashboardTabEnum.geneTree:
       //   return Assets.gif.icGeneDark.path;
-      case DashboardTabEnum.member:
-        return Assets.gif.icMember.path;
+      case DashboardTabEnum.notify:
+        return Assets.gif.icNotifyLight.path;
       case DashboardTabEnum.profile:
         return Assets.gif.icProfileDark.path;
     }
@@ -32,7 +31,7 @@ extension DashboardEnumExt on DashboardTabEnum {
         return const HomeScreen();
       case DashboardTabEnum.event:
         return const EventScreen();
-      case DashboardTabEnum.member:
+      case DashboardTabEnum.notify:
         return const MemberScreen();
       case DashboardTabEnum.profile:
         return const SettingsScreen();

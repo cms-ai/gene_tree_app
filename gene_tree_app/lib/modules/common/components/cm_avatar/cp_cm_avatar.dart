@@ -13,12 +13,10 @@ class CPCmAvatar extends StatelessWidget {
   final CPCmAvatarConfigs configs;
   @override
   Widget build(BuildContext context) {
-    // final  themeBloc = Modular.get<ThemeBloc>();
     return Container(
       width: configs.size,
       height: configs.size,
       decoration: BoxDecoration(
-        // shape: BoxShape.circle,
         borderRadius: BorderRadius.circular(50.r),
         border: Border.all(
           color: themeData.value.color.btnColor2,
@@ -27,10 +25,8 @@ class CPCmAvatar extends StatelessWidget {
       ),
       child: SizedBox(
         width: configs.size,
-        height: configs.size,
-        // decoration: BoxDecoration(shape: BoxShape.circle),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(50.r),
+          borderRadius: configs.borderRadius ?? BorderRadius.circular(50.r),
           child: CachedNetworkImage(
             imageUrl:
                 "https://i1-giaitri.vnecdn.net/2022/09/23/-2181-1663929656.jpg?w=680&h=0&q=100&dpr=1&fit=crop&s=apYgDs9tYQiwn7pcDOGbNg",

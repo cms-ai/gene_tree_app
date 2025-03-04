@@ -85,7 +85,11 @@ class _CPButtonState extends State<CPButton> {
             height: widget.configs.height,
             decoration: decoration,
             child: Center(
-              child: Text(widget.configs.content, style: textStyle),
+              child: Text(
+                widget.configs.content,
+                textAlign: TextAlign.center,
+                style: textStyle,
+              ),
             ),
           ),
         );

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/domain/entities/clan_member_entity.dart';
+import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
 import 'package:gene_tree_app/modules/common/components/cm_avatar/cp_cm_avatar.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
 import 'package:gene_tree_app/modules/main/l10n/generated/l10n.dart';
@@ -48,24 +49,44 @@ class _HomeMemberState extends State<HomeMember> {
               ),
             );
           case AsyncStatus.success:
-            return SizedBox(
-              height: 70.h,
-              width: double.infinity,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: state.clanMembers.data?.length ?? 0,
-                itemBuilder: (context, index) =>
-                    _buildMemberItem(state.clanMembers.data?[index]),
-                separatorBuilder: (context, index) => SizedBox(
-                  width: 8.w,
-                ),
-              ),
-            );
+            return state.clanMembers.data?.isEmpty == true
+                ? _buildMemberEmpty()
+                : SizedBox(
+                    height: 70.h,
+                    width: double.infinity,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: state.clanMembers.data?.length ?? 0,
+                      itemBuilder: (context, index) =>
+                          _buildMemberItem(state.clanMembers.data?[index]),
+                      separatorBuilder: (context, index) => SizedBox(
+                        width: 8.w,
+                      ),
+                    ),
+                  );
           default:
             return Container();
         }
       },
+    );
+  }
+
+  Widget _buildMemberEmpty() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            MainLocalizations.current.noClanMember,
+            textAlign: TextAlign.center,
+            style: themeData.value.typo.t12Semibold.copyWith(
+              color: themeData.value.color.mainPrimaryColor.withOpacity(.5),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -145,18 +166,13 @@ class _HomeMemberState extends State<HomeMember> {
                 onTap: () {},
                 child: Row(
                   children: [
-                    // Text(
-                    //   MainLocalizations.current.viewAll,
-                    //   style: themeData.value.typo.t10Bold.copyWith(
-                    //     color: themeData.value.color.mainSecondaryColor1,
-                    //   ),
-                    // ),
                     SizedBox(width: 4.w),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: themeData.value.color.mainSecondaryColor1,
-                      size: 10.h,
-                    )
+                    Text(
+                      MainLocalizations.current.viewAll,
+                      style: themeData.value.typo.t10Bold.copyWith(
+                        color: themeData.value.color.mainSecondaryColor1,
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -142,7 +142,7 @@ class CmDialogScreen {
                 GestureDetector(
                   onTap: () {
                     Modular.to.pop();
-                    if (argument.onConfirm != null) {}
+                    if (argument.onConfirm == null) return;
                     argument.onConfirm!();
                   },
                   child: Container(

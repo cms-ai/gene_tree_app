@@ -56,14 +56,15 @@ class _HomeClanState extends State<HomeClan> {
                   ),
                   fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.circular(10.r),
+                borderRadius: BorderRadius.circular(20.r),
               ),
               child: Column(
                 children: [
+                  SizedBox(height: 10.h),
                   Text(
-                    MainLocalizations.current.clanName(state.clanData.data?.clanName ?? ""),
-                    style: themeData.value.typo.t14Bold.copyWith(
-                      color: themeData.value.color.mainSecondaryColor1,
+                    state.clanData.data?.clanName ?? "",
+                    style: themeData.value.typo.t16Bold.copyWith(
+                      color: themeData.value.color.mainPrimaryColor,
                     ),
                   ),
                   SizedBox(height: 10.h),
@@ -85,7 +86,8 @@ class _HomeClanState extends State<HomeClan> {
                         Modular.to.pushNamed(
                           MainModule.getRoutePath(MainModuleEnum.clanDetail),
                           arguments: ClanDetailArgument(
-                              clanEntity: state.clanData.data),
+                            clanEntity: state.clanData.data,
+                          ),
                         );
                       },
                     ),

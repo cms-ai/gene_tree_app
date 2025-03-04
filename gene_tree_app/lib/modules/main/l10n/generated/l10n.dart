@@ -90,10 +90,10 @@ class MainLocalizations {
     );
   }
 
-  /// `You don’t have an account`
+  /// `You don't have an account`
   String get noAccountBefore {
     return Intl.message(
-      'You don’t have an account',
+      'You don\'t have an account',
       name: 'noAccountBefore',
       desc: '',
       args: [],
@@ -130,16 +130,6 @@ class MainLocalizations {
     );
   }
 
-  /// `Clan: {name}`
-  String clanName(Object name) {
-    return Intl.message(
-      'Clan: $name',
-      name: 'clanName',
-      desc: '',
-      args: [name],
-    );
-  }
-
   /// `Detail`
   String get detail {
     return Intl.message('Detail', name: 'detail', desc: '', args: []);
@@ -170,6 +160,26 @@ class MainLocalizations {
     return Intl.message(
       'You don\'t have any clan events',
       name: 'noClanDes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clan: {name}`
+  String nameClan(Object name) {
+    return Intl.message(
+      'Clan: $name',
+      name: 'nameClan',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `You don't have any clan members`
+  String get noClanMember {
+    return Intl.message(
+      'You don\'t have any clan members',
+      name: 'noClanMember',
       desc: '',
       args: [],
     );

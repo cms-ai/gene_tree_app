@@ -24,7 +24,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "clanName": m0,
     "detail": MessageLookupByLibrary.simpleMessage("Detail"),
     "enterEmailHint": MessageLookupByLibrary.simpleMessage("Enter email"),
     "enterPassHint": MessageLookupByLibrary.simpleMessage("Enter password"),
@@ -36,11 +35,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "hello": MessageLookupByLibrary.simpleMessage("Hello!"),
     "hello2": MessageLookupByLibrary.simpleMessage("Nhập email"),
     "member": MessageLookupByLibrary.simpleMessage("Members"),
+    "nameClan": m0,
     "noAccountBefore": MessageLookupByLibrary.simpleMessage(
-      "You don’t have an account",
+      "You don\'t have an account",
     ),
     "noClanDes": MessageLookupByLibrary.simpleMessage(
       "You don\'t have any clan events",
+    ),
+    "noClanMember": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have any clan members",
     ),
     "signIn": MessageLookupByLibrary.simpleMessage("Sign in"),
     "signInWithGoogle": MessageLookupByLibrary.simpleMessage(

@@ -171,7 +171,6 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                   children: [
                     SizedBox(height: 60.h),
                     Text(
-                      // "You don't have any clan events",
                       MainLocalizations.current.noClanDes,
                       textAlign: TextAlign.center,
                       style: themeData.value.typo.t12Semibold.copyWith(),
