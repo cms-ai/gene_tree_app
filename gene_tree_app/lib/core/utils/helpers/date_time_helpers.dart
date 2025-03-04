@@ -12,8 +12,10 @@ class DateTimeHelper {
   }
 
   /// Chuyển đổi chuỗi sang DateTime với format cho trước
-  static DateTime? parseDateTime(String dateTimeString,
-      {String format = 'yyyy-MM-dd HH:mm:ss'}) {
+  static DateTime? parseDateTime(
+    String dateTimeString, {
+    String format = 'yyyy-MM-dd HH:mm:ss',
+  }) {
     try {
       return DateFormat(format).parse(dateTimeString);
     } catch (e) {
@@ -96,9 +98,9 @@ class DateTimeHelper {
     return DateFormat('HH:mm').format(dateTime);
   }
 
-  /// Lấy ngày, tháng, năm dạng chuỗi (dd/MM/yyyy)
+  /// Lấy ngày, tháng, năm dạng chuỗi (yyyy-MM-dd)
   static String getDate(DateTime dateTime) {
-    return DateFormat('dd/MM/yyyy').format(dateTime);
+    return DateFormat('yyyy-MM-dd').format(dateTime);
   }
 
   static Future<DateTime?> pickDate(
@@ -119,7 +121,7 @@ class DateTimeHelper {
       onChange: (index) {},
       onSubmit: (index) {
         if (index.runtimeType == DateTime) {
-          final dateFormat = formatDateTime(index, format: 'dd/MM/yyyy');
+          final dateFormat = formatDateTime(index, format: 'yyyy-MM-dd');
           onSubmit(dateFormat);
         }
       },

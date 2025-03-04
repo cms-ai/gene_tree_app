@@ -130,9 +130,24 @@ class $AssetsIconsGen {
   AssetGenImage get icIncome =>
       const AssetGenImage('assets/icons/ic_income.png');
 
+  /// File path: assets/icons/ic_logo_dev.png
+  AssetGenImage get icLogoDev =>
+      const AssetGenImage('assets/icons/ic_logo_dev.png');
+
+  /// File path: assets/icons/ic_logo_prod.png
+  AssetGenImage get icLogoProd =>
+      const AssetGenImage('assets/icons/ic_logo_prod.png');
+
   /// List of all assets
-  List<dynamic> get values =>
-      [avatarIconTest, icApple, icExpense, icGoogle, icIncome];
+  List<dynamic> get values => [
+        avatarIconTest,
+        icApple,
+        icExpense,
+        icGoogle,
+        icIncome,
+        icLogoDev,
+        icLogoProd
+      ];
 }
 
 class $AssetsImagesGen {

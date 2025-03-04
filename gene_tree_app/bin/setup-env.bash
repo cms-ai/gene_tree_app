@@ -2,6 +2,7 @@
 
 # Danh sách môi trường
 echo "Chọn môi trường để build:"
+echo "Note: Vui lòng chạy setup-env trước khi build. Sử dụng lệnh make setup-env "
 echo "1) Development (dev)"
 echo "2) Production (prod)"
 echo "2) Production (inhouse)"
@@ -24,26 +25,18 @@ case $env_choice in
         ;;
 esac
 
-# Chọn loại build
-# echo "Chọn loại build:"
-# echo "1) APK (debug)"
-# echo "2) APK (release)"
-# echo "3) AAB (release - dùng cho Google Play)"
-# read -p "Nhập số (1-3): " build_choice
-
-
 # Xác định loại build
 case $env_choice in
     1)
         BUILD_CMD="flutter build apk --flavor $FLAVOR --debug"
-        APP_NAME="Gene Tree $FLAVOR"
+        APP_NAME="Gene Tree Dev"
         APP_ID="com.aigenetreemobile.dev"
         PACKAGE_NAME="com.aigenetreemobile.dev"
 
         ;;
     2)
         BUILD_CMD="flutter build apk --flavor $FLAVOR --release"
-        APP_NAME="Gene Tree $FLAVOR"
+        APP_NAME="Gene Tree Prod"
         APP_ID="com.aigenetreemobile.dev"
         PACKAGE_NAME="com.aigenetreemobile.prod"
         ;;
@@ -61,18 +54,19 @@ esac
 
 # Chạy lệnh build
 echo "🚀 Bắt đầu thiết lập môi trường: $FLAVOR"
-echo "Thiết lập icon cho ứng dụng..."
-sed -i '' "s|image_path: .*|image_path: \"assets/icons/ic_logo_${FLAVOR}.png\"|g" pubspec.yaml
-flutter pub run flutter_launcher_icons
-echo "Hoàn thành thiết lập icon cho ứng dụng"
+echo "🔧 Đang thiết lập môi trường: $1"
+echo "🏷  Tên ứng dụng: $APP_NAME"
+echo "📦 Android ID: $APP_ID_ANDROID"
+echo "📦 iOS ID: $APP_ID_IOS"
+
+
+### 🛠️ Cập nhật Android ###
+echo "🔧 Đang cập nhật Android..."
+# echo "Hoàn thành thiết lập icon cho ứng dụng..."
 
 # Đổi package name
 echo "🔄 Đổi package name và app ID..."
 flutter pub run change_app_package_name:main $PACKAGE_NAME
-
-# Cập nhật tên app trong pubspec.yaml
-# echo "🔄 Đổi tên app trong pubspec.yaml..."
-# sed -i '' "s|name: .*|name: \"$APP_NAME\"|g" pubspec.yaml
 
 # Cập nhật tên app trong AndroidManifest.xml
 echo "🔄 Đổi tên app trong AndroidManifest.xml..."
@@ -88,12 +82,29 @@ sed -i '' "s/android:name=\"[^\"]*\.MainActivity\"/android:name=\"$APP_ID.MainAc
 
 
 echo "✅ Đã đổi tên app thành \"$APP_NAME\" thành công!"
-# $BUILD_CMD
+### 🛠️ Cập nhật iOS ###
+echo "🔧 Đang cập nhật iOS..."
+# 🛠️ Đổi Bundle Identifier trong iOS (project.pbxproj)
+sed -i '' "s/PRODUCT_BUNDLE_IDENTIFIER = .*;/PRODUCT_BUNDLE_IDENTIFIER = $APP_ID;/" ios/Runner.xcodeproj/project.pbxproj
+# 🛠️ Đổi Bundle Identifier trong iOS (project.pbxproj)
+sed -i '' "s/PRODUCT_BUNDLE_IDENTIFIER = .*;/PRODUCT_BUNDLE_IDENTIFIER = $APP_ID;/" ios/Runner.xcodeproj/project.pbxproj
+
+# 🛠️ Đổi Display Name trong Info.plist
+sed -i '' "s/<key>CFBundleDisplayName<\/key>\n\t<string>.*<\/string>/<key>CFBundleDisplayName<\/key>\n\t<string>$APP_NAME<\/string>/" ios/Runner/Info.plist
+
+echo "🔄 Đổi icon cho ứng dụng..."
+sed -i '' "s|image_path: .*|image_path: \"assets/icons/ic_logo_${FLAVOR}.png\"|g" pubspec.yaml
+flutter pub run flutter_launcher_icons
+
+
+# 🛠️ Dọn dẹp & Build lại
+flutter clean
+flutter pub get
 
 # Kiểm tra lỗi
 if [ $? -eq 0 ]; then
-    echo "✅ Build thành công!"
+    echo "✅ Thiết lập thành công!"
 else
-    echo "❌ Build thất bại! Kiểm tra lại lỗi."
+    echo "❌ Thiết lập thất bại! Kiểm tra lại lỗi."
     exit 1
 fi

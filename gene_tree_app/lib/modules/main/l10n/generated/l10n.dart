@@ -65,6 +65,11 @@ class MainLocalizations {
     );
   }
 
+  /// `Nhập email`
+  String get hello2 {
+    return Intl.message('Nhập email', name: 'hello2', desc: '', args: []);
+  }
+
   /// `Enter password`
   String get enterPassHint {
     return Intl.message(

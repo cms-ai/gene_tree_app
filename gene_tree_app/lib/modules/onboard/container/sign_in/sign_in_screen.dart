@@ -9,7 +9,6 @@ import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaff
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
 import 'package:gene_tree_app/modules/common/components/cm_dialog/cm_dialog_screen.dart';
-import 'package:gene_tree_app/modules/main/main_module.dart';
 import 'package:gene_tree_app/modules/onboard/l10n/generated/l10n.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
@@ -17,7 +16,7 @@ import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 import './bloc/sign_in_bloc.dart';
 part './models/sign_in_argument.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({
     super.key,
     this.argument,
@@ -25,13 +24,18 @@ class SignInScreen extends StatelessWidget {
   final SignInArgument? argument;
 
   @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  final SignInBloc signInBloc = Modular.get();
+  @override
   Widget build(BuildContext context) {
-    final SignInBloc signInBloc = Modular.get();
     return BaseScreen(
       scaffoldBuilder: () {
         return BaseScaffold(
           configs: BaseScaffoldConfigs(
-            nameScreen: "Home",
+            nameScreen: "SignInScreen",
             body: (themeState) => BlocProvider(
               create: (context) => signInBloc,
               child: Container(
@@ -50,16 +54,12 @@ class SignInScreen extends StatelessWidget {
                           ),
                         ).show(context)
                       },
-                      success: (userId, isCompleteProfile) {
-                        // Login successfully
-                        if (isCompleteProfile) {
-                          Modular.to.navigate(MainModule.path);
-                        } else {
-                          Modular.to.pushNamed(
-                            OnboardModule.getRoutePath(
-                                OnboardModuleEnum.createClan),
-                          );
-                        }
+                      success: (userId) {
+                        Modular.to.pushNamed(
+                          OnboardModule.getRoutePath(
+                            OnboardModuleEnum.profileSetup,
+                          ),
+                        );
                       },
                       failure: (title, content) => {
                         CmDialogScreen(

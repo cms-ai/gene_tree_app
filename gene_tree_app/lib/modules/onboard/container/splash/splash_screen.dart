@@ -34,16 +34,15 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _handleUnAuthenticated(bool firstLogin) {
-    // if (firstLogin) {
-    //   Modular.to.navigate(
-    //     OnboardModule.getRoutePath(OnboardModuleEnum.profileSetup),
-    //   );
-    // } else {
-    //   Modular.to.navigate(
-    //     OnboardModule.getRoutePath(OnboardModuleEnum.profileSetup),
-    //   );
-    // }
-    Modular.to.navigate(MainModule.path);
+    if (firstLogin) {
+      Modular.to.navigate(
+        OnboardModule.getRoutePath(OnboardModuleEnum.intro),
+      );
+    } else {
+      Modular.to.navigate(
+        OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
+      );
+    }
   }
 
   void _handleAuthenticated(bool completedUser) {
@@ -51,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Modular.to.navigate(MainModule.path);
     } else {
       Modular.to.navigate(OnboardModule.getRoutePath(
-        OnboardModuleEnum.createClan,
+        OnboardModuleEnum.profileSetup,
       ));
     }
   }

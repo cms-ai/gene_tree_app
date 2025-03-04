@@ -21,7 +21,6 @@ class SignInState with _$SignInState {
   /// State khi đăng nhập thành công
   const factory SignInState.success({
     required String userId, // Thông tin người dùng khi thành công
-    required bool isCompletedProfile,
   }) = _Success;
 
   /// State khi đăng nhập thất bại

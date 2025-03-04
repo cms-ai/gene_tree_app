@@ -105,7 +105,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
                     ),
                   TextField(
                     controller: widget.configs.controller,
-                    readOnly: true,
+                    readOnly: widget.configs.readOnly,
                     enabled: false,
                     style: themeData.value.typo.t12Regular.copyWith(
                         color: themeData.value.color.mainPrimaryColor),
@@ -237,6 +237,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
             style: themeData.value.typo.t12Regular.copyWith(
               color: themeData.value.color.mainPrimaryColor,
             ),
+            readOnly: widget.configs.readOnly,
             decoration: InputDecoration(
               hintText: hintTextConfigs?.hintText,
               hintStyle: hintTextConfigs?.hintStyle ??
@@ -264,6 +265,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
   Widget _buildPasswordTextField() {
     return TextField(
       controller: widget.configs.controller,
+      readOnly: widget.configs.readOnly,
       decoration: InputDecoration(
         hintText: hintTextConfigs?.hintText,
         hintStyle: hintTextConfigs?.hintStyle,
@@ -315,6 +317,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
               controller: widget.configs.controller,
               style: themeData.value.typo.t12Regular
                   .copyWith(color: themeData.value.color.mainPrimaryColor),
+              readOnly: widget.configs.readOnly,
               decoration: InputDecoration(
                 hintText: hintTextConfigs?.hintText,
                 hintStyle: hintTextConfigs?.hintStyle ??

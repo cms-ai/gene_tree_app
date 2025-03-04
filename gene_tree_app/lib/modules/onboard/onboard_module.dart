@@ -11,6 +11,7 @@ import 'package:gene_tree_app/modules/onboard/container/splash/bloc/splash_bloc.
 import 'package:gene_tree_app/modules/onboard/container/splash/splash_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/welcome/bloc/welcome_bloc.dart';
 import 'package:gene_tree_app/modules/onboard/container/welcome/welcome_screen.dart';
+import 'package:gene_tree_app/modules/main/guards/profile_guard.dart';
 
 class OnboardModule extends Module {
   static const String path = "/onboard/";
@@ -32,6 +33,7 @@ class OnboardModule extends Module {
         ChildRoute(
           OnboardModuleEnum.signIn.path,
           child: (context) => SignInScreen(argument: r.args.data),
+          guards: [],
         )
       ],
     );
@@ -39,6 +41,7 @@ class OnboardModule extends Module {
     r.child(
       OnboardModuleEnum.signIn.path,
       child: (context) => SignInScreen(argument: r.args.data),
+      guards: [],
     );
 
     r.child(
@@ -52,6 +55,9 @@ class OnboardModule extends Module {
     r.child(
       OnboardModuleEnum.profileSetup.path,
       child: (context) => ProfileSetupScreen(argument: r.args.data),
+      guards: [
+        ProfileGuard(userBloc: Modular.get()),
+      ],
     );
 
     super.routes(r);

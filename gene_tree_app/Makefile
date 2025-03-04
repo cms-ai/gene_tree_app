@@ -9,14 +9,15 @@ clean:
 setup:
 	bash ./bin/setup.bash
 
+# setup env
 .PHONY: setup-env
 setup-env:
 	bash ./bin/setup-env.bash
 
 # Build APK hoặc iOS
-.PHONY: build-android-dev
-build:
-	flutter build apk --release
+.PHONY: build-android
+build-android:
+	bash ./bin/build.bash
 
 # Chạy test unit
 .PHONY: test

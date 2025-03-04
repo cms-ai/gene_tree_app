@@ -33,5 +33,6 @@
   "clanName": "Clan name",
   "description": "Description",
   "clanNameHint": "Enter your clan name",
-  "descriptionHint": "Enter your description"
+  "descriptionHint": "Enter your description",
+  "loginFailed": "Login failed"
 }

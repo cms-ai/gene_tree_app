@@ -1,13 +1,19 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:gene_tree_app/core/blocs/bloc/user_bloc.dart';
 import 'package:gene_tree_app/core/exceptions/exceptions.dart';
 import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/helpers/helpers.dart';
+import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:gene_tree_app/data/models/auth/request/login_google_request.dart';
 import 'package:gene_tree_app/data/models/auth/response/login_google_response.dart';
 import 'package:gene_tree_app/domain/usecase/auth/login_google.usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
+import 'package:gene_tree_app/modules/onboard/l10n/generated/l10n.dart';
 
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
@@ -15,12 +21,14 @@ part 'sign_in_bloc.freezed.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final GoogleAuthHelper authHelper;
+  final UserBloc userBloc;
   final JwtHelper jwtHelper;
   final LocalStorage localStorage;
   final LoginGoogleUsecase loginGoogleUsecase;
   final GetAllClanUsecase getAllClanUsecase;
   SignInBloc({
     required this.authHelper,
+    required this.userBloc,
     required this.jwtHelper,
     required this.localStorage,
     required this.loginGoogleUsecase,
@@ -28,60 +36,61 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   }) : super(SignInState.initial()) {
     on<SignInEvent>((event, emit) async {
       await event.map(
-        initial: (value) => _handleInitialEvent(emit),
-        signInWithGoogle: (value) => _handleSignInWithGoogleEvent(emit),
-        signInWithApple: (_) => _handleSignInWithAppleEvent(emit),
+        signInWithGoogle: (_) async => _loginGoogleEvent(emit),
+        signInWithApple: (_) async => {
+          // TODO: Sign in with apple
+        },
+        completeProfileEvent: (value) async {},
       );
     });
   }
 
-  Future<void> _handleInitialEvent(Emitter<SignInState> emit) async {
-    emit(SignInState.initial());
-  }
-
-  Future<void> _handleSignInWithGoogleEvent(Emitter<SignInState> emit) async {
+  Future<void> _loginGoogleEvent(Emitter<SignInState> emit) async {
     try {
-      emit(const SignInState.loading());
-      final userCredential = await authHelper.signInWithGoogle();
-      LoginGoogleResponse? loginRes;
-      loginRes = await loginGoogleUsecase.call(
-        LoginGoogleRequest(
-          email: userCredential.user?.email ?? "",
-          name: userCredential.user?.displayName ?? "",
-          avatarUrl: userCredential.user?.photoURL ?? "",
-        ),
-      );
+      // Login google with google plugin
+      final userCre = await authHelper.signInWithGoogle();
+      LoggerUtil.errorLog("UserCredential: ${userCre.user?.email}");
+      // Get id token from user
+      final idToken = await userCre.user?.getIdToken(true);
 
-      final userId = jwtHelper.getUserIdFromToken(loginRes?.accessToken ?? "");
-
-      if (userId != null) {
-        final clanSnap = await getAllClanUsecase.call(userId);
-        await _saveUserLocalData(loginRes, userId);
-        emit(
-          SignInState.success(
-            userId: userId,
-            isCompletedProfile: clanSnap.isNotEmpty,
-          ),
-        );
+      if (idToken != null) {
+        // Call login google usecase
+        final response =
+            await loginGoogleUsecase.call(LoginGoogleRequest(idToken: idToken));
+        if (response?.user.userId != null &&
+            response?.user.isDeleted == false) {
+          await _saveUserLocalData(response);
+          final completer = Completer();
+          final subscription = userBloc.stream.listen((state) {
+            if (state.userData != null) {
+              completer.complete(); // Khi có dữ liệu user thì hoàn thành
+            }
+          });
+          userBloc.add(const UserEvent.initialData());
+          await completer.future.timeout(const Duration(seconds: 10)); // Đợi UserBloc xử lý xong
+          subscription.cancel();
+          emit(
+            SignInState.success(userId: response!.user.userId!),
+          );
+        } else {
+          throw Exception("User id not found");
+        }
       }
     } catch (e) {
       final errorText = await e.getMessageErr();
-
-      // print("======= $errorText and ${e.toString()}");
+      LoggerUtil.errorLog(
+          "${OnboardLocalizations.current.loginFailed} $errorText");
       emit(SignInState.failure(
-        title: "Login failed",
+        title: OnboardLocalizations.current.loginFailed,
         content: errorText ?? "",
       ));
     }
   }
 
-  Future<void> _handleSignInWithAppleEvent(Emitter<SignInState> emit) async {
-    // TODO: Implement sign in with Apple
-  }
+  Future<void> saveUserDatas() async {}
 
   Future<void> _saveUserLocalData(
     LoginGoogleResponse? response,
-    String userId,
   ) async {
     try {
       await localStorage.save(
@@ -89,7 +98,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       await localStorage.save(
           SharePreferenceKeys.refreshToken.name, response?.refreshToken ?? "");
 
-      await localStorage.save(SharePreferenceKeys.userId.name, userId);
+      await localStorage.save(
+          SharePreferenceKeys.userId.name, response?.user.userId ?? "");
     } catch (e) {
       throw Exception(e);
     }

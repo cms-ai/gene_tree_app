@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gene_tree_app/core/blocs/bloc/user_bloc.dart';
 import 'package:gene_tree_app/core/config/env_config.dart';
 import 'package:gene_tree_app/core/network/dio_client.dart';
 import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
@@ -16,6 +17,7 @@ import 'package:gene_tree_app/domain/usecase/clan/get_clan_events_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_clan_members_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/update_clan_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/user/get_user.usecase.dart';
+import 'package:gene_tree_app/domain/usecase/user/update_user.usecase.dart';
 import 'package:gene_tree_app/modules/common/bloc/bloc/app_bloc.dart';
 
 class CommonModule extends Module {
@@ -29,6 +31,7 @@ class CommonModule extends Module {
   void binds(Injector i) {
     i.addSingleton<LocalStorage>(SharedPreferencesStorage.new);
     i.addSingleton(AppBloc.new);
+    i.addSingleton(UserBloc.new);
     i.addSingleton<JwtHelper>(JwtHelper.new);
     i.addSingleton(ThemeBloc.new);
     i.addSingleton(GoogleAuthHelper.new);
@@ -83,6 +86,7 @@ class CommonModule extends Module {
 
     // user usecase
     i.addSingleton(GetUserUsecase.new);
+    i.addSingleton(UpdateUserUsecase.new);
 
     // auth usecase
     i.addSingleton(LoginGoogleUsecase.new);

@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "You already have an account",
     ),
     "hello": MessageLookupByLibrary.simpleMessage("Hello!"),
+    "hello2": MessageLookupByLibrary.simpleMessage("Nhập email"),
     "member": MessageLookupByLibrary.simpleMessage("Members"),
     "noAccountBefore": MessageLookupByLibrary.simpleMessage(
       "You don’t have an account",

@@ -1,6 +1,7 @@
 // lib/data/data_sources/auth/auth_api_service.dart
 import 'package:dio/dio.dart';
 import 'package:gene_tree_app/core/network/base_response.dart';
+import 'package:gene_tree_app/data/models/user/request/update_user_request.dart';
 import 'package:gene_tree_app/domain/entities/user_entity.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -22,6 +23,7 @@ abstract class UserApiService {
   @PUT("/user/{id}")
   Future<BaseResponse<UserEntity>> updateUser(
     @Path('id') String id,
+    @Body() UpdateUserRequest? body,
   );
 
   @DELETE("/user/{id}")

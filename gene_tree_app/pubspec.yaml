@@ -128,15 +128,7 @@ flutter_gen:
   # Optional
   integrations:
     flutter_svg: true
-    # flare_flutter: true
-    # rive: true
     lottie: true
-  # flutter_intl:
-  #   enabled: true
-  #   arb_dir: lib/modules/common/l10n/arbs
-  #   output_dir: lib/modules/common/l10n/generated
-  #   default_locale: vi
-  #   class_name: "Gene Tree Dev"
 
 flutter_icons:
   android: true

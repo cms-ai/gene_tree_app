@@ -11,6 +11,7 @@ class CPCmTextFieldConfigs {
   final int? maxLines;
   final void Function(String)? onChanged;
   final void Function(String? onSubmit)? onSubmit;
+  final bool readOnly;
 
   const CPCmTextFieldConfigs({
     this.type = CMTexFieldTypeEnum.normal,
@@ -21,6 +22,7 @@ class CPCmTextFieldConfigs {
     this.maxLines,
     this.onChanged,
     this.onSubmit,
+    this.readOnly = false,
   });
 }
 

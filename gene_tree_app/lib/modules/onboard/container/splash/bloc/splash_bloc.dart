@@ -46,13 +46,10 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
             } else {
               // get user api
               final user = await getUserUsecase.call(userId);
-
-              // get clan API
-              final clanList = await getAllClanUsecase.call(userId);
               if (user != null) {
                 emit(
                   SplashState.authenticated(
-                    completedUser: clanList.isNotEmpty,
+                    completedUser: user.isCompleted,
                   ),
                 );
               }

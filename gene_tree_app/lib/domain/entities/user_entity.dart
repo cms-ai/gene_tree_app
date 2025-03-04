@@ -29,6 +29,8 @@ class UserEntity {
     this.isDeleted,
   });
 
+  bool get isCompleted => fullName != null && dob != null && gender != null;
+
   factory UserEntity.fromJson(Map<String, dynamic> json) =>
       _$UserEntityFromJson(json);
 

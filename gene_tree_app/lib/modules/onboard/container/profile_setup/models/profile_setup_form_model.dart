@@ -1,4 +1,8 @@
-class NameAndAgeStepFormModel {
+import 'package:gene_tree_app/core/utils/enums/enums.dart';
+
+abstract class ProfileSetupStepModel {}
+
+class NameAndAgeStepFormModel extends ProfileSetupStepModel {
   final String name;
   final String dateOfBirth;
   NameAndAgeStepFormModel({
@@ -19,23 +23,17 @@ class NameAndAgeStepFormModel {
   bool get isValid => name.isNotEmpty && dateOfBirth.isNotEmpty;
 }
 
-class ClanStepFormModel {
-  final String clanName;
-  final String clanDescription;
-  ClanStepFormModel({
-    this.clanName = "",
-    this.clanDescription = "",
+class GenderStepModel extends ProfileSetupStepModel {
+  final GenderEnum? genderEnum;
+  GenderStepModel({
+    this.genderEnum,
   });
 
-  ClanStepFormModel copyWith({
-    String? clanName,
-    String? clanDescription,
-  }) {
-    return ClanStepFormModel(
-      clanName: clanName ?? this.clanName,
-      clanDescription: clanDescription ?? this.clanDescription,
+  GenderStepModel copyWith({GenderEnum? genderEnum}) {
+    return GenderStepModel(
+      genderEnum: genderEnum ?? this.genderEnum,
     );
   }
 
-  bool get isValid => clanName.isNotEmpty && clanDescription.isNotEmpty;
+  bool get isValid => genderEnum != null;
 }

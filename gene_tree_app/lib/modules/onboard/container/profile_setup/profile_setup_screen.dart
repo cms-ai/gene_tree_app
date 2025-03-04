@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gene_tree_app/core/blocs/bloc/user_bloc.dart';
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/domain/entities/clan_entity.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
 import 'package:gene_tree_app/modules/common/components/cm_app_bar/cp_cm_app_bar.dart';
+import 'package:gene_tree_app/modules/common/components/cm_dialog/cm_dialog_screen.dart';
 import 'package:gene_tree_app/modules/common/components/cm_text_field/cp_cm_text_field.dart';
 import 'package:gene_tree_app/modules/common/l10n/generated/l10n.dart';
+import 'package:gene_tree_app/modules/onboard/container/profile_setup/models/profile_setup_form_model.dart';
 import 'package:gene_tree_app/modules/onboard/l10n/generated/l10n.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 import './bloc/profile_setup_bloc.dart';
@@ -27,9 +31,30 @@ class ProfileSetupScreen extends StatefulWidget {
 }
 
 class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
-  final dateController = TextEditingController();
-  final nameController = TextEditingController();
+  late final TextEditingController dateController;
+  late final TextEditingController nameController;
   final ProfileSetupBloc bloc = Modular.get<ProfileSetupBloc>();
+  final UserBloc userBloc = Modular.get<UserBloc>();
+  @override
+  void initState() {
+    nameController =
+        TextEditingController(text: userBloc.state.userData?.fullName);
+    dateController = TextEditingController(text: userBloc.state.userData?.dob);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      bloc.add(
+        ProfileSetupEvent.started(
+          nameAndAgeStepModel: NameAndAgeStepFormModel(
+            name: nameController.text.trim(),
+            dateOfBirth: dateController.text.trim(),
+          ),
+          genderStepModel: GenderStepModel(
+            genderEnum: userBloc.state.userData?.gender,
+          ),
+        ),
+      );
+    });
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -44,105 +69,195 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
       scaffoldBuilder: () {
         return BlocProvider.value(
           value: bloc,
-          child: BaseScaffold(
-            configs: BaseScaffoldConfigs(
-              nameScreen: "ProfileSetup",
-              appBar: CPCmAppBar(
-                configs: CPCmAppBarConfigs(
-                  title: "",
-                  prefixIcon: GestureDetector(
-                    onTap: () {
-                      bloc.add(const ProfileSetupEvent.backStep());
-                    },
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                      color: themeData.value.color.mainPrimaryColor,
+          child: BlocListener<ProfileSetupBloc, ProfileSetupState>(
+            listenWhen: (previous, current) =>
+                previous.profileSetupState != current.profileSetupState,
+            listener: (context, state) {
+              switch (state.profileSetupState) {
+                case ProfileSetupStatusEnum.loading:
+                  CmDialogScreen(
+                    argument: CmDialogArgument(
+                      type: CmDialogType.loading,
+                    ),
+                  ).show(context);
+                  break;
+
+                case ProfileSetupStatusEnum.failure:
+                  CmDialogScreen(
+                    argument: CmDialogArgument(
+                      type: CmDialogType.alert,
+                      title: "Error",
+                      content: "Error",
+                    ),
+                  ).show(context);
+                  break;
+                case ProfileSetupStatusEnum.success:
+                  CmDialogScreen(
+                    argument: CmDialogArgument(
+                      type: CmDialogType.success,
+                    ),
+                  ).show(context);
+                  break;
+                default:
+                  break;
+              }
+            },
+            child: BaseScaffold(
+              configs: BaseScaffoldConfigs(
+                nameScreen: "ProfileSetup",
+                appBar: CPCmAppBar(
+                  configs: CPCmAppBarConfigs(
+                    title: "",
+                    prefixIcon: GestureDetector(
+                      onTap: () {
+                        // bloc.add(const ProfileSetupEvent.backStep());
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: themeData.value.color.mainPrimaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+                body: (themeState) =>
+                    BlocListener<ProfileSetupBloc, ProfileSetupState>(
+                  listenWhen: (previous, current) =>
+                      previous.profileSetupState != current.profileSetupState,
+                  listener: (context, state) {
+                    switch (state.profileSetupState) {
+                      case ProfileSetupStatusEnum.loading:
+                        CmDialogScreen(
+                          argument: CmDialogArgument(
+                            type: CmDialogType.loading,
+                          ),
+                        ).show(context);
+                        break;
+
+                      case ProfileSetupStatusEnum.failure:
+                        CmDialogScreen(
+                          argument: CmDialogArgument(
+                            type: CmDialogType.alert,
+                            title: "Error",
+                            content: "Error",
+                          ),
+                        ).show(context);
+                        break;
+                      case ProfileSetupStatusEnum.success:
+                        CmDialogScreen(
+                          argument: CmDialogArgument(
+                            type: CmDialogType.success,
+                          ),
+                        ).show(context);
+
+                        Future.delayed(Duration(seconds: 2), () {
+                          Modular.to.pushNamedAndRemoveUntil(
+                            OnboardModule.getRoutePath(
+                                OnboardModuleEnum.welcome),
+                            (route) => false,
+                          );
+                        });
+                        break;
+                      default:
+                        break;
+                    }
+                    // if (state.profileSetupState ==
+                    //     ProfileSetupStatusEnum.success) {
+                    //   // TODDO
+                    //   // Navigate to welcome screen
+                    //   Modular.to.pushNamedAndRemoveUntil(
+                    //     OnboardModule.getRoutePath(OnboardModuleEnum.welcome),
+                    //     (route) => false,
+                    //   );
+                    // }
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: themeData.value.spacing.screenHorizontal,
+                    ),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  OnboardLocalizations.current.profileSetup,
+                                  style: themeData.value.typo.t16Bold.copyWith(
+                                    fontSize: 32.sp,
+                                    color: themeData
+                                        .value.color.mainSecondaryColor1,
+                                  ),
+                                ),
+                                Text(
+                                  OnboardLocalizations.current.profileSetupDes,
+                                  style:
+                                      themeData.value.typo.t14Regular.copyWith(
+                                    color: themeData
+                                        .value.color.mainSecondaryColor3,
+                                  ),
+                                ),
+                                SizedBox(height: 22.h),
+                                _buildProgessSetup(context),
+                                SizedBox(height: 10.h),
+                                _buildProfileWidget(),
+                              ],
+                            ),
+                          ),
+                        ),
+                        _buildButton(),
+                        SizedBox(height: 16.h)
+                      ],
                     ),
                   ),
                 ),
               ),
-              body: (themeState) =>
-                  BlocListener<ProfileSetupBloc, ProfileSetupState>(
-                listenWhen: (previous, current) =>
-                    previous.profileSetupState != current.profileSetupState,
-                listener: (context, state) {
-                  if (state.profileSetupState ==
-                      ProfileSetupStatusEnum.success) {
-                    // TODDO
-                    // Navigate to welcome screen
-                    Modular.to.pushNamedAndRemoveUntil(
-                      OnboardModule.getRoutePath(OnboardModuleEnum.welcome),
-                      (route) => false,
-                    );
-                  }
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: themeData.value.spacing.screenHorizontal,
-                  ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                OnboardLocalizations.current.profileSetup,
-                                style: themeData.value.typo.t16Bold.copyWith(
-                                  fontSize: 32.sp,
-                                  color:
-                                      themeData.value.color.mainSecondaryColor1,
-                                ),
-                              ),
-                              Text(
-                                OnboardLocalizations.current.profileSetupDes,
-                                style: themeData.value.typo.t14Regular.copyWith(
-                                  color:
-                                      themeData.value.color.mainSecondaryColor3,
-                                ),
-                              ),
-                              SizedBox(height: 22.h),
-                              _buildProgessSetup(context),
-                              SizedBox(height: 10.h),
-                              _buildProfileWidget(),
-                            ],
-                          ),
-                        ),
-                      ),
-                      BlocBuilder<ProfileSetupBloc, ProfileSetupState>(
-                        buildWhen: (previous, current) =>
-                            previous.currentStep != current.currentStep ||
-                            previous.isDisabledSubmit !=
-                                current.isDisabledSubmit,
-                        builder: (context, state) {
-                          return CPButton(
-                            configs: CPButtonConfigs(
-                              content: state.currentStep ==
-                                      ProfileSetupStep.values.last
-                                  ? CommonLocalizations.current.submit
-                                  : CommonLocalizations.current.next,
-                              isDiabled: state.isDisabledSubmit,
-                              onTap: () {
-                                if (state.currentStep !=
-                                    ProfileSetupStep.values.last) {
-                                  bloc.add(const ProfileSetupEvent.nextStep());
-                                } else {
-                                  bloc.add(
-                                    const ProfileSetupEvent.submit(),
-                                  );
-                                }
-                              },
-                            ),
-                          );
-                        },
-                      ),
-                      SizedBox(height: 16.h)
-                    ],
-                  ),
-                ),
-              ),
             ),
+          ),
+        );
+      },
+    );
+  }
+
+  // ProfileSetupStep getNextStep(ProfileSetupStep currentStep) {
+  // switch (currentStep) {
+  //   case ProfileSetupStep.nameAndAge:
+  //     return ProfileSetupStep.gender;
+  //   case
+
+  // }
+  // }
+
+  Widget _buildButton() {
+    return BlocBuilder<ProfileSetupBloc, ProfileSetupState>(
+      builder: (context, state) {
+        final buttonTitle = state.currentStep == ProfileSetupStep.values.last
+            ? CommonLocalizations.current.submit
+            : CommonLocalizations.current.next;
+
+        bool enableButton() {
+          switch (state.currentStep) {
+            case ProfileSetupStep.nameAndAge:
+              return state.nameAndAgeStepFormModel?.isValid ?? false;
+            case ProfileSetupStep.gender:
+              return state.genderStepModel?.isValid ?? false;
+          }
+        }
+
+        return CPButton(
+          configs: CPButtonConfigs(
+            content: buttonTitle,
+            isDiabled: !enableButton(),
+            onTap: () {
+              if (state.currentStep != ProfileSetupStep.values.last) {
+                bloc.add(const ProfileSetupEvent.nextStep());
+              } else {
+                print("===================================");
+                bloc.add(
+                  const ProfileSetupEvent.submit(),
+                );
+              }
+            },
           ),
         );
       },
@@ -163,8 +278,6 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                   return _buildNameAndAgeWidget();
                 case ProfileSetupStep.gender:
                   return _buildGenderWidget();
-                case ProfileSetupStep.clan:
-                  return _buildClanWidget();
               }
             })
           ],
@@ -188,7 +301,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
         SizedBox(height: 22.h),
         BlocBuilder<ProfileSetupBloc, ProfileSetupState>(
           buildWhen: (previous, current) =>
-              previous.currentGender != current.currentGender,
+              previous.currentStep != current.currentStep ||
+              previous.genderStepModel != current.genderStepModel,
           builder: (context, state) {
             return ListView.separated(
               shrinkWrap: true,
@@ -198,7 +312,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                   configs: CPButtonConfigs(
                     content: GenderEnum.values[index].name,
                     decoration: BoxDecoration(
-                      color: state.currentGender == GenderEnum.values[index]
+                      color: state.genderStepModel?.genderEnum ==
+                              GenderEnum.values[index]
                           ? themeData.value.color.btnColor1
                           : themeData
                               .value.color.btnColor2, // Màu nền của button
@@ -206,8 +321,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                     ),
                     onTap: () {
                       bloc.add(
-                        ProfileSetupEvent.changeGender(
-                          GenderEnum.values[index],
+                        ProfileSetupEvent.onChange(
+                          genderStepModel: GenderStepModel(
+                            genderEnum: GenderEnum.values[index],
+                          ),
                         ),
                       );
                     },
@@ -243,7 +360,13 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
             labelText: OnboardLocalizations.current.fullName,
             controller: nameController,
             onChanged: (value) {
-              bloc.add(ProfileSetupEvent.onFullName(value.trim()));
+              bloc.add(
+                ProfileSetupEvent.onChange(
+                  nameAndAgeStepModel: NameAndAgeStepFormModel(
+                      name: nameController.text.trim(),
+                      dateOfBirth: dateController.text.trim()),
+                ),
+              );
             },
             hintTextConfigs: HintTextConfigs(
               hintText: OnboardLocalizations.current.nameHint,
@@ -256,48 +379,18 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
             type: CMTexFieldTypeEnum.datetime,
             labelText: OnboardLocalizations.current.dob,
             onChanged: (value) {
-              bloc.add(ProfileSetupEvent.onDOB(value.trim()));
+              bloc.add(
+                ProfileSetupEvent.onChange(
+                  nameAndAgeStepModel: NameAndAgeStepFormModel(
+                    name: nameController.text.trim(),
+                    dateOfBirth: dateController.text.trim(),
+                  ),
+                ),
+              );
             },
             controller: dateController,
             hintTextConfigs: const HintTextConfigs(
-              hintText: "dd/mm/yyyy",
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildClanWidget() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          OnboardLocalizations.current.clan,
-          style: themeData.value.typo.t16Bold.copyWith(
-            fontSize: 22.sp,
-            color: themeData.value.color.mainSecondaryColor1,
-          ),
-        ),
-        SizedBox(height: 22.h),
-        CPCmTextField(
-          configs: CPCmTextFieldConfigs(
-            labelText: OnboardLocalizations.current.clanName,
-            controller: TextEditingController(),
-            hintTextConfigs: HintTextConfigs(
-              hintText: OnboardLocalizations.current.clanNameHint,
-            ),
-          ),
-        ),
-        SizedBox(height: 14.h),
-        CPCmTextField(
-          configs: CPCmTextFieldConfigs(
-            labelText: OnboardLocalizations.current.description,
-            maxLines: 3,
-            controller: TextEditingController(),
-            hintTextConfigs: HintTextConfigs(
-              hintText: OnboardLocalizations.current.descriptionHint,
+              hintText: "yyyy-MM-dd",
             ),
           ),
         ),
@@ -312,7 +405,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
             previous.currentStep != current.currentStep,
         builder: (context, state) {
           int currentIndex = state.currentStep.index + 1;
-          double mediumWidth = constraints.maxWidth / 3;
+          double mediumWidth =
+              constraints.maxWidth / ProfileSetupStep.values.length;
 
           return Column(
             mainAxisSize: MainAxisSize.min,

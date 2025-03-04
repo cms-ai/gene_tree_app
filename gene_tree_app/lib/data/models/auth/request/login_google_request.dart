@@ -6,14 +6,11 @@ part 'login_google_request.g.dart';
 // @Freezed()
 @JsonSerializable()
 class LoginGoogleRequest {
-  final String? email;
-  final String? name;
-  final String? avatarUrl;
+  @JsonKey(name: 'id_token')
+  final String idToken;
 
   LoginGoogleRequest({
-    this.email,
-    this.name,
-    this.avatarUrl,
+    required this.idToken,
   });
 
   factory LoginGoogleRequest.fromJson(Map<String, dynamic> json) =>

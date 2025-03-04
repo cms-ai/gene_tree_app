@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "You already have an account",
     ),
     "letStart": MessageLookupByLibrary.simpleMessage("Let\'s start"),
+    "loginFailed": MessageLookupByLibrary.simpleMessage("Login failed"),
     "nameAndAge": MessageLookupByLibrary.simpleMessage("Name & Age *"),
     "nameHint": MessageLookupByLibrary.simpleMessage("Enter your name"),
     "noAccountBefore1": MessageLookupByLibrary.simpleMessage(

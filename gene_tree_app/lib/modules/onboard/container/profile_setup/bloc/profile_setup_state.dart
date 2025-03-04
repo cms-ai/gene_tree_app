@@ -1,29 +1,20 @@
 part of 'profile_setup_bloc.dart';
 
-enum ProfileSetupStep {
-  nameAndAge(true),
-  gender(true),
-  clan(false);
-
-  final bool isRequired;
-  const ProfileSetupStep(this.isRequired);
-}
+enum ProfileSetupStep { nameAndAge, gender }
 
 enum ProfileSetupStatusEnum {
   initial,
   loading,
   success,
-  error,
+  failure,
 }
 
 @freezed
 class ProfileSetupState with _$ProfileSetupState {
   const factory ProfileSetupState.initial({
-    required NameAndAgeStepFormModel nameAndAgeStepFormModel,
-    required ClanStepFormModel clanStepFormModel,
-    required GenderEnum currentGender,
+    NameAndAgeStepFormModel? nameAndAgeStepFormModel,
+    GenderStepModel? genderStepModel,
     required ProfileSetupStep currentStep,
-    required bool isDisabledSubmit,
     required ProfileSetupStatusEnum profileSetupState,
   }) = _Initial;
 }

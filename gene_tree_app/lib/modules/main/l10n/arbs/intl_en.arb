@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "enterEmailHint": "Enter email",
+  "hello2": "Nhập email",
   "enterPassHint": "Enter password",
   "forgotPass": "Forgot password",
   "noAccountBefore": "You don’t have an account",

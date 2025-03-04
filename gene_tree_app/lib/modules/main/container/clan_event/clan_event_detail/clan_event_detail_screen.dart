@@ -74,7 +74,7 @@ class ClanEventDetailScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 4.h),
                                 Text(
-                                  "dd/mm/yyyy",
+                                  "yyyy-MM-dd",
                                   style:
                                       themeData.value.typo.t14Bold.copyWith(),
                                 )
@@ -96,7 +96,7 @@ class ClanEventDetailScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 4.h),
                                 Text(
-                                  "dd/mm/yyyy",
+                                  "yyyy-MM-dd",
                                   style:
                                       themeData.value.typo.t14Bold.copyWith(),
                                 )
