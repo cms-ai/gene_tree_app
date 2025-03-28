@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gene_tree_app/core/blocs/bloc/user_bloc.dart';
 import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
-import 'package:gene_tree_app/core/utils/helpers/helpers.dart';
 import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:gene_tree_app/data/models/user/request/update_user_request.dart';
 import 'package:gene_tree_app/domain/usecase/user/update_user.usecase.dart';

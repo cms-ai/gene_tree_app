@@ -78,12 +78,6 @@ class OnboardModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
-    i.addSingleton<CreateClanBloc>(
-      CreateClanBloc.new,
-      config: BindConfig(
-        onDispose: (bloc) => bloc.close(),
-      ),
-    );
 
     i.addSingleton<WelcomeBloc>(
       WelcomeBloc.new,

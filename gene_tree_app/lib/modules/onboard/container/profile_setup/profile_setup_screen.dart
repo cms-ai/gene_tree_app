@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/blocs/bloc/user_bloc.dart';
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
+import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/domain/entities/clan_entity.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
@@ -149,7 +150,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                           ),
                         ).show(context);
 
-                        Future.delayed(Duration(seconds: 2), () {
+                        Future.delayed(const Duration(seconds: 2), () {
                           Modular.to.pushNamedAndRemoveUntil(
                             OnboardModule.getRoutePath(
                                 OnboardModuleEnum.welcome),
@@ -252,7 +253,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
               if (state.currentStep != ProfileSetupStep.values.last) {
                 bloc.add(const ProfileSetupEvent.nextStep());
               } else {
-                print("===================================");
+                LoggerUtil.debugLog("===================================");
                 bloc.add(
                   const ProfileSetupEvent.submit(),
                 );

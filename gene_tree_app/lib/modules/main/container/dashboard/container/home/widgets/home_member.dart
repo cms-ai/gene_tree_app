@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/domain/entities/clan_member_entity.dart';
+import 'package:gene_tree_app/gen/assets.gen.dart';
 import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
 import 'package:gene_tree_app/modules/common/components/cm_avatar/cp_cm_avatar.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
 import 'package:gene_tree_app/modules/main/l10n/generated/l10n.dart';
+import 'package:gene_tree_app/modules/main/main_module.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeMember extends StatefulWidget {
@@ -73,18 +76,22 @@ class _HomeMemberState extends State<HomeMember> {
   }
 
   Widget _buildMemberEmpty() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+    return SizedBox(
+      height: 160.h,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
+          const Spacer(),
+          Assets.images.emptyState.svg(
+            height: 100.h,
+          ),
           Text(
             MainLocalizations.current.noClanMember,
             textAlign: TextAlign.center,
-            style: themeData.value.typo.t12Semibold.copyWith(
+            style: themeData.value.typo.t12Regular.copyWith(
               color: themeData.value.color.mainPrimaryColor.withOpacity(.5),
             ),
           ),
+          const Spacer(),
         ],
       ),
     );

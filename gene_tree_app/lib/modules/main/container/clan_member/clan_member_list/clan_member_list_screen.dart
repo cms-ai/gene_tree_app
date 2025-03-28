@@ -83,7 +83,7 @@ class _ClanMemberListScreenState extends State<ClanMemberListScreen> {
                             Text(
                               "Members (${state.members.data?.length})",
                               style: themeData.value.typo.t14Semibold.copyWith(
-                                color: themeData.value.color.btnColor2,
+                                color: themeData.value.color.mainPrimaryColor,
                               ),
                             ),
                             SizedBox(height: 14.h),
@@ -94,8 +94,10 @@ class _ClanMemberListScreenState extends State<ClanMemberListScreen> {
                                     vertical: 10.h, horizontal: 10.w),
                                 hintTextConfigs: HintTextConfigs(
                                   hintText: "Tìm kiếm thành viên",
-                                  hintStyle: themeData.value.typo.t12Regular.copyWith(
-                                    color: themeData.value.color.mainPrimaryColor
+                                  hintStyle:
+                                      themeData.value.typo.t12Regular.copyWith(
+                                    color: themeData
+                                        .value.color.mainPrimaryColor
                                         .withOpacity(.4),
                                   ),
                                 ),
@@ -130,7 +132,8 @@ class _ClanMemberListScreenState extends State<ClanMemberListScreen> {
                                         children: [
                                           Text(
                                             "You don't have any members",
-                                            style: themeData.value.typo.t14Semibold,
+                                            style: themeData
+                                                .value.typo.t14Semibold,
                                           ),
                                           SizedBox(height: 20.h),
                                           CPButton(
@@ -140,8 +143,8 @@ class _ClanMemberListScreenState extends State<ClanMemberListScreen> {
                                                 vertical: 8.h,
                                                 horizontal: 10.w,
                                               ),
-                                              textStyle:
-                                                  themeData.value.typo.t12Regular,
+                                              textStyle: themeData
+                                                  .value.typo.t12Regular,
                                               content: "Create member",
                                               onTap: () {
                                                 // TODO: Create now

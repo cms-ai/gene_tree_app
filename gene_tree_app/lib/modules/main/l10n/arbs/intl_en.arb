@@ -14,7 +14,7 @@
   "event": "Event",
   "member": "Members",
   "viewAll": "View all",
-  "noClanDes": "You don't have any clan events",
+  "noClanEventDes": "You don't have any clan events",
   "nameClan": "Clan: {name}",
   "noClanMember": "You don't have any clan members"
 }

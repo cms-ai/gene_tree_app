@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gene_tree_app/core/blocs/bloc/user_bloc.dart';
@@ -45,7 +43,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     });
   }
 
-  Future<void> _loginGoogleEvent(Emitter<SignInState> emit) async {
+  Future<void> _loginGoogleEvent(Emitter<SignInState> emit) async { 
     try {
       // Login google with google plugin
       final userCre = await authHelper.signInWithGoogle();

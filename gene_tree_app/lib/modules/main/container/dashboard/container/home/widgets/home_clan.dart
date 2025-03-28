@@ -27,10 +27,12 @@ class _HomeClanState extends State<HomeClan> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (previous, current) => previous.clanData != current.clanData,
       builder: (context, state) {
         final status = state.clanData.status;
         switch (status) {
           case AsyncStatus.loading:
+          case AsyncStatus.error:
             return Shimmer.fromColors(
               baseColor: Colors.grey.shade300,
               highlightColor: Colors.grey.shade100,
@@ -44,6 +46,8 @@ class _HomeClanState extends State<HomeClan> {
               ),
             );
           case AsyncStatus.success:
+            // Trường hợp chưa có clan
+            if (state.clanData.data == null) return _buildEmptyClan();
             return Container(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
               width: double.infinity,
@@ -100,5 +104,9 @@ class _HomeClanState extends State<HomeClan> {
         }
       },
     );
+  }
+
+  Container _buildEmptyClan() {
+    return Container();
   }
 }

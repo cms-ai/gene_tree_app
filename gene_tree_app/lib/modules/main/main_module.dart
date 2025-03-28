@@ -38,7 +38,6 @@ import 'package:gene_tree_app/modules/main/container/language/bloc/language_bloc
 import 'package:gene_tree_app/modules/main/container/language/language_screen.dart';
 import 'package:gene_tree_app/modules/main/container/notification/bloc/notification_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/notification/notification_screen.dart';
-import 'package:gene_tree_app/modules/main/guards/profile_guard.dart';
 
 class MainModule extends Module {
   static const String path = "/dashboard/";

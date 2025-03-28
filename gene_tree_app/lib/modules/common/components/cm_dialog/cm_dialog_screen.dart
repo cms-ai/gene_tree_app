@@ -123,9 +123,7 @@ class CmDialogScreen {
                       Text(
                         argument.title ?? 'Successs',
                         textAlign: TextAlign.center,
-                        style: themeData.value.typo.t14Semibold.copyWith(
-                          color: themeData.value.color.btnColor2,
-                        ),
+                        style: themeData.value.typo.t14Semibold.copyWith(),
                       ),
                       SizedBox(height: 6.h),
                       Text(
@@ -150,17 +148,15 @@ class CmDialogScreen {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: themeData.value.color.btnColor2,
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10.r),
+                        bottomRight: Radius.circular(10.r),
                       ),
                     ),
                     child: Center(
                       child: Text(
                         "OK",
-                        style: themeData.value.typo.t12Bold.copyWith(
-                          color: themeData.value.color.bgColor1,
-                        ),
+                        style: themeData.value.typo.t12Bold.copyWith(),
                       ),
                     ),
                   ),

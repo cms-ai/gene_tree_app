@@ -40,7 +40,7 @@ generate:
 .PHONY: generate_asset
 generate_asset:
 	bash ./bin/generate_asset/generate_asset.bash
-
+#Lỗi
 .PHONY: gen_image
 gen_image:
 	bash ./bin/generate_asset/generate_image.bash

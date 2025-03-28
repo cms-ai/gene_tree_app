@@ -156,10 +156,10 @@ class MainLocalizations {
   }
 
   /// `You don't have any clan events`
-  String get noClanDes {
+  String get noClanEventDes {
     return Intl.message(
       'You don\'t have any clan events',
-      name: 'noClanDes',
+      name: 'noClanEventDes',
       desc: '',
       args: [],
     );

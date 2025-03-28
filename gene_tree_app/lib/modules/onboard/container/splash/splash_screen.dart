@@ -30,7 +30,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    splashBloc.add(const SplashEvent.started());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(const Duration(seconds: 2), () {
+        splashBloc.add(const SplashEvent.started());
+      });
+    });
   }
 
   void _handleUnAuthenticated(bool firstLogin) {

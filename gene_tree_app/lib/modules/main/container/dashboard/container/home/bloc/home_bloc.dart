@@ -12,7 +12,6 @@ import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_clan_events_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_clan_members_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/user/get_user.usecase.dart';
-import 'package:gene_tree_app/modules/main/container/clan/update_clan/bloc/update_clan_bloc.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -24,8 +23,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetClanMembersUsecase getClanMembersUsecase;
   final LocalStorage localStorage;
   final GetUserUsecase getUserUsecase;
-  final UpdateClanBloc updateClanBloc;
-  late final StreamSubscription updateClanSubscription;
+  final StreamController<HomeEvent> _homeEventCtrl =
+      StreamController<HomeEvent>.broadcast();
 
   HomeBloc(
     this.getAllClanUsecase,
@@ -33,7 +32,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     this.getClanMembersUsecase,
     this.localStorage,
     this.getUserUsecase,
-    this.updateClanBloc,
   ) : super(
           const HomeState.initial(
             userData: AsyncValue.loading(),
@@ -42,11 +40,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             clanMembers: AsyncValue.loading(),
           ),
         ) {
-    updateClanSubscription = updateClanBloc.stream.listen((state) {
-      state.mapOrNull(success: (value) {
-        add(HomeEvent.refreshClanData(clanEntity: value.clanEnity));
-      });
-    });
+    void homeEventListenter(HomeEvent event) {
+      add(event);
+    }
+
+    _homeEventCtrl.stream.listen((value) => homeEventListenter(value));
 
     on<HomeEvent>((event, emit) async {
       await event.map(
@@ -99,29 +97,41 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             localStorage.remove(SharePreferenceKeys.clanId.name);
             emit(
               state.copyWith(
-                clanData: const AsyncValue.error("No data"),
-                clanEvents: const AsyncValue.error("No data"),
-                clanMembers: const AsyncValue.error("No data"),
+                clanData: const AsyncValue.success(null),
+                // clanEvents: const AsyncValue.success([]),
+                // clanMembers: const AsyncValue.success([]),
               ),
             );
             return;
           }
         },
         refreshClanData: (_RefreshClanData value) {
-          if (value.clanEntity == null) {
-            add(const HomeEvent.fetchClanData());
-          } else {
-            emit(
-              state.copyWith(
-                clanData: AsyncValue.success(state.clanData.data?.copyWith(
-                  clanName: value.clanEntity?.clanName,
-                  clanCode: value.clanEntity?.clanCode,
-                )),
-              ),
-            );
+          if (state.clanData.data == null) {
+            add(const _FetchClanData());
+          }
+        },
+        updateClanData: (_UpdateClanData value) {
+          if (value.clan.id == state.clanData.data?.id) {
+            emit(state.copyWith(
+              clanData: AsyncValue.success(value.clan),
+            ));
+          }
+        },
+        deleteClanEvent: (_DeleteClanEvent value) {
+          if (value.clanId == state.clanData.data?.id) {
+            add(const _FetchClanData());
           }
         },
       );
     });
+  }
+  void receiveEvent(HomeEvent newEvent) {
+    _homeEventCtrl.add(newEvent); // Bắn sự kiện vào stream
+  }
+
+  @override
+  Future<void> close() {
+    _homeEventCtrl.close();
+    return super.close();
   }
 }

@@ -60,6 +60,7 @@ dependencies:
   dropdown_button2: 2.3.9
   board_datetime_picker: 2.3.0
   bottom_picker: 2.11.0
+  loading_indicator: 3.1.1
 
 dev_dependencies:
   flutter_test:

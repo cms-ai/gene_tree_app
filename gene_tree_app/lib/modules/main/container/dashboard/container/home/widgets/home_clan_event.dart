@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/domain/entities/clan_event_entity.dart';
+import 'package:gene_tree_app/gen/assets.gen.dart';
 import 'package:gene_tree_app/modules/common/components/event_item/cp_event_item.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/bloc/dashboard_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
@@ -80,108 +81,120 @@ class _HomeClanEventState extends State<HomeClanEvent> {
 
             switch (status) {
               case AsyncStatus.loading:
-                return Column(
-                  children: [
-                    ...List.generate(4, (index) {
-                      return Container(
-                        margin: EdgeInsets.only(bottom: 10.h),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 12.w, vertical: 8.h),
-                        decoration: BoxDecoration(
-                          gradient: themeData.value.color.linegradientColor2,
-                          borderRadius: BorderRadius.circular(10.r),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Title Skeleton
-                            Shimmer.fromColors(
-                              baseColor: Colors.grey.shade300,
-                              highlightColor: Colors.grey.shade100,
-                              child: Container(
-                                width: 150.w,
-                                height: 10.h,
-                                decoration: BoxDecoration(
-                                  gradient:
-                                      themeData.value.color.linegradientColor2,
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 6.h),
-                            // Description Skeleton
-                            Shimmer.fromColors(
-                              baseColor: Colors.grey.shade300,
-                              highlightColor: Colors.grey.shade100,
-                              child: Container(
-                                width: double.infinity,
-                                height: 8.h,
-                                decoration: BoxDecoration(
-                                  gradient:
-                                      themeData.value.color.linegradientColor2,
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 6.h),
-                            // Author and Time Skeleton
-                            Row(
-                              children: [
-                                // Author Skeleton
-                                Expanded(
-                                  child: Shimmer.fromColors(
-                                    baseColor: Colors.grey.shade300,
-                                    highlightColor: Colors.grey.shade100,
-                                    child: Container(
-                                      width: 100.w,
-                                      height: 10.h,
-                                      decoration: BoxDecoration(
-                                        gradient: themeData
-                                            .value.color.linegradientColor2,
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    })
-                  ],
-                );
+                return _buildLoading();
               case AsyncStatus.success:
-                return ListView.separated(
-                  itemBuilder: (context, index) => CPEventItem(
-                    data: ClanEventEntity(),
-                    configs: const CPEventItemConfigs(),
-                  ),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  separatorBuilder: (context, index) => SizedBox(
-                    height: 10.h,
-                  ),
-                  itemCount: state.clanEvents.data?.length ?? 0,
-                );
+                return state.clanEvents.data?.isNotEmpty == true
+                    ? ListView.separated(
+                        itemBuilder: (context, index) => CPEventItem(
+                          data: ClanEventEntity(),
+                          configs: const CPEventItemConfigs(),
+                        ),
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        separatorBuilder: (context, index) => SizedBox(
+                          height: 10.h,
+                        ),
+                        itemCount: state.clanEvents.data?.length ?? 0,
+                      )
+                    : _buildEventEmpty();
 
               default:
-                return Column(
-                  children: [
-                    SizedBox(height: 60.h),
-                    Text(
-                      MainLocalizations.current.noClanDes,
-                      textAlign: TextAlign.center,
-                      style: themeData.value.typo.t12Semibold.copyWith(),
-                    ),
-                    SizedBox(height: 20.h),
-                    SizedBox(height: 20.h),
-                  ],
-                );
+                return Container();
             }
           },
         )
+      ],
+    );
+  }
+
+  Widget _buildEventEmpty() {
+    return SizedBox(
+      height: 160.h,
+      child: Column(
+        children: [
+          const Spacer(),
+          Assets.images.emptyState.svg(
+            height: 100.h,
+          ),
+          Text(
+            MainLocalizations.current.noClanEventDes,
+            textAlign: TextAlign.center,
+            style: themeData.value.typo.t12Regular.copyWith(
+              color: themeData.value.color.mainPrimaryColor.withOpacity(.5),
+            ),
+          ),
+          const Spacer(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLoading() {
+    return Column(
+      children: [
+        ...List.generate(4, (index) {
+          return Container(
+            margin: EdgeInsets.only(bottom: 10.h),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+            decoration: BoxDecoration(
+              gradient: themeData.value.color.linegradientColor2,
+              borderRadius: BorderRadius.circular(10.r),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Title Skeleton
+                Shimmer.fromColors(
+                  baseColor: Colors.grey.shade300,
+                  highlightColor: Colors.grey.shade100,
+                  child: Container(
+                    width: 150.w,
+                    height: 10.h,
+                    decoration: BoxDecoration(
+                      gradient: themeData.value.color.linegradientColor2,
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 6.h),
+                // Description Skeleton
+                Shimmer.fromColors(
+                  baseColor: Colors.grey.shade300,
+                  highlightColor: Colors.grey.shade100,
+                  child: Container(
+                    width: double.infinity,
+                    height: 8.h,
+                    decoration: BoxDecoration(
+                      gradient: themeData.value.color.linegradientColor2,
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 6.h),
+                // Author and Time Skeleton
+                Row(
+                  children: [
+                    // Author Skeleton
+                    Expanded(
+                      child: Shimmer.fromColors(
+                        baseColor: Colors.grey.shade300,
+                        highlightColor: Colors.grey.shade100,
+                        child: Container(
+                          width: 100.w,
+                          height: 10.h,
+                          decoration: BoxDecoration(
+                            gradient: themeData.value.color.linegradientColor2,
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        })
       ],
     );
   }

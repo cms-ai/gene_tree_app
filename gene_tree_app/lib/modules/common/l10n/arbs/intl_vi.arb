@@ -1,14 +1,15 @@
 {
   "@@locale": "vi",
   "enterEmailHint": "Nhập email",
-  "enterPassHint": "Nhập password",
+  "enterPassHint": "Nhập mật khẩu",
   "forgotPass": "Quên mật khẩu",
-  "noAccountBefore": "Bạn chưa có tài khoản",
+  "noAccountBefore": "Bạn chưa có tài khoản?",
   "signIn": "Đăng nhập",
   "signUp": "Đăng ký",
-  "signInWithGoogle": "Đăng nhặp với google",
-  "haveAcountBefore": "Bạn đã có tài khoản",
-  "next": "Next",
-  "submit": "Submit",
-  "gender": "Gender"
+  "signInWithGoogle": "Đăng nhập với Google",
+  "haveAcountBefore": "Bạn đã có tài khoản?",
+  "next": "Tiếp theo",
+  "submit": "Gửi",
+  "gender": "Giới tính",
+  "goToDashboard": "Đi đến bảng điều khiển"
 }

@@ -39,7 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noAccountBefore": MessageLookupByLibrary.simpleMessage(
       "You don\'t have an account",
     ),
-    "noClanDes": MessageLookupByLibrary.simpleMessage(
+    "noClanEventDes": MessageLookupByLibrary.simpleMessage(
       "You don\'t have any clan events",
     ),
     "noClanMember": MessageLookupByLibrary.simpleMessage(

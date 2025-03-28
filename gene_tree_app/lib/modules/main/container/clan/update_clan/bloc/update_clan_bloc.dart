@@ -7,6 +7,7 @@ import 'package:gene_tree_app/domain/entities/clan_entity.dart';
 import 'package:gene_tree_app/domain/usecase/clan/delete_clan_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/update_clan_usecase.dart';
+import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
 
 part 'update_clan_event.dart';
 part 'update_clan_state.dart';
@@ -17,11 +18,13 @@ class UpdateClanBloc extends Bloc<UpdateClanEvent, UpdateClanState> {
   final GetAllClanUsecase getAllClanUsecase;
   final DeleteClanUsecase deleteClanUsecase;
   final LocalStorage localStorage;
+  final HomeBloc homeBloc;
   UpdateClanBloc(
     this.updateClanUsecase,
     this.deleteClanUsecase,
     this.getAllClanUsecase,
     this.localStorage,
+    this.homeBloc,
   ) : super(const UpdateClanState.initial()) {
     on<UpdateClanEvent>((event, emit) async {
       await event.map(
@@ -36,6 +39,8 @@ class UpdateClanBloc extends Bloc<UpdateClanEvent, UpdateClanState> {
             final result = await updateClanUsecase.call(value.clanId, bodyReq);
             if (result != null) {
               emit(UpdateClanState.success(clanEnity: result));
+              // Cập nhật lại clan data
+              homeBloc.receiveEvent(HomeEvent.updateClanData(result));
             } else {
               throw Exception("Data not found");
             }
@@ -54,6 +59,7 @@ class UpdateClanBloc extends Bloc<UpdateClanEvent, UpdateClanState> {
             emit(const UpdateClanState.loading());
 
             await deleteClanUsecase.call(value.clanId);
+            homeBloc.receiveEvent(HomeEvent.deleteClanEvent(value.clanId));
             emit(const UpdateClanState.success(clanEnity: null));
           } catch (e) {
             final error = await e.getMessageErr();

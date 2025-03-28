@@ -7,6 +7,7 @@ import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:gene_tree_app/data/models/clan/request/create_clan_request.dart';
 import 'package:gene_tree_app/domain/repositories/clan_repository.dart';
+import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 
 part 'create_clan_event.dart';
@@ -16,10 +17,12 @@ part 'create_clan_bloc.freezed.dart';
 class CreateClanBloc extends Bloc<CreateClanEvent, CreateClanState> {
   final LocalStorage localStorage;
   final ClanRepository clanRepository;
-  CreateClanBloc({
-    required this.localStorage,
-    required this.clanRepository,
-  }) : super(const CreateClanState.initial(isValid: false)) {
+  final HomeBloc homeBloc;
+  CreateClanBloc(
+    this.localStorage,
+    this.clanRepository,
+    this.homeBloc,
+  ) : super(const CreateClanState.initial(isValid: false)) {
     on<CreateClanEvent>(
       (event, emit) async {
         await event.map(
@@ -43,9 +46,9 @@ class CreateClanBloc extends Bloc<CreateClanEvent, CreateClanState> {
         description: value.description,
         authorId: userId ?? "",
       );
-      await clanRepository.createClan(reqBody);
+      final result = await clanRepository.createClan(reqBody);
+      homeBloc.add(HomeEvent.refreshClanData(clanEntity: result.data));
       EasyLoading.showSuccess("Succesfully");
-
       navigateScreen();
     } catch (e) {
       LoggerUtil.debugLog(e.toString());
